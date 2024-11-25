@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
 
-group = 'com.Spanca05.tomb'
+group = 'com.Spanca05.astronaut'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -21,5 +21,5 @@ test {
     useJUnitPlatform()
 }
 application {
-    mainClass.set("com.Spanca05.tomb.Application")
+    mainClass.set("com.Spanca05.astronaut.Application")
 }
