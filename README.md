@@ -10,8 +10,8 @@ diferentes planetas que serão mais complexos e darão recompensas maiores.
 
 # Mockups
 
-![Menu](docs/uml_.drawio.png)
-![Example Level](docs/uml_.drawio.png)
+![Menu](mockup_menu.png)
+![Example Level](mockup_alevel.png)
 
 # Funcionalidades do Jogador
 
