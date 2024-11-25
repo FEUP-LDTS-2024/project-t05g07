@@ -12,7 +12,6 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
 import java.io.IOException;
-import java.lang.foreign.Arena;
 
 public class Game {
     private Screen screen;
