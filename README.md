@@ -66,5 +66,5 @@ ao contato;
 
 # Diagrama UML
 
-![UML class diagram](docs/hero-communication-menu.png)
+![UML class diagram](docs/uml_ldts.drawio.png)
 
