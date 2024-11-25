@@ -10,7 +10,7 @@ diferentes planetas que serão mais complexos e darão recompensas maiores.
 
 # Mockups
 
-<img src="docs/mockup_menu.png" width="400"> <img src="docs/mockup_alevel.png" width="400">
+<img src="docs/mockup_menu.png" width="413"> <img src="docs/mockup_alevel.png" width="413">
 
 # Funcionalidades do Jogador
 
