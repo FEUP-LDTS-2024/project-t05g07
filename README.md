@@ -8,6 +8,10 @@ desbloquear novas habilidades.
 Conforme o jogador acumula pontos, ele sobe de nível e desbloqueia novas arenas em
 diferentes planetas que serão mais complexos e darão recompensas maiores.
 
+# Mockups
+
+![Menu](docs/uml_.drawio.png)
+![Example Level](docs/uml_.drawio.png)
 
 # Funcionalidades do Jogador
 
