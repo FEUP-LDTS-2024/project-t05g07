@@ -1,4 +1,31 @@
 package com.Spanca05.astronaut.viewer.game;
 
-public class GameViewer {
+import java.util.List;
+
+import com.Spanca05.astronaut.gui.GUI;
+import com.Spanca05.astronaut.model.Position;
+import com.Spanca05.astronaut.model.game.arena.Arena;
+import com.Spanca05.astronaut.model.game.elements.Element;
+import com.Spanca05.astronaut.viewer.Viewer;
+
+public class GameViewer extends Viewer<Arena> {
+    public GameViewer(Arena arena) {
+        super(arena);
+    }
+
+    @Override
+    public void drawElements(GUI gui) {
+        drawElements(gui, getModel().getWalls(), new WallViewer());
+        drawElements(gui, getModel().getMonsters(), new MonsterViewer());
+        drawElement(gui, getModel().getAstronaut(), new AstronautViewer());
+    }
+
+    private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
+        for (T element : elements)
+            drawElement(gui, element, viewer);
+    }
+
+    private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) {
+        viewer.draw(element, gui);
+    }
 }

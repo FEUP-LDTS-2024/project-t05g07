@@ -3,7 +3,7 @@ package com.Spanca05.astronaut;
 import com.Spanca05.astronaut.model.game.arena.Arena;
 import com.Spanca05.astronaut.model.Position;
 import com.googlecode.lanterna.input.KeyStroke;
-import com.Spanca05.astronaut.model.game.elements.Coin;
+import com.Spanca05.astronaut.model.game.elements.Point;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +36,7 @@ public class ArenaTest {
 
         arena.retrieveCoins();
 
-        assertFalse(arena.getCoins().contains(new Coin(coinPosition)));
+        assertFalse(arena.getCoins().contains(new Point(coinPosition)));
     }
 
     @Test

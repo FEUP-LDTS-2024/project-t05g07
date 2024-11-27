@@ -1,77 +1,49 @@
 package com.Spanca05.astronaut;
 
+import com.Spanca05.astronaut.gui.LanternaGUI;
+import com.Spanca05.astronaut.model.menu.Menu;
+import com.Spanca05.astronaut.states.MenuState;
+import com.Spanca05.astronaut.states.State;
 
-import com.Spanca05.astronaut.model.game.arena.Arena;
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
-
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class Game {
-    private Screen screen;
-    private boolean run;
-    private Arena arena;
+    private final LanternaGUI gui;
+    private State state;
 
-    public Game() throws IOException {
-        TerminalSize terminalSize = new TerminalSize(40, 20);
-        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
-
-        Terminal terminal = new DefaultTerminalFactory()
-                .setTerminalEmulatorFontConfiguration(
-                        SwingTerminalFontConfiguration.getDefaultOfSize(20)
-                )
-                .createTerminal();
-        screen = new TerminalScreen(terminal);
-        screen.setCursorPosition(null); //We don't need a cursor
-        screen.startScreen();   //screens  must be started
-        screen.doResizeIfNecessary();   //resize screen if necessary
-
-        this.arena = new Arena(80, 40);
+    public Game() throws FontFormatException, IOException, URISyntaxException {
+        this.gui = new LanternaGUI(20, 20);
+        this.state = new MenuState(new Menu());
     }
 
-    public void run() throws IOException {
-        run = true;
-        while (run) {
-            draw(); //Calls draw method
-            processKey(screen.readInput());
-            if (arena.verifyMonsterCollisions() || arena.verifyExistingCoins()) {
-                run = false;
+    public static void main(String[] args) throws IOException, FontFormatException, URISyntaxException {
+        new Game().start();
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    private void start() throws IOException {
+        int FPS = 10;
+        int frameTime = 1000 / FPS;
+
+        while (this.state != null) {
+            long startTime = System.currentTimeMillis();
+
+            state.step(this, gui, startTime);
+
+            long elapsedTime = System.currentTimeMillis() - startTime;
+            long sleepTime = frameTime - elapsedTime;
+
+            try {
+                if (sleepTime > 0) Thread.sleep(sleepTime);
+            } catch (InterruptedException e) {
             }
         }
-        screen.close();
-    }
-    public void gameOver() throws IOException {
-        run=false;
-        screen.close();
-    }
 
-    private void draw() throws IOException {
-        TextGraphics graphics = screen.newTextGraphics();
-        screen.doResizeIfNecessary();
-        screen.clear(); //Clear tela
-        arena.draw(graphics);
-        screen.refresh();   //Refresh screen
+        gui.close();
     }
-
-    private void processKey(KeyStroke key) throws IOException {
-        if (key.getKeyType() == KeyType.EOF) {
-            run = false;
-            return;
-        }
-        if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
-            run = false;
-            return;
-        }
-        arena.processKey(key);
-    }
-
-
 }
-
