@@ -1,5 +1,6 @@
-package com.Spanca05.astronaut;
+package com.Spanca05.astronaut.model.game.elements;
 
+import com.Spanca05.astronaut.model.Position;
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;

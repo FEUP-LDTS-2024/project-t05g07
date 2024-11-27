@@ -1,6 +1,7 @@
 package com.Spanca05.astronaut;
 
 
+import com.Spanca05.astronaut.model.game.arena.Arena;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;

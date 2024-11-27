@@ -1,4 +1,4 @@
-package com.Spanca05.astronaut;
+package com.Spanca05.astronaut.model;
 
 public class Position {
     private int x;

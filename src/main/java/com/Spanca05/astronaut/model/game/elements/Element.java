@@ -1,5 +1,6 @@
-package com.Spanca05.astronaut;
+package com.Spanca05.astronaut.model.game.elements;
 
+import com.Spanca05.astronaut.model.Position;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public abstract class Element {

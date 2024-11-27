@@ -1,5 +1,10 @@
-package com.Spanca05.astronaut;
+package com.Spanca05.astronaut.model.game.arena;
 
+import com.Spanca05.astronaut.model.game.elements.Astronaut;
+import com.Spanca05.astronaut.model.game.elements.Coin;
+import com.Spanca05.astronaut.model.game.elements.Monster;
+import com.Spanca05.astronaut.model.game.elements.Wall;
+import com.Spanca05.astronaut.model.Position;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
