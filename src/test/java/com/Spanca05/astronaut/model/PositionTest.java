@@ -1,6 +1,5 @@
-package com.Spanca05.astronaut;
+package com.Spanca05.astronaut.model;
 
-import com.Spanca05.astronaut.model.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
