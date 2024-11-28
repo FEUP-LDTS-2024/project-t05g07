@@ -2,6 +2,7 @@ package com.Spanca05.astronaut.model.game.arena;
 
 import com.Spanca05.astronaut.model.game.elements.Astronaut;
 import com.Spanca05.astronaut.model.game.elements.Monster;
+import com.Spanca05.astronaut.model.game.elements.Point;
 import com.Spanca05.astronaut.model.game.elements.Wall;
 
 import java.io.BufferedReader;
@@ -72,6 +73,19 @@ public class LoaderArenaBuilder extends ArenaBuilder {
     }
 
     @Override
+    protected List<Point> createPoints() {
+        List<Point> points = new ArrayList<>();
+
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++)
+                if (line.charAt(x) == '.') points.add(new Point(x, y));
+        }
+
+        return points;
+    }
+
+    @Override
     protected Astronaut createAstronaut() {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
@@ -80,14 +94,4 @@ public class LoaderArenaBuilder extends ArenaBuilder {
         }
         return null;
     }
-
-    /*@Override
-    protected Point createPoint() {
-        for (int y = 0; y < lines.size(); y++) {
-            String line = lines.get(y);
-            for (int x = 0; x < line.length(); x++)
-                if (line.charAt(x) == '.') return new Point(x, y);
-        }
-        return null;
-    }*/
 }
