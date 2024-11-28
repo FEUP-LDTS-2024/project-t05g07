@@ -16,8 +16,8 @@ public class GameViewer extends Viewer<Arena> {
     @Override
     public void drawElements(GUI gui) {
         drawElements(gui, getModel().getWalls(), new WallViewer());
-        drawElements(gui, getModel().getMonsters(), new MonsterViewer());
         drawElements(gui, getModel().getPoints(), new PointViewer());
+        drawElements(gui, getModel().getMonsters(), new MonsterViewer());
         drawElement(gui, getModel().getAstronaut(), new AstronautViewer());
     }
 
