@@ -29,8 +29,8 @@ public class MonsterController extends GameController {
     private void moveMonster(Monster monster, Position position) {
         if (getModel().isEmpty(position)) {
             monster.setPosition(position);
-            //if (getModel().getAstronaut().getPosition().equals(position))
-                //getModel().getAstronaut().decreaseEnergy();
+            if (getModel().getAstronaut().getPosition().equals(position))
+                getModel().getAstronaut().die();
         }
     }
 }

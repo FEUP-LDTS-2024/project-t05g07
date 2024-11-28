@@ -19,7 +19,7 @@ public class ArenaController extends GameController {
     }
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
-        if (action == GUI.ACTION.QUIT)
+        if (action == GUI.ACTION.QUIT || !getModel().getAstronaut().getLife())
             game.setState(new MenuState(new Menu()));
         else {
             astronautController.step(game, action, time);
