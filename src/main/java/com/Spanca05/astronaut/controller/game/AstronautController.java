@@ -29,7 +29,11 @@ public class AstronautController extends GameController {
     private void moveAstronaut(Position position) {
         if (getModel().isEmpty(position)) {
             getModel().getAstronaut().setPosition(position);
+
             if (getModel().isMonster(position)) getModel().getAstronaut().die();
+
+            if (getModel().isPoint(position)) getModel().catchPoint(position);
+
         }
 
     }
