@@ -84,4 +84,14 @@ public class Arena {
                 return true;
         return false;
     }
+
+    // Não tenho a crtz se isto fica bem nesta classe
+    public void catchPoint(Position position) {
+        for (Point point : points) {
+            if (position.equals(point.getPosition())) {
+                points.remove(point);
+                break;
+            }
+        }
+    }
 }
