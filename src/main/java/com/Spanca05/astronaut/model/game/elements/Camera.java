@@ -3,19 +3,10 @@ package com.Spanca05.astronaut.model.game.elements;
 import com.Spanca05.astronaut.model.Position;
 
 
-public class Camera {
+public class Camera extends Element {
 
-        private Position position;
-
-    public Camera(Position position) {
-        this.position = position;
+    public Camera(int x, int y) {
+        super(x, y);
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
 }

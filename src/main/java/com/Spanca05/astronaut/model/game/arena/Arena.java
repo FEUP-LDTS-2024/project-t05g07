@@ -20,7 +20,7 @@ public class Arena {
         this.width = width;
         this.height = height;
 
-        this.camera = new Camera(new Position(0, 0));
+        this.camera = new Camera(0, 0);
     }
 
     public int getWidth() {
