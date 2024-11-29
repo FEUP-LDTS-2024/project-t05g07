@@ -33,16 +33,21 @@ public class AstronautController extends GameController {
             if (getModel().isMonster(position)) getModel().getAstronaut().die();
 
             if (getModel().isPoint(position)) getModel().catchPoint(position);
-
+        } else {
+            getModel().getAstronaut().setDirection(null);
         }
-
     }
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
-        if (action == GUI.ACTION.UP) moveAstronautUp();
-        if (action == GUI.ACTION.RIGHT) moveAstronautRight();
-        if (action == GUI.ACTION.DOWN) moveAstronautDown();
-        if (action == GUI.ACTION.LEFT) moveAstronautLeft();
+        switch (getModel().getAstronaut().getDirection()) {
+            case UP -> moveAstronautUp();
+            case DOWN -> moveAstronautDown();
+            case LEFT -> moveAstronautLeft();
+            case RIGHT -> moveAstronautRight();
+            case null, default -> {
+            }
+        }
     }
 }
+

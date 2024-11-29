@@ -21,13 +21,21 @@ public class ArenaController extends GameController {
     }
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
-        if (action == GUI.ACTION.QUIT || !getModel().getAstronaut().getLife())
-            game.setState(new MenuState(new Menu()));
-        else {
-            astronautController.step(game, action, time);
-            monsterController.step(game, action, time);
-            cameraController.step(game, action,time);
-
+        switch (action) {
+            case QUIT -> game.setState(new MenuState(new Menu()));
+            case UP, DOWN, RIGHT, LEFT -> {
+                if (getModel().getAstronaut().getDirection() == null)
+                    getModel().getAstronaut().setDirection(action);
+            }
+            case null, default -> {
+            }
         }
+
+        if (!getModel().getAstronaut().isAlive())
+            game.setState(new MenuState(new Menu()));
+
+        monsterController.step(game, null, time);
+        cameraController.step(game, null, time);
+        astronautController.step(game, null, time);
     }
 }
