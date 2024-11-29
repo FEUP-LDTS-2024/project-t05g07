@@ -49,6 +49,13 @@ public class Position {
         return y;
     }
 
+    public Position minus (Position other) {
+        return new Position(
+                this.x - other.x,
+                this.y - other.y
+        );
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

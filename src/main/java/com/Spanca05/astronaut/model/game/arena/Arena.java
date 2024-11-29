@@ -1,19 +1,16 @@
 package com.Spanca05.astronaut.model.game.arena;
 
 import com.Spanca05.astronaut.model.Position;
-import com.Spanca05.astronaut.model.game.elements.Astronaut;
-import com.Spanca05.astronaut.model.game.elements.Monster;
-import com.Spanca05.astronaut.model.game.elements.Point;
-import com.Spanca05.astronaut.model.game.elements.Wall;
+import com.Spanca05.astronaut.model.game.elements.*;
 
 import java.util.List;
-
 
 public class Arena {
     private final int width;
     private final int height;
 
     private Astronaut astronaut;
+    private Camera camera;
 
     private List<Monster> monsters;
     private List<Wall> walls;
@@ -22,6 +19,8 @@ public class Arena {
     public Arena(int width, int height) {
         this.width = width;
         this.height = height;
+
+        this.camera = new Camera(new Position(0, 0));
     }
 
     public int getWidth() {
@@ -38,6 +37,7 @@ public class Arena {
 
     public void setAstronaut(Astronaut astronaut) {
         this.astronaut = astronaut;
+        this.camera.setPosition(this.astronaut.getPosition().minus(new Position(9, 9)));
     }
 
     public List<Monster> getMonsters() {
@@ -85,6 +85,7 @@ public class Arena {
         return false;
     }
 
+
     // Não tenho a crtz se isto fica bem nesta classe
     public void catchPoint(Position position) {
         for (Point point : points) {
@@ -94,4 +95,13 @@ public class Arena {
             }
         }
     }
+
+    public Position getCameraPosition() {
+        return this.camera.getPosition();
+    }
+
+    public void setCameraPosition(Position newPosition) {
+        this.camera.setPosition(newPosition);
+    }
+
 }
