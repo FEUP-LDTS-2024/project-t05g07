@@ -1,9 +1,6 @@
 package com.Spanca05.astronaut.model.game.arena;
 
-import com.Spanca05.astronaut.model.game.elements.Astronaut;
-import com.Spanca05.astronaut.model.game.elements.Monster;
-import com.Spanca05.astronaut.model.game.elements.Point;
-import com.Spanca05.astronaut.model.game.elements.Wall;
+import com.Spanca05.astronaut.model.game.elements.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -83,6 +80,16 @@ public class LoaderArenaBuilder extends ArenaBuilder {
         }
 
         return points;
+    }
+
+    @Override
+    protected EndBlock createEndBlock() {
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++)
+                if (line.charAt(x) == 'E') return new EndBlock(x, y);
+        }
+        return null;
     }
 
     @Override

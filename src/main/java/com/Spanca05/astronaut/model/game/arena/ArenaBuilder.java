@@ -1,9 +1,6 @@
 package com.Spanca05.astronaut.model.game.arena;
 
-import com.Spanca05.astronaut.model.game.elements.Astronaut;
-import com.Spanca05.astronaut.model.game.elements.Monster;
-import com.Spanca05.astronaut.model.game.elements.Point;
-import com.Spanca05.astronaut.model.game.elements.Wall;
+import com.Spanca05.astronaut.model.game.elements.*;
 
 import java.util.List;
 
@@ -30,4 +27,6 @@ public abstract class ArenaBuilder {
     protected abstract Astronaut createAstronaut();
 
     protected abstract List<Point> createPoints();
+
+    protected abstract EndBlock createEndBlock();
 }

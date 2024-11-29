@@ -15,6 +15,8 @@ public interface GUI {
 
     void drawPoint(Position position);
 
+    void drawEndBlock(Position position);
+
     void drawText(Position position, String text, String color);
 
     void clear();
