@@ -87,6 +87,10 @@ public class Arena {
         return false;
     }
 
+    public boolean isEndBlock(Position position) {
+        return endblock.getPosition().equals(position);
+    }
+
     public boolean isPoint(Position position) {
         for (Point point : points)
             if (point.getPosition().equals(position))

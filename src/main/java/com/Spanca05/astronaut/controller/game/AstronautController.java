@@ -32,6 +32,13 @@ public class AstronautController extends GameController {
 
             if (getModel().isMonster(position)) getModel().getAstronaut().die();
 
+            // A different logic might be necessary.
+            // If the astronaut dies, the game goes to the menu.
+            // He didn't really die if he reached the end of the level.
+            // Yes, Astronaut's life has to be "false" in the menu,
+            // but he didn't die.
+            if (getModel().isEndBlock(position)) getModel().getAstronaut().die();
+
             if (getModel().isPoint(position)) getModel().catchPoint(position);
         } else {
             getModel().getAstronaut().setDirection(null);
