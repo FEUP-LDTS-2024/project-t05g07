@@ -16,9 +16,10 @@ public class GameViewer extends Viewer<Arena> {
     @Override
     public void drawElements(GUI gui) {
         drawElements(gui, getModel().getWalls(), new WallViewer());
+        drawElement(gui, getModel().getEndBlock(), new EndBlockViewer());
         drawElements(gui, getModel().getPoints(), new PointViewer());
         drawElements(gui, getModel().getMonsters(), new MonsterViewer());
-        drawElement(gui, getModel().getAstronaut(), new AstronautViewer(), getModel().getCameraPosition());
+        drawElement(gui, getModel().getAstronaut(), new AstronautViewer());
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
@@ -26,6 +27,11 @@ public class GameViewer extends Viewer<Arena> {
             drawElement(gui, element, viewer, getModel().getCameraPosition());
     }
 
+    private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) {
+        drawElement(gui, element, viewer, getModel().getCameraPosition());
+    }
+
+    // This one is called by the above draws.
     private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer, Position cameraOffSet) {
         viewer.draw(element, gui, cameraOffSet);
     }

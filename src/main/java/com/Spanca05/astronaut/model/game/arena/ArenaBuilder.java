@@ -11,6 +11,7 @@ public abstract class ArenaBuilder {
         arena.setAstronaut(createAstronaut());
         arena.setMonsters(createMonsters());
         arena.setWalls(createWalls());
+        arena.setEndBlock(createEndBlock());
         arena.setPoints(createPoints());
 
         return arena;

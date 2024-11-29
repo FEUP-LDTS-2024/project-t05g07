@@ -14,6 +14,7 @@ public class Arena {
 
     private List<Monster> monsters;
     private List<Wall> walls;
+    private EndBlock endblock;
     private List<Point> points;
 
     public Arena(int width, int height) {
@@ -54,6 +55,14 @@ public class Arena {
 
     public void setWalls(List<Wall> walls) {
         this.walls = walls;
+    }
+
+    public EndBlock getEndBlock() {
+        return endblock;
+    }
+
+    public void setEndBlock(EndBlock endblock) {
+        this.endblock = endblock;
     }
 
     public List<Point> getPoints() {
