@@ -18,15 +18,15 @@ public class GameViewer extends Viewer<Arena> {
         drawElements(gui, getModel().getWalls(), new WallViewer());
         drawElements(gui, getModel().getPoints(), new PointViewer());
         drawElements(gui, getModel().getMonsters(), new MonsterViewer());
-        drawElement(gui, getModel().getAstronaut(), new AstronautViewer());
+        drawElement(gui, getModel().getAstronaut(), new AstronautViewer(), getModel().getCameraPosition());
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
         for (T element : elements)
-            drawElement(gui, element, viewer);
+            drawElement(gui, element, viewer, getModel().getCameraPosition());
     }
 
-    private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) {
-        viewer.draw(element, gui);
+    private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer, Position cameraOffSet) {
+        viewer.draw(element, gui, cameraOffSet);
     }
 }

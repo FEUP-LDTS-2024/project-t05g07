@@ -11,11 +11,13 @@ import java.io.IOException;
 public class ArenaController extends GameController {
     private final AstronautController astronautController;
     private final MonsterController monsterController;
+    private final CameraController cameraController;
 
     public ArenaController(Arena arena) {
         super(arena);
         this.astronautController = new AstronautController(arena);
         this.monsterController = new MonsterController(arena);
+        this.cameraController = new CameraController(arena);
     }
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
@@ -24,6 +26,8 @@ public class ArenaController extends GameController {
         else {
             astronautController.step(game, action, time);
             monsterController.step(game, action, time);
+            cameraController.step(game, action,time);
+
         }
     }
 }
