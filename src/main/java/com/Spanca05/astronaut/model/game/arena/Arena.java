@@ -13,6 +13,7 @@ public class Arena {
     private Camera camera;
 
     private List<Monster> monsters;
+    private List<Coin> coins;
     private List<Wall> walls;
     private EndBlock endblock;
     private List<Point> points;
@@ -45,9 +46,15 @@ public class Arena {
         return monsters;
     }
 
+    public List<Coin> getCoins() {
+        return coins;
+    }
+
     public void setMonsters(List<Monster> monsters) {
         this.monsters = monsters;
     }
+
+    public void setCoins(List<Coin> coins) {this.coins = coins; }
 
     public List<Wall> getWalls() {
         return walls;
@@ -87,6 +94,13 @@ public class Arena {
         return false;
     }
 
+    public boolean isCoin(Position position) {
+        for(Coin coin : coins)
+            if(coin.getPosition().equals(position))
+                return true;
+        return false;
+    }
+
     public boolean isEndBlock(Position position) {
         return endblock.getPosition().equals(position);
     }
@@ -104,6 +118,15 @@ public class Arena {
         for (Point point : points) {
             if (position.equals(point.getPosition())) {
                 points.remove(point);
+                break;
+            }
+        }
+    }
+
+    public void catchCoin(Position position) {
+        for(Coin coin : coins) {
+            if(position.equals(coin.getPosition())) {
+                coins.remove(coin);
                 break;
             }
         }

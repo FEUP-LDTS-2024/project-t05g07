@@ -40,6 +40,8 @@ public class AstronautController extends GameController {
             if (getModel().isEndBlock(position)) getModel().getAstronaut().die();
 
             if (getModel().isPoint(position)) getModel().catchPoint(position);
+
+            if(getModel().isCoin(position)) getModel().catchCoin(position);
         } else {
             getModel().getAstronaut().setDirection(null);
         }
