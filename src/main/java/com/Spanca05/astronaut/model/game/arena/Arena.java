@@ -107,12 +107,28 @@ public class Arena {
         return false;
     }
 
+    public boolean isPowerup(Position position) {
+        for (Powerup powerup : powerups)
+            if (powerup.getPosition().equals(position))
+                return true;
+        return false;
+    }
+
 
     // Não tenho a crtz se isto fica bem nesta classe
     public void catchPoint(Position position) {
         for (Point point : points) {
             if (position.equals(point.getPosition())) {
                 points.remove(point);
+                break;
+            }
+        }
+    }
+
+    public void catchPowerup(Position position) {
+        for (Powerup powerup : powerups) {
+            if (position.equals(powerup.getPosition())) {
+                powerups.remove(powerup);
                 break;
             }
         }
