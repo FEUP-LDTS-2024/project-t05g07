@@ -13,6 +13,8 @@ public interface GUI {
 
     void drawMonster(Position position);
 
+    void drawCoin(Position position);
+
     void drawPoint(Position position);
 
     void drawStar(Position position);

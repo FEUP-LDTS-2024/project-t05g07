@@ -97,6 +97,9 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
+    public void drawCoin(Position position) {drawCharacter(position.getX(), position.getY(), 'C', "#FFFF00");}
+
+    @Override
     public void drawPoint(Position position) {
         drawCharacter(position.getX(), position.getY(), '.', "#FFFFFF");
     }

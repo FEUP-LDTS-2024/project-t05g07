@@ -6,8 +6,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class LoaderArenaBuilder extends ArenaBuilder {
     private final int level;
@@ -69,6 +68,24 @@ public class LoaderArenaBuilder extends ArenaBuilder {
         return monsters;
     }
 
+    @Override
+    protected List<Coin> createCoins() {
+        List<Point> points = createPoints();
+        List<Coin> coins = new ArrayList<>();
+        double coinNum = points.size() * 0.1;
+        Collections.shuffle(points);
+
+        for(int i = 0; i < coinNum; i++) {
+            coins.add(new Coin(points.get(i).getPosition().getX(), points.get(i).getPosition().getY()));
+        }
+
+        for(int i = 0; i < coinNum; i++) {
+            points.removeFirst();
+        }
+
+        return coins;
+    }
+  
     @Override
     protected List<Star> createStar() {
         List<Star> stars = new ArrayList<>();
