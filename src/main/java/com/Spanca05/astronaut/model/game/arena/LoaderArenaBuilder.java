@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class LoaderArenaBuilder extends ArenaBuilder {
     private final int level;
@@ -80,6 +81,29 @@ public class LoaderArenaBuilder extends ArenaBuilder {
         }
 
         return points;
+    }
+
+    @Override
+    protected List<Powerup> createPowerups() {
+        List<Powerup> powerups = new ArrayList<>();
+
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++) {
+                boolean random = new Random().nextInt(5) == 0;
+                if (line.charAt(x) == '.' && random) powerups.add(oneRandomPowerup(x, y));
+            }
+        }
+
+        return powerups;
+    }
+
+    private Powerup oneRandomPowerup(int x, int y) {
+        int n = (int) (Math.random() * 1);
+        switch (n) {
+            default:
+                return new Iman(x, y);
+        }
     }
 
     @Override
