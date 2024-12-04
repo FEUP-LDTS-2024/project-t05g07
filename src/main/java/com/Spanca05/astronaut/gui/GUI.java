@@ -13,6 +13,8 @@ public interface GUI {
 
     void drawMonster(Position position);
 
+    void drawPowerup(Position position);
+
     void drawPoint(Position position);
 
     void drawEndBlock(Position position);
