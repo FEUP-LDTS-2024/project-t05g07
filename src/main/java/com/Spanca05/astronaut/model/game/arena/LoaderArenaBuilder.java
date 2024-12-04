@@ -70,6 +70,18 @@ public class LoaderArenaBuilder extends ArenaBuilder {
     }
 
     @Override
+    protected List<Star> createStar() {
+        List<Star> stars = new ArrayList<>();
+
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++)
+                if (line.charAt(x) == 'S') stars.add(new Star(x, y));
+        }
+        return stars;
+    }
+
+    @Override
     protected List<Point> createPoints() {
         List<Point> points = new ArrayList<>();
 
