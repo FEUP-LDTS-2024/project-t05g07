@@ -16,6 +16,7 @@ public class Arena {
     private List<Wall> walls;
     private EndBlock endblock;
     private List<Point> points;
+    private List<Star> stars;
 
     public Arena(int width, int height) {
         this.width = width;
@@ -73,6 +74,12 @@ public class Arena {
         this.points = points;
     }
 
+    public List<Star> getStars() {
+        return stars;
+    }
+    public void setStar(List<Star> stars){
+        this.stars = stars;
+    }
     public boolean isEmpty(Position position) {
         for (Wall wall : walls)
             if (wall.getPosition().equals(position))
@@ -97,13 +104,28 @@ public class Arena {
                 return true;
         return false;
     }
-
+    public boolean isStar(Position position){
+        for (Star star : stars){
+            if (star.getPosition().equals(position))
+                return true;
+        }
+        return false;
+    }
 
     // Não tenho a crtz se isto fica bem nesta classe
     public void catchPoint(Position position) {
         for (Point point : points) {
             if (position.equals(point.getPosition())) {
                 points.remove(point);
+                break;
+            }
+        }
+    }
+
+    public void catchStar(Position position){
+        for (Star star : stars){
+            if (position.equals(star.getPosition())){
+                stars.remove(star);
                 break;
             }
         }

@@ -102,6 +102,11 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
+    public void drawStar(Position position) {
+        drawCharacter(position.getX(), position.getY(), 'S', "#F8E559");
+    }
+
+    @Override
     public void drawEndBlock(Position position) {
         drawCharacter(position.getX(), position.getY(), 'E', "#FFFF00");
     }
