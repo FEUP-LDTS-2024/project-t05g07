@@ -1,5 +1,6 @@
 package com.Spanca05.astronaut.model.game.arena;
 
+import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.elements.*;
 
 import java.io.BufferedReader;
@@ -13,6 +14,10 @@ import java.util.Random;
 public class LoaderArenaBuilder extends ArenaBuilder {
     private final int level;
     private final List<String> lines;
+
+    // Scuffed as fuck. Só está aqui para pôr as posições dos powerups.
+    // Assim mais vale usar isto em todos os métodos.
+    private List<Position> occupiedPositions = new ArrayList<>();
 
     public LoaderArenaBuilder(int level) throws IOException {
         this.level = level;
@@ -71,31 +76,35 @@ public class LoaderArenaBuilder extends ArenaBuilder {
     }
 
     @Override
-    protected List<Point> createPoints() {
-        List<Point> points = new ArrayList<>();
-
-        for (int y = 0; y < lines.size(); y++) {
-            String line = lines.get(y);
-            for (int x = 0; x < line.length(); x++)
-                if (line.charAt(x) == '.') points.add(new Point(x, y));
-        }
-
-        return points;
-    }
-
-    @Override
     protected List<Powerup> createPowerups() {
         List<Powerup> powerups = new ArrayList<>();
 
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
-                boolean random = new Random().nextInt(5) == 0;
-                if (line.charAt(x) == '.' && random) powerups.add(oneRandomPowerup(x, y));
+                boolean random = new Random().nextInt(100) == 0;
+                if (line.charAt(x) == '.' && random) {
+                    powerups.add(oneRandomPowerup(x, y));
+                    occupiedPositions.add(new Position(x, y));
+                }
             }
         }
 
         return powerups;
+    }
+
+    @Override
+    protected List<Point> createPoints() {
+        List<Point> points = new ArrayList<>();
+
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++)
+                if (line.charAt(x) == '.' && !occupiedPositions.contains(new Position(x, y)))
+                    points.add(new Point(x, y));
+        }
+
+        return points;
     }
 
     private Powerup oneRandomPowerup(int x, int y) {

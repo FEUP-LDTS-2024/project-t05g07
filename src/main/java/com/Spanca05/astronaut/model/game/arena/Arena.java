@@ -100,6 +100,13 @@ public class Arena {
         return endblock.getPosition().equals(position);
     }
 
+    public boolean isPowerup(Position position) {
+        for (Powerup powerup : powerups)
+            if (powerup.getPosition().equals(position))
+                return true;
+        return false;
+    }
+
     public boolean isPoint(Position position) {
         for (Point point : points)
             if (point.getPosition().equals(position))
