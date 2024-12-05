@@ -7,7 +7,7 @@ import com.Spanca05.astronaut.model.game.elements.*;
 
 import java.util.List;
 
-public class Arena implements Power {
+public class Arena {
     private final int width;
     private final int height;
 
@@ -100,36 +100,35 @@ public class Arena implements Power {
         return false;
     }
 
+    public boolean isPowerup(Position position) {
+        for (Point powerup : points)
+            if (powerup.getPosition().equals(position)
+                    && powerup instanceof Powerup)
+                return true;
+        return false;
+    }
+
     // Não tenho a crtz se isto fica bem nesta classe
     // Also isto está assim por causa do Decorator
     public void catchPoint(Position position) {
-        catchPoint(position, points);
-        /*for (Point point : points) {
+        //catchPoint(position, points);
+        for (Point point : points) {
             if (position.equals(point.getPosition())) {
                 points.remove(point);
                 break;
             }
-        }*/
+        }
     }
 
-    @Override
+    /*@Override
     public void catchPoint(Position position, List<Point> points) {
         for (Point point : points) {
             if (position.equals(point.getPosition())) {
                 points.remove(point);
-                if (point instanceof Powerup) activatePowerup(position, (Powerup) point);
                 break;
             }
         }
-    }
-
-    public void activatePowerup(Position position, Powerup point) {
-        if (point instanceof Iman) {
-            Power power = new ImanDecorator();
-            power.catchPoint(position, points);
-        }
-
-    }
+    }*/
 
     public Position getCameraPosition() {
         return this.camera.getPosition();
