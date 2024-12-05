@@ -7,7 +7,7 @@ import com.Spanca05.astronaut.model.game.elements.*;
 
 import java.util.List;
 
-public class Arena {
+public class Arena implements Power {
     private final int width;
     private final int height;
 
@@ -110,6 +110,7 @@ public class Arena {
 
     // Não tenho a crtz se isto fica bem nesta classe
     // Also isto está assim por causa do Decorator
+    @Override
     public void catchPoint(Position position) {
         //catchPoint(position, points);
         for (Point point : points) {

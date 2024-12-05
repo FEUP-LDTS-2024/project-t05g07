@@ -1,13 +1,21 @@
 package com.Spanca05.astronaut.controller.game;
 
 import com.Spanca05.astronaut.Game;
+import com.Spanca05.astronaut.decorator.ImanDecorator;
+import com.Spanca05.astronaut.decorator.Power;
+import com.Spanca05.astronaut.decorator.PowerupDecorator;
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.arena.Arena;
+import com.Spanca05.astronaut.model.game.elements.Iman;
+
+import java.util.Timer;
 
 public class AstronautController extends GameController {
+    Power power;
     public AstronautController(Arena arena) {
         super(arena);
+        power = arena;
     }
 
     public void moveAstronautLeft() {
@@ -38,6 +46,14 @@ public class AstronautController extends GameController {
             // Yes, Astronaut's life has to be "false" in the menu,
             // but he didn't die.
             if (getModel().isEndBlock(position)) getModel().getAstronaut().die();
+
+            if (getModel().isPowerup(position)) {
+                //long startTime = System.currentTimeMillis();
+                //while (System.currentTimeMillis() - startTime < 2000) {
+                    power = new ImanDecorator(power);
+                    power.catchPoint(position);
+                //}
+            }
 
             if (getModel().isPoint(position)) getModel().catchPoint(position);
         } else {

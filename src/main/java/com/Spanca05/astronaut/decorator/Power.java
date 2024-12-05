@@ -1,5 +1,7 @@
 package com.Spanca05.astronaut.decorator;
 
-public interface Power {
+import com.Spanca05.astronaut.model.Position;
 
+public interface Power {
+    void catchPoint(Position position);
 }
