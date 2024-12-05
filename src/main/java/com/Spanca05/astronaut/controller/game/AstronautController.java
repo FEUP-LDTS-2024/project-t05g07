@@ -39,8 +39,6 @@ public class AstronautController extends GameController {
             // but he didn't die.
             if (getModel().isEndBlock(position)) getModel().getAstronaut().die();
 
-            //if (getModel().isPowerup(position)) getModel().catchPowerup(position);
-
             if (getModel().isPoint(position)) getModel().catchPoint(position);
         } else {
             getModel().getAstronaut().setDirection(null);
