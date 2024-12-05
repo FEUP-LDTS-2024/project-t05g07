@@ -15,10 +15,6 @@ public class LoaderArenaBuilder extends ArenaBuilder {
     private final int level;
     private final List<String> lines;
 
-    // Scuffed as fuck. Só está aqui para pôr as posições dos powerups.
-    // Assim mais vale usar isto em todos os métodos.
-    private List<Position> occupiedPositions = new ArrayList<>();
-
     public LoaderArenaBuilder(int level) throws IOException {
         this.level = level;
 
@@ -76,34 +72,18 @@ public class LoaderArenaBuilder extends ArenaBuilder {
     }
 
     @Override
-    protected List<Powerup> createPowerups() {
-        List<Powerup> powerups = new ArrayList<>();
-
-        for (int y = 0; y < lines.size(); y++) {
-            String line = lines.get(y);
-            for (int x = 0; x < line.length(); x++) {
-                boolean random = new Random().nextInt(100) == 0;
-                if (line.charAt(x) == '.' && random) {
-                    powerups.add(oneRandomPowerup(x, y));
-                    occupiedPositions.add(new Position(x, y));
-                }
-            }
-        }
-
-        return powerups;
-    }
-
-    @Override
     protected List<Point> createPoints() {
         List<Point> points = new ArrayList<>();
 
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++)
-                if (line.charAt(x) == '.' && !occupiedPositions.contains(new Position(x, y)))
-                    points.add(new Point(x, y));
+                if (line.charAt(x) == '.') {
+                    boolean random = new Random().nextInt(100) == 0;
+                    if (random) points.add(oneRandomPowerup(x, y));
+                    else points.add(new Point(x, y));
+                }
         }
-
         return points;
     }
 

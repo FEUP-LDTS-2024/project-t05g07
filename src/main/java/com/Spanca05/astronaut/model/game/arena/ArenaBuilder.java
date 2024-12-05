@@ -12,7 +12,6 @@ public abstract class ArenaBuilder {
         arena.setMonsters(createMonsters());
         arena.setWalls(createWalls());
         arena.setEndBlock(createEndBlock());
-        arena.setPowerups(createPowerups());
         arena.setPoints(createPoints());
 
         return arena;
@@ -27,8 +26,6 @@ public abstract class ArenaBuilder {
     protected abstract List<Monster> createMonsters();
 
     protected abstract Astronaut createAstronaut();
-
-    protected abstract List<Powerup> createPowerups();
 
     protected abstract List<Point> createPoints();
 
