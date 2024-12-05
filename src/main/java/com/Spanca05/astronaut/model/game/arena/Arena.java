@@ -1,11 +1,13 @@
 package com.Spanca05.astronaut.model.game.arena;
 
+import com.Spanca05.astronaut.decorator.ImanDecorator;
+import com.Spanca05.astronaut.decorator.Power;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.elements.*;
 
 import java.util.List;
 
-public class Arena {
+public class Arena implements Power {
     private final int width;
     private final int height;
 
@@ -99,13 +101,34 @@ public class Arena {
     }
 
     // Não tenho a crtz se isto fica bem nesta classe
+    // Also isto está assim por causa do Decorator
     public void catchPoint(Position position) {
-        for (Point point : points) {
+        catchPoint(position, points);
+        /*for (Point point : points) {
             if (position.equals(point.getPosition())) {
                 points.remove(point);
                 break;
             }
+        }*/
+    }
+
+    @Override
+    public void catchPoint(Position position, List<Point> points) {
+        for (Point point : points) {
+            if (position.equals(point.getPosition())) {
+                points.remove(point);
+                if (point instanceof Powerup) activatePowerup(position, (Powerup) point);
+                break;
+            }
         }
+    }
+
+    public void activatePowerup(Position position, Powerup point) {
+        if (point instanceof Iman) {
+            Power power = new ImanDecorator();
+            power.catchPoint(position, points);
+        }
+
     }
 
     public Position getCameraPosition() {
