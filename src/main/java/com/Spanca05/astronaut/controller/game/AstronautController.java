@@ -8,14 +8,20 @@ import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.arena.Arena;
 import com.Spanca05.astronaut.model.game.elements.Iman;
+import com.Spanca05.astronaut.model.game.elements.Monster;
 
 import java.util.Timer;
 
 public class AstronautController extends GameController {
-    Power power;
+    private Power power;
+    private long activationTime;
+    private boolean isPowerAcive;
+
     public AstronautController(Arena arena) {
         super(arena);
         power = arena;
+        activationTime = 0;
+        isPowerAcive = false;
     }
 
     public void moveAstronautLeft() {
@@ -47,18 +53,35 @@ public class AstronautController extends GameController {
             // but he didn't die.
             if (getModel().isEndBlock(position)) getModel().getAstronaut().die();
 
-            if (getModel().isPowerup(position)) {
+            //if (getModel().isPowerup(position)) {
                 //long startTime = System.currentTimeMillis();
                 //while (System.currentTimeMillis() - startTime < 2000) {
-                    power = new ImanDecorator(power);
-                    power.catchPoint(position);
+            //        power = new ImanDecorator(power);
+            //        power.catchPoint(position);
                 //}
-            }
+            //}
 
-            if (getModel().isPoint(position)) getModel().catchPoint(position);
+            if (getModel().isPoint(position)) {
+                if (getModel().isPowerup(position)) activatePowerup();
+                power.catchPoint(position);
+            }
         } else {
             getModel().getAstronaut().setDirection(null);
         }
+    }
+
+    private void activatePowerup() {
+        if (!isPowerAcive) {
+            power = new ImanDecorator(power);
+            isPowerAcive = true;
+            System.out.println("Activated power up");
+        }
+        activationTime = System.currentTimeMillis();
+    }
+
+    private void deactivatePowerup() {
+        power = getModel();
+        isPowerAcive = false;
     }
 
     @Override
@@ -70,6 +93,11 @@ public class AstronautController extends GameController {
             case RIGHT -> moveAstronautRight();
             case null, default -> {
             }
+        }
+
+        if (isPowerAcive && time - activationTime > 5000) {
+            deactivatePowerup();
+            System.out.println("Deactivated power up");
         }
     }
 }
