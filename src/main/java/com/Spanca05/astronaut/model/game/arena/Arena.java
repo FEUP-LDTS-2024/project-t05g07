@@ -1,6 +1,5 @@
 package com.Spanca05.astronaut.model.game.arena;
 
-import com.Spanca05.astronaut.decorator.ImanDecorator;
 import com.Spanca05.astronaut.decorator.Power;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.elements.*;
@@ -108,11 +107,8 @@ public class Arena implements Power {
         return false;
     }
 
-    // Não tenho a crtz se isto fica bem nesta classe
-    // Also isto está assim por causa do Decorator
     @Override
     public void catchPoint(Position position) {
-        //catchPoint(position, points);
         for (Point point : points) {
             if (position.equals(point.getPosition())) {
                 points.remove(point);
@@ -120,16 +116,6 @@ public class Arena implements Power {
             }
         }
     }
-
-    /*@Override
-    public void catchPoint(Position position, List<Point> points) {
-        for (Point point : points) {
-            if (position.equals(point.getPosition())) {
-                points.remove(point);
-                break;
-            }
-        }
-    }*/
 
     public Position getCameraPosition() {
         return this.camera.getPosition();
