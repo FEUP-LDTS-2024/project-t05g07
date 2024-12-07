@@ -3,6 +3,10 @@ package com.Spanca05.astronaut.model.game.arena;
 import com.Spanca05.astronaut.decorator.Power;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.elements.*;
+import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
+import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
+import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
+import com.Spanca05.astronaut.model.game.elements.monsters.Monster;
 
 import java.util.List;
 
@@ -102,13 +106,6 @@ public class Arena implements Power {
     public boolean isMonster(Position position) {
         for (Monster monster : monsters)
             if (monster.getPosition().equals(position))
-                return true;
-        return false;
-    }
-
-    public boolean isSpike(Position position) {
-        for (Monster monster : monsters)
-            if (monster instanceof Spike && monster.getPosition().equals(position))
                 return true;
         return false;
     }

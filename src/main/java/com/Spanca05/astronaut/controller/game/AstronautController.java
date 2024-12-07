@@ -1,8 +1,8 @@
 package com.Spanca05.astronaut.controller.game;
 
 import com.Spanca05.astronaut.Game;
-import com.Spanca05.astronaut.decorator.EscudoDecorator;
-import com.Spanca05.astronaut.decorator.ImanDecorator;
+import com.Spanca05.astronaut.decorator.concretedecorators.EscudoDecorator;
+import com.Spanca05.astronaut.decorator.concretedecorators.ImanDecorator;
 import com.Spanca05.astronaut.decorator.Power;
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
@@ -41,6 +41,7 @@ public class AstronautController extends GameController {
             getModel().getAstronaut().setPosition(position);
 
             if (power.isMonster(position)) {
+                // Para na posição do monstro quando morre.
                 getModel().getAstronaut().setDirection(null);
                 getModel().getAstronaut().die();
             }

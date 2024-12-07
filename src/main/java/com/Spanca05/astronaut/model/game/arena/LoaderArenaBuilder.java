@@ -1,6 +1,11 @@
 package com.Spanca05.astronaut.model.game.arena;
 
 import com.Spanca05.astronaut.model.game.elements.*;
+import com.Spanca05.astronaut.model.game.elements.monsters.Spike;
+import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
+import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
+import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
+import com.Spanca05.astronaut.model.game.elements.monsters.Monster;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

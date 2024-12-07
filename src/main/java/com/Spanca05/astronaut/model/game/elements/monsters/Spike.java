@@ -1,4 +1,4 @@
-package com.Spanca05.astronaut.model.game.elements;
+package com.Spanca05.astronaut.model.game.elements.monsters;
 
 public class Spike extends Monster {
 

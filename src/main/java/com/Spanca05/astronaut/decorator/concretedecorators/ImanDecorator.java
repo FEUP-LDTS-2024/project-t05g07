@@ -1,5 +1,7 @@
-package com.Spanca05.astronaut.decorator;
+package com.Spanca05.astronaut.decorator.concretedecorators;
 
+import com.Spanca05.astronaut.decorator.Power;
+import com.Spanca05.astronaut.decorator.PowerupDecorator;
 import com.Spanca05.astronaut.model.Position;
 
 public class ImanDecorator extends PowerupDecorator {

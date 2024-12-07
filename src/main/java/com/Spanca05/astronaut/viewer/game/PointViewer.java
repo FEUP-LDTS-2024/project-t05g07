@@ -2,10 +2,10 @@ package com.Spanca05.astronaut.viewer.game;
 
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
-import com.Spanca05.astronaut.model.game.elements.Escudo;
-import com.Spanca05.astronaut.model.game.elements.Iman;
+import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
+import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.Point;
-import com.Spanca05.astronaut.model.game.elements.Powerup;
+import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
 
 public class PointViewer implements ElementViewer<Point> {
     @Override
