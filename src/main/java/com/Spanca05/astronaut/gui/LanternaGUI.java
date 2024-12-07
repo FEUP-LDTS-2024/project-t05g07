@@ -110,6 +110,11 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
+    public void drawEscudo(Position position) {
+        drawCharacter(position.getX(), position.getY(), 'U', "#FFC0CB");
+    }
+
+    @Override
     public void drawPoint(Position position) {
         drawCharacter(position.getX(), position.getY(), '.', "#FFFFFF");
     }

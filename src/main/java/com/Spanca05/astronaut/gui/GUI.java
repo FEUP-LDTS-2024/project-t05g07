@@ -19,6 +19,8 @@ public interface GUI {
 
     void drawIman(Position position);
 
+    void drawEscudo(Position position);
+
     void drawPoint(Position position);
 
     void drawStar(Position position);
