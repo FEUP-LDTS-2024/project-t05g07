@@ -44,6 +44,7 @@ public class Arena implements Power {
         this.camera.setPosition(this.astronaut.getPosition().minus(new Position(9, 9)));
     }
 
+    @Override
     public List<Monster> getMonsters() {
         return monsters;
     }
@@ -88,6 +89,8 @@ public class Arena implements Power {
     public void setStar(List<Star> stars){
         this.stars = stars;
     }
+
+    @Override
     public boolean isEmpty(Position position) {
         for (Wall wall : walls)
             if (wall.getPosition().equals(position))
@@ -95,6 +98,7 @@ public class Arena implements Power {
         return true;
     }
 
+    @Override
     public boolean isMonster(Position position) {
         for (Monster monster : monsters)
             if (monster.getPosition().equals(position))

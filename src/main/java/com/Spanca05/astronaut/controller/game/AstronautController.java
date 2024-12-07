@@ -37,10 +37,10 @@ public class AstronautController extends GameController {
     }
 
     private void moveAstronaut(Position position) {
-        if (getModel().isEmpty(position)) {
+        if (power.isEmpty(position)) {
             getModel().getAstronaut().setPosition(position);
 
-            if (getModel().isMonster(position)) getModel().getAstronaut().die();
+            if (power.isMonster(position)) getModel().getAstronaut().die();
 
             // A different logic might be necessary.
             // If the astronaut dies, the game goes to the menu.
@@ -50,7 +50,7 @@ public class AstronautController extends GameController {
             if (getModel().isEndBlock(position)) getModel().getAstronaut().die();
 
             if(getModel().isCoin(position)) getModel().catchCoin(position);
-          
+
             if (getModel().isStar(position)) getModel().catchStar(position);
 
             if (getModel().isPowerup(position)) activatePowerup(position);
@@ -70,6 +70,7 @@ public class AstronautController extends GameController {
                 power = new EscudoDecorator(power);
 
             isPowerActive = true;
+            System.out.println("activated power up");
         }
         activationTime = System.currentTimeMillis();
     }
@@ -77,6 +78,7 @@ public class AstronautController extends GameController {
     private void deactivatePowerup() {
         power = getModel();
         isPowerActive = false;
+        System.out.println("deactivated power up");
     }
 
     @Override

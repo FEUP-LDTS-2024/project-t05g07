@@ -16,17 +16,17 @@ public class SpikeController extends GameController {
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
-        for (Monster monster : getModel().getMonsters()) {
-            if (monster instanceof Spike) {
+        /*for (Monster monster : getModel().getMonsters()) {
+            if (getModel().isMonster(monster.getPosition()) && monster instanceof Spike) {
                 Position pos = monster.getPosition();
                 killIfTouched(pos);
             }
-        }
+        }*/
     }
 
-    private void killIfTouched(Position position) {
+    /*private void killIfTouched(Position position) {
         if (getModel().getAstronaut().getPosition().equals(position)) {
             getModel().getAstronaut().die();
         }
-    }
+    }*/
 }
