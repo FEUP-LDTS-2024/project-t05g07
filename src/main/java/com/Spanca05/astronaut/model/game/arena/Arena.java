@@ -102,6 +102,13 @@ public class Arena implements Power {
         return false;
     }
 
+    public boolean isSpike(Position position) {
+        for (Monster monster : monsters)
+            if (monster instanceof Spike && monster.getPosition().equals(position))
+                return true;
+        return false;
+    }
+
     public boolean isCoin(Position position) {
         for(Coin coin : coins)
             if(coin.getPosition().equals(position))
