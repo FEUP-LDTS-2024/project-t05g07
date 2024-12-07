@@ -1,11 +1,12 @@
 package com.Spanca05.astronaut.model.game.arena;
 
+import com.Spanca05.astronaut.decorator.Power;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.elements.*;
 
 import java.util.List;
 
-public class Arena {
+public class Arena implements Power {
     private final int width;
     private final int height;
 
@@ -118,15 +119,24 @@ public class Arena {
                 return true;
         return false;
     }
-    public boolean isStar(Position position){
-        for (Star star : stars){
+
+    public boolean isStar(Position position) {
+        for (Star star : stars) {
             if (star.getPosition().equals(position))
                 return true;
         }
         return false;
     }
 
-    // Não tenho a crtz se isto fica bem nesta classe
+    public boolean isPowerup(Position position) {
+        for (Point powerup : points)
+            if (powerup.getPosition().equals(position)
+                    && powerup instanceof Powerup)
+                return true;
+        return false;
+    }
+
+    @Override
     public void catchPoint(Position position) {
         for (Point point : points) {
             if (position.equals(point.getPosition())) {

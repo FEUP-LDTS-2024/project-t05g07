@@ -6,7 +6,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 public class LoaderArenaBuilder extends ArenaBuilder {
     private final int level;
@@ -105,10 +108,21 @@ public class LoaderArenaBuilder extends ArenaBuilder {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++)
-                if (line.charAt(x) == '.') points.add(new Point(x, y));
+                if (line.charAt(x) == '.') {
+                    boolean random = new Random().nextInt(100) == 0;
+                    if (random) points.add(oneRandomPowerup(x, y));
+                    else points.add(new Point(x, y));
+                }
         }
-
         return points;
+    }
+
+    private Powerup oneRandomPowerup(int x, int y) {
+        int n = (int) (Math.random() * 1);
+        switch (n) {
+            default:
+                return new Iman(x, y);
+        }
     }
 
     @Override

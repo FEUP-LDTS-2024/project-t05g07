@@ -1,13 +1,22 @@
 package com.Spanca05.astronaut.controller.game;
 
 import com.Spanca05.astronaut.Game;
+import com.Spanca05.astronaut.decorator.ImanDecorator;
+import com.Spanca05.astronaut.decorator.Power;
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.arena.Arena;
 
 public class AstronautController extends GameController {
+    private Power power;
+    private long activationTime;
+    private boolean isPowerActive;
+
     public AstronautController(Arena arena) {
         super(arena);
+        power = arena;
+        activationTime = 0;
+        isPowerActive = false;
     }
 
     public void moveAstronautLeft() {
@@ -39,15 +48,30 @@ public class AstronautController extends GameController {
             // but he didn't die.
             if (getModel().isEndBlock(position)) getModel().getAstronaut().die();
 
-            if (getModel().isPoint(position)) getModel().catchPoint(position);
-
             if(getModel().isCoin(position)) getModel().catchCoin(position);
           
             if (getModel().isStar(position)) getModel().catchStar(position);
 
-        } else {
+            if (getModel().isPowerup(position)) activatePowerup();
+
+            power.catchPoint(position);
+        }
+        else {
             getModel().getAstronaut().setDirection(null);
         }
+    }
+
+    private void activatePowerup() {
+        if (!isPowerActive) {
+            power = new ImanDecorator(power);
+            isPowerActive = true;
+        }
+        activationTime = System.currentTimeMillis();
+    }
+
+    private void deactivatePowerup() {
+        power = getModel();
+        isPowerActive = false;
     }
 
     @Override
@@ -59,6 +83,10 @@ public class AstronautController extends GameController {
             case RIGHT -> moveAstronautRight();
             case null, default -> {
             }
+        }
+
+        if (isPowerActive && time - activationTime > 5000) {
+            deactivatePowerup();
         }
     }
 }
