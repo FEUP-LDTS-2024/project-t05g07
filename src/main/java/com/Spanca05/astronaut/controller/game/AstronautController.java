@@ -1,6 +1,7 @@
 package com.Spanca05.astronaut.controller.game;
 
 import com.Spanca05.astronaut.Game;
+import com.Spanca05.astronaut.decorator.EscudoDecorator;
 import com.Spanca05.astronaut.decorator.ImanDecorator;
 import com.Spanca05.astronaut.decorator.Power;
 import com.Spanca05.astronaut.gui.GUI;
@@ -52,7 +53,7 @@ public class AstronautController extends GameController {
           
             if (getModel().isStar(position)) getModel().catchStar(position);
 
-            if (getModel().isPowerup(position)) activatePowerup();
+            if (getModel().isPowerup(position)) activatePowerup(position);
 
             power.catchPoint(position);
         }
@@ -61,9 +62,13 @@ public class AstronautController extends GameController {
         }
     }
 
-    private void activatePowerup() {
+    private void activatePowerup(Position position) {
         if (!isPowerActive) {
-            power = new ImanDecorator(power);
+            if (getModel().isImanPowerup(position))
+                power = new ImanDecorator(power);
+            else if (getModel().isEscudoPowerup(position))
+                power = new EscudoDecorator(power);
+
             isPowerActive = true;
         }
         activationTime = System.currentTimeMillis();

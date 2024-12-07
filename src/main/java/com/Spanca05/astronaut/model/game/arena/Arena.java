@@ -143,6 +143,20 @@ public class Arena implements Power {
         return false;
     }
 
+    public boolean isImanPowerup(Position position) {
+        for (Point powerup : points)
+            if (powerup.getPosition().equals(position) && powerup instanceof Iman)
+                return true;
+        return false;
+    }
+
+    public boolean isEscudoPowerup(Position position) {
+        for (Point powerup : points)
+            if (powerup.getPosition().equals(position) && powerup instanceof Escudo)
+                return true;
+        return false;
+    }
+
     @Override
     public void catchPoint(Position position) {
         for (Point point : points) {

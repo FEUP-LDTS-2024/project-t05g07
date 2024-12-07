@@ -65,8 +65,8 @@ public class LoaderArenaBuilder extends ArenaBuilder {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++)
-                if (line.charAt(x) == 'M') monsters.add(new Monster(x, y));
-                else if (line.charAt(x) == 'W') monsters.add(new Spike(x, y));
+                if (line.charAt(x) == 'W') monsters.add(new Spike(x, y));
+                else if (line.charAt(x) == 'M') monsters.add(new Monster(x, y));
         }
 
         return monsters;
@@ -119,10 +119,12 @@ public class LoaderArenaBuilder extends ArenaBuilder {
     }
 
     private Powerup oneRandomPowerup(int x, int y) {
-        int n = (int) (Math.random() * 1);
+        int n = (int) (Math.random() * 2);
         switch (n) {
-            default:
+            case 0:
                 return new Iman(x, y);
+            default:
+                return new Escudo(x, y);
         }
     }
 
