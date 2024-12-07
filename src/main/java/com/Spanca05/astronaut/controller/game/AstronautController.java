@@ -40,7 +40,10 @@ public class AstronautController extends GameController {
         if (power.isEmpty(position)) {
             getModel().getAstronaut().setPosition(position);
 
-            if (power.isMonster(position)) getModel().getAstronaut().die();
+            if (power.isMonster(position)) {
+                getModel().getAstronaut().setDirection(null);
+                getModel().getAstronaut().die();
+            }
 
             // A different logic might be necessary.
             // If the astronaut dies, the game goes to the menu.
