@@ -3,6 +3,10 @@ package com.Spanca05.astronaut.model.game.arena;
 import com.Spanca05.astronaut.decorator.Power;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.elements.*;
+import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
+import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
+import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
+import com.Spanca05.astronaut.model.game.elements.monsters.Monster;
 
 import java.util.List;
 
@@ -44,6 +48,7 @@ public class Arena implements Power {
         this.camera.setPosition(this.astronaut.getPosition().minus(new Position(9, 9)));
     }
 
+    @Override
     public List<Monster> getMonsters() {
         return monsters;
     }
@@ -88,6 +93,8 @@ public class Arena implements Power {
     public void setStar(List<Star> stars){
         this.stars = stars;
     }
+
+    @Override
     public boolean isEmpty(Position position) {
         for (Wall wall : walls)
             if (wall.getPosition().equals(position))
@@ -95,6 +102,7 @@ public class Arena implements Power {
         return true;
     }
 
+    @Override
     public boolean isMonster(Position position) {
         for (Monster monster : monsters)
             if (monster.getPosition().equals(position))
@@ -132,6 +140,20 @@ public class Arena implements Power {
         for (Point powerup : points)
             if (powerup.getPosition().equals(position)
                     && powerup instanceof Powerup)
+                return true;
+        return false;
+    }
+
+    public boolean isImanPowerup(Position position) {
+        for (Point powerup : points)
+            if (powerup.getPosition().equals(position) && powerup instanceof Iman)
+                return true;
+        return false;
+    }
+
+    public boolean isEscudoPowerup(Position position) {
+        for (Point powerup : points)
+            if (powerup.getPosition().equals(position) && powerup instanceof Escudo)
                 return true;
         return false;
     }

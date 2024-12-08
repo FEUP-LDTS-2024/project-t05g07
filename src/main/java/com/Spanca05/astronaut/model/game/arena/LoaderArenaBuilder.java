@@ -1,6 +1,11 @@
 package com.Spanca05.astronaut.model.game.arena;
 
 import com.Spanca05.astronaut.model.game.elements.*;
+import com.Spanca05.astronaut.model.game.elements.monsters.Spike;
+import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
+import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
+import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
+import com.Spanca05.astronaut.model.game.elements.monsters.Monster;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -65,7 +70,8 @@ public class LoaderArenaBuilder extends ArenaBuilder {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++)
-                if (line.charAt(x) == 'M') monsters.add(new Monster(x, y));
+                if (line.charAt(x) == 'W') monsters.add(new Spike(x, y));
+                else if (line.charAt(x) == 'M') monsters.add(new Monster(x, y));
         }
 
         return monsters;
@@ -118,10 +124,12 @@ public class LoaderArenaBuilder extends ArenaBuilder {
     }
 
     private Powerup oneRandomPowerup(int x, int y) {
-        int n = (int) (Math.random() * 1);
+        int n = (int) (Math.random() * 2);
         switch (n) {
-            default:
+            case 0:
                 return new Iman(x, y);
+            default:
+                return new Escudo(x, y);
         }
     }
 

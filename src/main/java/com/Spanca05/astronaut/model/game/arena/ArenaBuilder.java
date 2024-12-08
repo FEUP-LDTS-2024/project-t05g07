@@ -1,6 +1,7 @@
 package com.Spanca05.astronaut.model.game.arena;
 
 import com.Spanca05.astronaut.model.game.elements.*;
+import com.Spanca05.astronaut.model.game.elements.monsters.Monster;
 
 import java.util.List;
 
