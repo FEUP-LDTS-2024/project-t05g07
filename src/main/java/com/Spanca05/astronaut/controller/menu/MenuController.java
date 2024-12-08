@@ -26,10 +26,16 @@ public class MenuController extends Controller<Menu> {
             case DOWN:
                 getModel().nextEntry();
                 break;
+            case LEFT:
+                getModel().previousLevel();
+                break;
+            case RIGHT:
+                getModel().nextLevel();
+                break;
             case SELECT:
                 if (getModel().isSelectedExit()) game.setState(null);
                 if (getModel().isSelectedPowerups()) game.setState(new PowerupMenuState(new PowerupMenu()));
-                if (getModel().isSelectedStart()) game.setState(new GameState(new LoaderArenaBuilder(4).createArena()));
+                if (getModel().isSelectedStart()) game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena()));
         }
     }
 }
