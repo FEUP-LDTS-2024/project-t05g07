@@ -3,18 +3,16 @@ package com.Spanca05.astronaut.controller.menu;
 import com.Spanca05.astronaut.Game;
 import com.Spanca05.astronaut.controller.Controller;
 import com.Spanca05.astronaut.gui.GUI;
-import com.Spanca05.astronaut.model.game.arena.LoaderArenaBuilder;
 import com.Spanca05.astronaut.model.menu.Menu;
 import com.Spanca05.astronaut.model.menu.PowerupMenu;
-import com.Spanca05.astronaut.states.GameState;
-import com.Spanca05.astronaut.states.PowerupMenuState;
+import com.Spanca05.astronaut.states.MenuState;
 
 import java.io.IOException;
 
-public class MenuController extends Controller<Menu> {
+public class PowerupMenuController extends Controller<PowerupMenu> {
 
-    public MenuController(Menu menu) {
-        super(menu);
+    public PowerupMenuController(PowerupMenu powerupMenu) {
+        super(powerupMenu);
     }
 
     @Override
@@ -27,9 +25,7 @@ public class MenuController extends Controller<Menu> {
                 getModel().nextEntry();
                 break;
             case SELECT:
-                if (getModel().isSelectedExit()) game.setState(null);
-                if (getModel().isSelectedPowerups()) game.setState(new PowerupMenuState(new PowerupMenu()));
-                if (getModel().isSelectedStart()) game.setState(new GameState(new LoaderArenaBuilder(4).createArena()));
+                if (getModel().isSelectedGoBack()) game.setState(new MenuState(new Menu()));
         }
     }
 }

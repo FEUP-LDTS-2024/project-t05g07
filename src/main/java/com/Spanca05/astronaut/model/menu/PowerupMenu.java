@@ -3,13 +3,16 @@ package com.Spanca05.astronaut.model.menu;
 import java.util.Arrays;
 import java.util.List;
 
-public class Menu {
+public class PowerupMenu {
     private final List<String> entries;
     private int currentEntry = 0;
 
-    public Menu() {
-        this.entries = Arrays.asList("Level 1", "Power-ups", "Exit");
+    public PowerupMenu() {
+        this.entries = Arrays.asList("Escudo", "Imobilizador", "Moedas x2", "Score x2", "Iman", "Go Back");
     }
+
+    // Não faz sentido estar a repetir estas funções tho,
+    // são iguais às do Menu
 
     public void nextEntry() {
         currentEntry++;
@@ -31,19 +34,12 @@ public class Menu {
         return currentEntry == i;
     }
 
-    public boolean isSelectedExit() {
-        return isSelected(2);
-    }
-
-    public boolean isSelectedPowerups() {
-        return isSelected(1);
-    }
-
-    public boolean isSelectedStart() {
-        return isSelected(0);
+    public boolean isSelectedGoBack() {
+        return isSelected(5);
     }
 
     public int getNumberEntries() {
         return this.entries.size();
     }
 }
+
