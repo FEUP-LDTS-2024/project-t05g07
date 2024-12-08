@@ -71,7 +71,6 @@ public class LoaderArenaBuilder extends ArenaBuilder {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++)
                 if (line.charAt(x) == 'W') monsters.add(new Spike(x, y));
-                else if (line.charAt(x) == 'M') monsters.add(new Monster(x, y));
         }
 
         return monsters;
