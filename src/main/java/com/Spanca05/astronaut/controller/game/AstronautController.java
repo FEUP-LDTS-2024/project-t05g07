@@ -53,7 +53,7 @@ public class AstronautController extends GameController {
             // but he didn't die.
             if (getModel().isEndBlock(position)) getModel().getAstronaut().die();
 
-            if(getModel().isCoin(position)) getModel().catchCoin(position);
+            //if(getModel().isCoin(position)) getModel().catchCoin(position);
 
             if (getModel().isStar(position)) getModel().catchStar(position);
 
@@ -67,6 +67,21 @@ public class AstronautController extends GameController {
     }
 
     private void activatePowerup(Position position) {
+        // Isto está bugado as fuck por enquanto, ok.
+        // O que acontece é que apanhar um powerup aumenta
+        // a duração do powerup que está ativo, mas não muda
+        // o powerup ativo.
+        // Inicialmente, que só tinha implementado 1, apanhar
+        // outro íman aumentava a duração do íman que estava
+        // ativo.
+
+        // O suposto é aumentar a duração se for o mesmo
+        // tipo de powerup ou mudar de powerup se for diferente.
+        // Era fixe ter vários ativos ao mesmo tempo, mas isso
+        // seria uma confusão para implementar.
+
+        // Anyway, depois corrijo isto e logo se vê.
+
         if (!isPowerActive) {
             if (getModel().isImanPowerup(position))
                 power = new ImanDecorator(power);

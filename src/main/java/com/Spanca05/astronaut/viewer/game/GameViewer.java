@@ -19,7 +19,7 @@ public class GameViewer extends Viewer<Arena> {
         drawElement(gui, getModel().getEndBlock(), new EndBlockViewer());
         drawElements(gui, getModel().getPoints(), new PointViewer());
         drawElements(gui, getModel().getMonsters(), new MonsterViewer());
-        drawElements(gui, getModel().getCoins(), new CoinViewer());
+        //drawElements(gui, getModel().getCoins(), new CoinViewer());
         drawElement(gui, getModel().getAstronaut(), new AstronautViewer());
         drawElements(gui, getModel().getStars(),new StarViewer());
     }

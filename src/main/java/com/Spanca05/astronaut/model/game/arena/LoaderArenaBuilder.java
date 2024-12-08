@@ -76,7 +76,7 @@ public class LoaderArenaBuilder extends ArenaBuilder {
         return monsters;
     }
 
-    @Override
+    /*@Override
     protected List<Coin> createCoins() {
         List<Point> points = createPoints();
         List<Coin> coins = new ArrayList<>();
@@ -92,7 +92,7 @@ public class LoaderArenaBuilder extends ArenaBuilder {
         }
 
         return coins;
-    }
+    }*/
   
     @Override
     protected List<Star> createStar() {
@@ -114,8 +114,9 @@ public class LoaderArenaBuilder extends ArenaBuilder {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++)
                 if (line.charAt(x) == '.') {
-                    boolean random = new Random().nextInt(100) == 0;
-                    if (random) points.add(oneRandomPowerup(x, y));
+                    int random = new Random().nextInt(100);
+                    if (random == 0) points.add(oneRandomPowerup(x, y));
+                    else if (random <= 10) points.add(new Coin(x, y));
                     else points.add(new Point(x, y));
                 }
         }
@@ -124,12 +125,10 @@ public class LoaderArenaBuilder extends ArenaBuilder {
 
     private Powerup oneRandomPowerup(int x, int y) {
         int n = (int) (Math.random() * 2);
-        switch (n) {
-            case 0:
-                return new Iman(x, y);
-            default:
-                return new Escudo(x, y);
-        }
+        return switch (n) {
+            case 0 -> new Iman(x, y);
+            default -> new Escudo(x, y);
+        };
     }
 
     @Override
