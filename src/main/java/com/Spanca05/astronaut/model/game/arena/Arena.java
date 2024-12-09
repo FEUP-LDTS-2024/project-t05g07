@@ -53,13 +53,27 @@ public class Arena implements Power {
         return monsters;
     }
 
-    /*public List<Coin> getCoins() {
-        return coins;
-    }*/
-
     public void setMonsters(List<Monster> monsters) {
         this.monsters = monsters;
     }
+
+    //______________________________________________________
+    public void addToMonsters(Monster monster) {
+        monsters.add(monster);
+    }
+
+    public void removeFromMonsters(Position position) {
+        for (Monster monster : monsters)
+            if (monster.getPosition().equals(position)) {
+                monsters.remove(monster);
+                break;
+            }
+    }
+    //_____________ weird as fuck receberem classes diferentes
+
+    /*public List<Coin> getCoins() {
+        return coins;
+    }*/
 
     //public void setCoins(List<Coin> coins) {this.coins = coins; }
 

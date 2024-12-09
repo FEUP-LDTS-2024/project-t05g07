@@ -2,6 +2,7 @@ package com.Spanca05.astronaut.model.game.arena;
 
 import com.Spanca05.astronaut.model.game.elements.*;
 import com.Spanca05.astronaut.model.game.elements.monsters.Spike;
+import com.Spanca05.astronaut.model.game.elements.monsters.Trap;
 import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
 import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
@@ -58,6 +59,7 @@ public class LoaderArenaBuilder extends ArenaBuilder {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++)
                 if (line.charAt(x) == '#') walls.add(new Wall(x, y));
+                else if (line.charAt(x) == 'T') walls.add(new Trap(x, y));
         }
 
         return walls;

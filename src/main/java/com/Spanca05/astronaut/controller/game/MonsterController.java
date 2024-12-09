@@ -8,16 +8,19 @@ import java.io.IOException;
 
 public class MonsterController extends GameController {
     private final SpikeController spikeController;
+    private final TrapController trapController;
 
     public MonsterController(Arena arena) {
         super(arena);
         this.spikeController = new SpikeController(arena);
+        this.trapController = new TrapController(arena);
         //this.lastMovement = 0;
     }
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         spikeController.step(game, null, time);
+        trapController.step(game, null, time);
         /*if (time - lastMovement > 500) {
             for (Monster monster : getModel().getMonsters())
                 moveMonster(monster, monster.getPosition().getRandomNeighbour());
