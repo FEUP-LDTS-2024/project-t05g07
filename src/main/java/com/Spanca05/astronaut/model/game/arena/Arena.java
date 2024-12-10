@@ -6,7 +6,7 @@ import com.Spanca05.astronaut.model.game.elements.*;
 import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
 import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
-import com.Spanca05.astronaut.model.game.elements.monsters.Monster;
+import com.Spanca05.astronaut.model.game.elements.Monster;
 
 import java.util.List;
 

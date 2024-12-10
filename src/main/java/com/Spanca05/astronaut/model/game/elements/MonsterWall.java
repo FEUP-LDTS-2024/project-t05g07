@@ -1,9 +1,7 @@
-package com.Spanca05.astronaut.model.game.elements.monsters;
+package com.Spanca05.astronaut.model.game.elements;
 
-import com.Spanca05.astronaut.Game;
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.game.arena.Arena;
-import com.Spanca05.astronaut.model.game.elements.Wall;
 import com.Spanca05.astronaut.strategy.HostileStrategy;
 
 public class MonsterWall extends Wall {

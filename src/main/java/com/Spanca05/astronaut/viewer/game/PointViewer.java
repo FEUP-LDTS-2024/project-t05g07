@@ -19,7 +19,7 @@ public class PointViewer implements ElementViewer<Point> {
             gui.drawPoint(point.getPosition().minus(cameraOffSet));
     }
 
-    public void drawPowerup(Powerup powerup, GUI gui, Position cameraOffSet) {
+    private void drawPowerup(Powerup powerup, GUI gui, Position cameraOffSet) {
         if (powerup instanceof Iman) {
             gui.drawIman(powerup.getPosition().minus(cameraOffSet));
         }

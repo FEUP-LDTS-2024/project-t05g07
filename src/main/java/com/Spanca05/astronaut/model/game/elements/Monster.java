@@ -1,8 +1,8 @@
-package com.Spanca05.astronaut.model.game.elements.monsters;
+package com.Spanca05.astronaut.model.game.elements;
 
 import com.Spanca05.astronaut.gui.GUI;
+import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.arena.Arena;
-import com.Spanca05.astronaut.model.game.elements.Element;
 import com.Spanca05.astronaut.strategy.HostileStrategy;
 
 public class Monster extends Element {
@@ -23,4 +23,5 @@ public class Monster extends Element {
     public void execute(Arena arena, GUI.ACTION action, long time) {
         strategy.step(arena, this, action, time);
     }
+
 }
