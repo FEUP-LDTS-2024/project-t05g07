@@ -25,10 +25,10 @@ public class TrapController extends GameController {
         for (Wall wall: getModel().getWalls()) {
             // Demasiados ifs
             if (wall instanceof Trap && astronautLastPosition != null) {
-                if (time - timer > 1000 && !spawned) {
+                if (time - timer > 500 && !spawned) {
                     spawnSpike(astronautLastPosition);
                 }
-                else if (time - timer > 3000 && spawned) {
+                else if (time - timer > 2500 && spawned) {
                     despawnSpike(astronautLastPosition);
                     this.timer = 0;
                     this.astronautLastPosition = null;
@@ -45,17 +45,10 @@ public class TrapController extends GameController {
 
     private boolean touched(Position wall) {
         Position astronaut = getModel().getAstronaut().getPosition();
-
-        for (int i = wall.getX() - 1; i <= wall.getX() + 1; i++) {
-            Position adj = new Position(i, wall.getY());
-            if (astronaut.equals(adj)) return true;
-        }
-        for (int i = wall.getX() - 1; i <= wall.getX() + 1; i++) {
-            Position adj = new Position(wall.getX(), i);
-            if (astronaut.equals(adj)) return true;
-        }
-
-        return false;
+        if (astronaut.equals(new Position(wall.getX() - 1, wall.getY()))) return true;
+        else if (astronaut.equals(new Position(wall.getX() + 1, wall.getY()))) return true;
+        else if (astronaut.equals(new Position(wall.getX(), wall.getY() - 1))) return true;
+        else return astronaut.equals(new Position(wall.getX(), wall.getY() + 1));
     }
 
     private void spawnSpike(Position position) {
