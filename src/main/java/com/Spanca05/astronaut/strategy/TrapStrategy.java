@@ -13,6 +13,11 @@ public class TrapStrategy implements HostileStrategy {
     private boolean spawned = false;
 
     @Override
+    public void draw(Element element, GUI gui, Position cameraOffSet) {
+        gui.drawTrap(element.getPosition().minus(cameraOffSet));
+    }
+
+    @Override
     public void step(Arena arena, Element element, GUI.ACTION action, long time) {
             // Demasiados ifs
             if (astronautLastPosition != null) {

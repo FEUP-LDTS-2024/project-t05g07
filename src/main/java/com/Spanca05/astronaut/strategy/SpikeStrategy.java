@@ -8,13 +8,15 @@ import com.Spanca05.astronaut.model.game.elements.Element;
 public class SpikeStrategy implements HostileStrategy {
 
     @Override
+    public void draw(Element element, GUI gui, Position cameraOffSet) {
+        gui.drawSpike(element.getPosition().minus(cameraOffSet));
+    }
+
+    @Override
     public void step(Arena arena, Element element, GUI.ACTION action, long time) {
-        //for (Monster monster : arena.getMonsters()) {
-        //    if (arena.isMonster(monster.getPosition())) {
-                Position pos = element.getPosition();
-                killIfTouched(arena, pos);
-        //    }
-        //}
+        Position pos = element.getPosition();
+        killIfTouched(arena, pos);
+
     }
 
     private void killIfTouched(Arena arena, Position position) {

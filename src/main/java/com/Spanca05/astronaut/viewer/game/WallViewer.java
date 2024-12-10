@@ -15,7 +15,6 @@ public class WallViewer implements ElementViewer<Wall> {
     }
 
     private void drawMonsterWall(MonsterWall monsterWall, GUI gui, Position cameraOffSet) {
-        if (monsterWall.getStrategy() instanceof TrapStrategy)
-            gui.drawTrap(monsterWall.getPosition().minus(cameraOffSet));
+        monsterWall.drawThroughStrategy(gui, cameraOffSet);
     }
 }

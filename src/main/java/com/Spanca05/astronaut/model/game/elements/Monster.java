@@ -12,12 +12,12 @@ public class Monster extends Element {
         super(x, y);
     }
 
-    public HostileStrategy getStrategy() {
-        return strategy;
-    }
-
     public void setStrategy(HostileStrategy strategy) {
         this.strategy = strategy;
+    }
+
+    public void drawThroughStrategy(GUI gui, Position cameraOffSet) {
+        strategy.draw(this, gui, cameraOffSet);
     }
 
     public void execute(Arena arena, GUI.ACTION action, long time) {
