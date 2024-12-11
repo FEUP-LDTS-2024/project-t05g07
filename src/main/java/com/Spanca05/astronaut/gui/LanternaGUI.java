@@ -2,6 +2,7 @@ package com.Spanca05.astronaut.gui;
 
 import com.Spanca05.astronaut.model.Position;
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
@@ -12,14 +13,18 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Objects;
 
 public class LanternaGUI implements GUI {
     private final Screen screen;
+    private static final int BLOCK_SIZE = 16;
 
     public LanternaGUI(Screen screen) {
         this.screen = screen;
@@ -59,7 +64,7 @@ public class LanternaGUI implements GUI {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 25);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 4);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }
@@ -81,14 +86,43 @@ public class LanternaGUI implements GUI {
         return ACTION.NONE;
     }
 
+    public void drawImage(Position position, String imagePath) throws IOException {
+        BufferedImage sprite = ImageIO.read((Objects.requireNonNull(getClass().getClassLoader().getResource(imagePath))));
+        TextGraphics graphics = screen.newTextGraphics();
+
+        for (int x = 0; x < sprite.getWidth(); x++) {
+            for (int y = 0; y < sprite.getHeight(); y++) {
+                int a = sprite.getRGB(x, y);
+                int alpha = (a >> 24) & 0xff;
+                int red = (a >> 16) & 255;
+                int green = (a >> 8) & 255;
+                int blue = a & 255;
+
+                if (alpha != 0) {
+                    TextCharacter c = new TextCharacter(' ', new TextColor.RGB(red, green, blue), new TextColor.RGB(red, green, blue));
+                    graphics.setCharacter(position.getX() * 16 + x, position.getY() * 16 + y + 1, c);
+                }
+            }
+        }
+    }
+
     @Override
     public void drawAstronaut(Position position) {
-        drawCharacter(position.getX(), position.getY(), 'H', "#FF0000");
+        try {
+            drawImage(position, "sprites/character/nauta-idle-animation1.png");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void drawWall(Position position) {
-        drawCharacter(position.getX(), position.getY(), '█', "#FFFFFF");
+        try {
+            drawImage(position, "sprites/UI/coin/coin.png");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -107,7 +141,9 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawCoin(Position position) {drawCharacter(position.getX(), position.getY(), 'C', "#FFFF00");}
+    public void drawCoin(Position position) {
+        drawCharacter(position.getX(), position.getY(), 'C', "#FFFF00");
+    }
 
     @Override
     public void drawIman(Position position) {
@@ -149,6 +185,7 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void clear() {
+
         screen.clear();
     }
 

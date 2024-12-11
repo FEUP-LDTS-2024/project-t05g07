@@ -16,7 +16,9 @@ public abstract class Viewer<T> {
     }
 
     public void draw(GUI gui) throws IOException {
+        long sTime = System.currentTimeMillis();
         gui.clear();
+        System.out.println(System.currentTimeMillis() - sTime);
         drawElements(gui);
         gui.refresh();
     }
