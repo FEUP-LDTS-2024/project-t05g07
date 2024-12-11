@@ -6,29 +6,37 @@ import com.Spanca05.astronaut.model.game.arena.Arena;
 import com.Spanca05.astronaut.model.game.elements.Element;
 import com.Spanca05.astronaut.model.game.elements.Monster;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TrapStrategy implements HostileStrategy {
 
-    private long timer = 0;
+    private final List<GangOfSpike> spikes = new ArrayList<>();
     private Position astronautLastPosition = null;
-    private boolean spawned = false;
 
     @Override
     public void step(Arena arena, Element element, GUI.ACTION action, long time) {
-            // Demasiados ifs
-            if (astronautLastPosition != null) {
-                if (time - timer > 500 && !spawned) {
-                    spawnSpike(arena, astronautLastPosition);
-                }
-                else if (time - timer > 2500 && spawned) {
-                    despawnSpike(arena, astronautLastPosition);
-                    this.timer = 0;
-                    this.astronautLastPosition = null;
-                }
 
+        if (touched(arena, element.getPosition())
+                && astronautLastPosition != arena.getAstronaut().getPosition()) {
+            spikes.add(new GangOfSpike(arena.getAstronaut().getPosition(), time));
+            this.astronautLastPosition = arena.getAstronaut().getPosition();
+        }
+
+        for (GangOfSpike spike : spikes) {
+            Position spawnPoint = spike.getSpawnPoint();
+            boolean spawned = spike.getSpawned();
+            long timer = spike.getTimer();
+
+            if (time - timer > 500 && !spawned) {
+                spawnSpike(arena, spawnPoint);
+                spike.setSpawned();
             }
-            else if (touched(arena, element.getPosition())) {
-                this.timer = time;
-                this.astronautLastPosition = arena.getAstronaut().getPosition();
+            else if (time - timer > 1500 && spawned) {
+                despawnSpike(arena, spawnPoint);
+                spikes.remove(spike);
+                break;
+            }
         }
     }
 
@@ -45,13 +53,39 @@ public class TrapStrategy implements HostileStrategy {
         spike.setStrategy(new SpikeStrategy());
         spike.setType("spike");
         arena.addToMonsters(spike);
-        spawned = true;
         System.out.println("spawned");
     }
 
     private void despawnSpike(Arena arena, Position position) {
         arena.removeFromMonsters(position);
-        spawned = false;
         System.out.println("despawned");
+    }
+
+    private static class GangOfSpike {
+        private final Position spawnPoint;
+        private boolean spawned;
+        private final long timer;
+
+        private GangOfSpike(Position spawnPoint, long timer) {
+            this.spawnPoint = spawnPoint;
+            this.spawned = false;
+            this.timer = timer;
+        }
+
+        private Position getSpawnPoint() {
+            return spawnPoint;
+        }
+
+        private boolean getSpawned() {
+            return spawned;
+        }
+
+        private void setSpawned() {
+            this.spawned = true;
+        }
+
+        private long getTimer() {
+            return timer;
+        }
     }
 }
