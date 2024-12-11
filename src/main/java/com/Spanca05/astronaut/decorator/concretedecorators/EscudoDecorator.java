@@ -19,8 +19,8 @@ public class EscudoDecorator extends PowerupDecorator {
         return wrappee.isEmpty(position);
     }
 
-    @Override
+    /*@Override
     public boolean isMonster(Position position) {
         return false;
-    }
+    }*/
 }

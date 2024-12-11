@@ -40,7 +40,8 @@ public class AstronautController extends GameController {
         if (power.isEmpty(position)) {
             getModel().getAstronaut().setPosition(position);
 
-            if (power.isMonster(position)) {
+            //power.isMonster(position)
+            if (getModel().isMonster(position)) {
                 // Para na posição do monstro quando morre.
                 getModel().getAstronaut().setDirection(null);
                 getModel().getAstronaut().die();
@@ -87,6 +88,7 @@ public class AstronautController extends GameController {
                 power = new ImanDecorator(power);
             else if (getModel().isEscudoPowerup(position))
                 power = new EscudoDecorator(power);
+                getModel().getAstronaut().setShield(true);
 
             isPowerActive = true;
             System.out.println("activated power up");
@@ -96,6 +98,7 @@ public class AstronautController extends GameController {
 
     private void deactivatePowerup() {
         power = getModel();
+        getModel().getAstronaut().setShield(false);
         isPowerActive = false;
         System.out.println("deactivated power up");
     }

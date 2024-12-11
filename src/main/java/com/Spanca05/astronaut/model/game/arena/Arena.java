@@ -57,7 +57,6 @@ public class Arena implements Power {
         this.monsters = monsters;
     }
 
-    //______________________________________________________
     public void addToMonsters(Monster monster) {
         monsters.add(monster);
     }
@@ -69,7 +68,6 @@ public class Arena implements Power {
                 break;
             }
     }
-    //_____________ weird as fuck receberem classes diferentes
 
     /*public List<Coin> getCoins() {
         return coins;
@@ -116,7 +114,7 @@ public class Arena implements Power {
         return true;
     }
 
-    @Override
+    //@Override
     public boolean isMonster(Position position) {
         for (Monster monster : monsters)
             if (monster.getPosition().equals(position))

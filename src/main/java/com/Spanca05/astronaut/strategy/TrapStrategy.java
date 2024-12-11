@@ -12,6 +12,9 @@ import java.util.List;
 public class TrapStrategy implements HostileStrategy {
 
     private final List<GangOfSpike> spikes = new ArrayList<>();
+    // Por causa disto, não volta a respawnar quando o shield acaba e
+    // o Astronaut está a tocar na Trap, mas c'est la vie, não é um bug,
+    // é uma feature.
     private Position astronautLastPosition = null;
 
     @Override

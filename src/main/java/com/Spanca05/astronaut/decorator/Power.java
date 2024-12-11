@@ -8,6 +8,6 @@ import java.util.List;
 public interface Power {
     List<Monster> getMonsters();
     boolean isEmpty(Position position);
-    boolean isMonster(Position position);
+    //boolean isMonster(Position position);
     void catchPoint(Position position);
 }
