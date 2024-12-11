@@ -13,11 +13,6 @@ public class TrapStrategy implements HostileStrategy {
     private boolean spawned = false;
 
     @Override
-    public void draw(Element element, GUI gui, Position cameraOffSet) {
-        gui.drawTrap(element.getPosition().minus(cameraOffSet));
-    }
-
-    @Override
     public void step(Arena arena, Element element, GUI.ACTION action, long time) {
             // Demasiados ifs
             if (astronautLastPosition != null) {
@@ -48,6 +43,7 @@ public class TrapStrategy implements HostileStrategy {
     private void spawnSpike(Arena arena, Position position) {
         Monster spike = new Monster(position.getX(), position.getY());
         spike.setStrategy(new SpikeStrategy());
+        spike.setType("spike");
         arena.addToMonsters(spike);
         spawned = true;
         System.out.println("spawned");

@@ -4,7 +4,6 @@ import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.elements.Wall;
 import com.Spanca05.astronaut.model.game.elements.MonsterWall;
-import com.Spanca05.astronaut.strategy.TrapStrategy;
 
 
 public class WallViewer implements ElementViewer<Wall> {
@@ -15,6 +14,6 @@ public class WallViewer implements ElementViewer<Wall> {
     }
 
     private void drawMonsterWall(MonsterWall monsterWall, GUI gui, Position cameraOffSet) {
-        monsterWall.drawThroughStrategy(gui, cameraOffSet);
+        if (monsterWall.getType().equals("trap")) gui.drawTrap(monsterWall.getPosition().minus(cameraOffSet));
     }
 }

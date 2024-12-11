@@ -1,12 +1,12 @@
 package com.Spanca05.astronaut.model.game.elements;
 
 import com.Spanca05.astronaut.gui.GUI;
-import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.arena.Arena;
 import com.Spanca05.astronaut.strategy.HostileStrategy;
 
 public class Monster extends Element {
     private HostileStrategy strategy;
+    private String type;
 
     public Monster(int x, int y) {
         super(x, y);
@@ -16,8 +16,12 @@ public class Monster extends Element {
         this.strategy = strategy;
     }
 
-    public void drawThroughStrategy(GUI gui, Position cameraOffSet) {
-        strategy.draw(this, gui, cameraOffSet);
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void execute(Arena arena, GUI.ACTION action, long time) {

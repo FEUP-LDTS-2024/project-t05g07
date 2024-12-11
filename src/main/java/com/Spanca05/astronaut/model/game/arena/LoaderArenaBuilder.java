@@ -62,6 +62,7 @@ public class LoaderArenaBuilder extends ArenaBuilder {
                 else if (line.charAt(x) == 'T') {
                     MonsterWall monsterWall = new MonsterWall(x, y);
                     monsterWall.setStrategy(new TrapStrategy());
+                    monsterWall.setType("trap");
                     walls.add(monsterWall);
                 }
         }
@@ -79,6 +80,7 @@ public class LoaderArenaBuilder extends ArenaBuilder {
                 if (line.charAt(x) == 'W') {
                     Monster monster = new Monster(x, y);
                     monster.setStrategy(new SpikeStrategy());
+                    monster.setType("spike");
                     monsters.add(monster);
                 }
         }
