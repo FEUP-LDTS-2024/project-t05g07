@@ -15,6 +15,8 @@ public interface GUI {
 
     void drawSpike(Position position);
 
+    void drawTrap(Position position);
+
     void drawCoin(Position position);
 
     void drawIman(Position position);

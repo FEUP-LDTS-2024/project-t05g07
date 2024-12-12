@@ -1,18 +1,19 @@
 package com.Spanca05.astronaut.model.game.arena;
 
 import com.Spanca05.astronaut.model.game.elements.*;
-import com.Spanca05.astronaut.model.game.elements.monsters.Spike;
+import com.Spanca05.astronaut.model.game.elements.MonsterWall;
 import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
 import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
-import com.Spanca05.astronaut.model.game.elements.monsters.Monster;
+import com.Spanca05.astronaut.model.game.elements.Monster;
+import com.Spanca05.astronaut.strategy.SpikeStrategy;
+import com.Spanca05.astronaut.strategy.TrapStrategy;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -58,6 +59,12 @@ public class LoaderArenaBuilder extends ArenaBuilder {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++)
                 if (line.charAt(x) == '#') walls.add(new Wall(x, y));
+                else if (line.charAt(x) == 'T') {
+                    MonsterWall monsterWall = new MonsterWall(x, y);
+                    monsterWall.setStrategy(new TrapStrategy());
+                    monsterWall.setType("trap");
+                    walls.add(monsterWall);
+                }
         }
 
         return walls;
@@ -70,7 +77,12 @@ public class LoaderArenaBuilder extends ArenaBuilder {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++)
-                if (line.charAt(x) == 'W') monsters.add(new Spike(x, y));
+                if (line.charAt(x) == 'W') {
+                    Monster monster = new Monster(x, y);
+                    monster.setStrategy(new SpikeStrategy());
+                    monster.setType("spike");
+                    monsters.add(monster);
+                }
         }
 
         return monsters;

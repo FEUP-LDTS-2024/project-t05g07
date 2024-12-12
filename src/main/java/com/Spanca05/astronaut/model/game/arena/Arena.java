@@ -6,7 +6,7 @@ import com.Spanca05.astronaut.model.game.elements.*;
 import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
 import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
-import com.Spanca05.astronaut.model.game.elements.monsters.Monster;
+import com.Spanca05.astronaut.model.game.elements.Monster;
 
 import java.util.List;
 
@@ -60,13 +60,25 @@ public class Arena implements Power {
         return monsters;
     }
 
-    /*public List<Coin> getCoins() {
-        return coins;
-    }*/
-
     public void setMonsters(List<Monster> monsters) {
         this.monsters = monsters;
     }
+
+    public void addToMonsters(Monster monster) {
+        monsters.add(monster);
+    }
+
+    public void removeFromMonsters(Position position) {
+        for (Monster monster : monsters)
+            if (monster.getPosition().equals(position)) {
+                monsters.remove(monster);
+                break;
+            }
+    }
+
+    /*public List<Coin> getCoins() {
+        return coins;
+    }*/
 
     //public void setCoins(List<Coin> coins) {this.coins = coins; }
 
@@ -109,7 +121,7 @@ public class Arena implements Power {
         return true;
     }
 
-    @Override
+    //@Override
     public boolean isMonster(Position position) {
         for (Monster monster : monsters)
             if (monster.getPosition().equals(position))

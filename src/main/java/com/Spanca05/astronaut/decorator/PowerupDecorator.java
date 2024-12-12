@@ -1,7 +1,7 @@
 package com.Spanca05.astronaut.decorator;
 
 import com.Spanca05.astronaut.model.Position;
-import com.Spanca05.astronaut.model.game.elements.monsters.Monster;
+import com.Spanca05.astronaut.model.game.elements.Monster;
 
 import java.util.List;
 
@@ -20,11 +20,6 @@ public class PowerupDecorator implements Power {
     @Override
     public boolean isEmpty(Position position) {
         return wrappee.isEmpty(position);
-    }
-
-    @Override
-    public boolean isMonster(Position position) {
-        return wrappee.isMonster(position);
     }
 
     @Override

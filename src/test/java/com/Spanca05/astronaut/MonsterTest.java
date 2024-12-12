@@ -1,7 +1,7 @@
 package com.Spanca05.astronaut;
 
 import com.Spanca05.astronaut.model.Position;
-import com.Spanca05.astronaut.model.game.elements.monsters.Monster;
+import com.Spanca05.astronaut.model.game.elements.Monster;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

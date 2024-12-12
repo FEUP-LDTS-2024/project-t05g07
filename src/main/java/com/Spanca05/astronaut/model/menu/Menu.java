@@ -35,7 +35,7 @@ public class Menu {
 
     public void nextLevel() {
         // Atualizar aqui quando se adicionarem mais níveis.
-        if (currentLevel < 4 && isSelectedStart()) {
+        if (currentLevel < 8 && isSelectedStart()) {
             currentLevel++;
             entries.set(0, "Level " + currentLevel);
         }
