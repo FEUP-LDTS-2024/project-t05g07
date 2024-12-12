@@ -150,4 +150,9 @@ public class LoaderArenaBuilder extends ArenaBuilder {
         }
         return null;
     }
+
+    @Override
+    protected int getCurrentLevel() {
+        return this.level;
+    }
 }

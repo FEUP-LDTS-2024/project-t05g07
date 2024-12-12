@@ -24,11 +24,18 @@ public class Arena implements Power {
     private List<Point> points;
     private List<Star> stars;
 
-    public Arena(int width, int height) {
+    private final int currentLevel;
+
+    public Arena(int width, int height, int currentLevel) {
         this.width = width;
         this.height = height;
+        this.currentLevel = currentLevel;
 
         this.camera = new Camera(0, 0);
+    }
+
+    public int getCurrentLevel() {
+        return this.currentLevel;
     }
 
     public int getWidth() {
