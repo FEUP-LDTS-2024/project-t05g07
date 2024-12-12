@@ -5,6 +5,8 @@ import com.Spanca05.astronaut.model.Position;
 public class Element {
     private Position position;
 
+    public Element() {}
+
     public Element(int x, int y) {
         this.position = new Position(x, y);
     }

@@ -199,6 +199,7 @@ public class Arena implements Power {
             if (position.equals(point.getPosition())) {
                 points.remove(point);
                 if (point instanceof Coin) wallet.addToTotal(10);
+                else if (!(point instanceof Powerup)) wallet.addToTotal(1);
                 break;
             }
         }
