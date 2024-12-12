@@ -7,7 +7,6 @@ import com.Spanca05.astronaut.decorator.Power;
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.arena.Arena;
-import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
 
 public class AstronautController extends GameController {
     private Power power;
@@ -43,25 +42,20 @@ public class AstronautController extends GameController {
         if (power.isEmpty(position)) {
             getModel().getAstronaut().setPosition(position);
 
-            //power.isMonster(position)
             if (getModel().isMonster(position)) {
                 // Para na posição do monstro quando morre.
                 getModel().getAstronaut().setDirection(null);
                 getModel().getAstronaut().die();
             }
 
-            // A different logic might be necessary.
-            // If the astronaut dies, the game goes to the menu.
-            // He didn't really die if he reached the end of the level.
-            // Yes, Astronaut's life has to be "false" in the menu,
-            // but he didn't die.
             if (getModel().isEndBlock(position)) getModel().getAstronaut().die();
 
             //if(getModel().isCoin(position)) getModel().catchCoin(position);
 
             if (getModel().isStar(position)) getModel().catchStar(position);
 
-            // Bug aqui também, iman n apanha o powerup
+            // Sim, o Iman está bugado porque isPowerup só aceita uma posição.
+            // Depois corrijo.................................................
             if (getModel().isPowerup(position)) activatePowerup(position);
 
             power.catchPoint(position);
@@ -72,41 +66,25 @@ public class AstronautController extends GameController {
     }
 
     private void activatePowerup(Position position) {
-        // Isto está bugado as fuck por enquanto, ok.
-        // O que acontece é que apanhar um powerup aumenta
-        // a duração do powerup que está ativo, mas não muda
-        // o powerup ativo.
-        // Inicialmente, que só tinha implementado 1, apanhar
-        // outro íman aumentava a duração do íman que estava
-        // ativo.
 
-        // O suposto é aumentar a duração se for o mesmo
-        // tipo de powerup ou mudar de powerup se for diferente.
-        // Era fixe ter vários ativos ao mesmo tempo, mas isso
-        // seria uma confusão para implementar.
+        if (getModel().isImanPowerup(position)
+                && !currentPower.equals("iman")) {
+            power = getModel();
+            power = new ImanDecorator(power);
+            currentPower = "iman";
+            getModel().getAstronaut().setShield(false);
+        }
 
-        // Anyway, depois corrijo isto e logo se vê.
+        else if (getModel().isEscudoPowerup(position)
+                && !currentPower.equals("escudo")) {
+            power = getModel();
+            power = new EscudoDecorator(power);
+            currentPower = "escudo";
+            getModel().getAstronaut().setShield(true);
+        }
 
-        //if (!isPowerActive) {
-            if (getModel().isImanPowerup(position)
-                    && !currentPower.equals("iman")) {
-                power = getModel();
-                power = new ImanDecorator(power);
-                currentPower = "iman";
-                getModel().getAstronaut().setShield(false);
-            }
-
-            else if (getModel().isEscudoPowerup(position)
-                    && !currentPower.equals("escudo")) {
-                power = getModel();
-                power = new EscudoDecorator(power);
-                currentPower = "escudo";
-                getModel().getAstronaut().setShield(true);
-            }
-
-            isPowerActive = true;
-            System.out.println("activated power up");
-        //}
+        isPowerActive = true;
+        System.out.println("activated power up");
 
         activationTime = System.currentTimeMillis();
     }

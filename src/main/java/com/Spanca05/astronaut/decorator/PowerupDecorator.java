@@ -22,11 +22,6 @@ public class PowerupDecorator implements Power {
         return wrappee.isEmpty(position);
     }
 
-    /*@Override
-    public boolean isMonster(Position position) {
-        return wrappee.isMonster(position);
-    }*/
-
     @Override
     public void catchPoint(Position position) {
         wrappee.catchPoint(position);
