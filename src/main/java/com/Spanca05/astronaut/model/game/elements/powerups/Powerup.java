@@ -15,6 +15,4 @@ public abstract class Powerup extends Point {
     public abstract void extendDuration();
 
     public abstract int getUpgradeAmount();
-
-    public abstract void updateUpgradeAmount();
 }

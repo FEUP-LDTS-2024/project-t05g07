@@ -26,8 +26,7 @@ public class Escudo extends Powerup {
         return upgradeAmount;
     }
 
-    @Override
-    public void updateUpgradeAmount() {
+    private void updateUpgradeAmount() {
         upgradeAmount *= 2;
     }
 }
