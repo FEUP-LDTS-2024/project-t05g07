@@ -7,17 +7,20 @@ import com.Spanca05.astronaut.decorator.Power;
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.arena.Arena;
+import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
 
 public class AstronautController extends GameController {
     private Power power;
     private long activationTime;
     private boolean isPowerActive;
+    private String currentPower;
 
     public AstronautController(Arena arena) {
         super(arena);
         power = arena;
         activationTime = 0;
         isPowerActive = false;
+        currentPower = "";
     }
 
     public void moveAstronautLeft() {
@@ -58,6 +61,7 @@ public class AstronautController extends GameController {
 
             if (getModel().isStar(position)) getModel().catchStar(position);
 
+            // Bug aqui também, iman n apanha o powerup
             if (getModel().isPowerup(position)) activatePowerup(position);
 
             power.catchPoint(position);
@@ -83,16 +87,27 @@ public class AstronautController extends GameController {
 
         // Anyway, depois corrijo isto e logo se vê.
 
-        if (!isPowerActive) {
-            if (getModel().isImanPowerup(position))
+        //if (!isPowerActive) {
+            if (getModel().isImanPowerup(position)
+                    && !currentPower.equals("iman")) {
+                power = getModel();
                 power = new ImanDecorator(power);
-            else if (getModel().isEscudoPowerup(position))
+                currentPower = "iman";
+                getModel().getAstronaut().setShield(false);
+            }
+
+            else if (getModel().isEscudoPowerup(position)
+                    && !currentPower.equals("escudo")) {
+                power = getModel();
                 power = new EscudoDecorator(power);
+                currentPower = "escudo";
                 getModel().getAstronaut().setShield(true);
+            }
 
             isPowerActive = true;
             System.out.println("activated power up");
-        }
+        //}
+
         activationTime = System.currentTimeMillis();
     }
 
