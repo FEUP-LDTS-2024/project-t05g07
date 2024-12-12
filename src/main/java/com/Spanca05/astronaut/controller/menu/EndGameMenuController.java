@@ -3,6 +3,7 @@ package com.Spanca05.astronaut.controller.menu;
 import com.Spanca05.astronaut.Game;
 import com.Spanca05.astronaut.controller.Controller;
 import com.Spanca05.astronaut.gui.GUI;
+import com.Spanca05.astronaut.model.Wallet;
 import com.Spanca05.astronaut.model.game.arena.LoaderArenaBuilder;
 import com.Spanca05.astronaut.model.menu.EndGameMenu;
 import com.Spanca05.astronaut.model.menu.Menu;
@@ -24,12 +25,12 @@ public class EndGameMenuController extends Controller<EndGameMenu> {
                 getModel().nextEntry();
                 break;
             case SELECT:
-                if(getModel().isSelectedRetry()) game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena()));
+                if(getModel().isSelectedRetry()) game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena(getModel().getWallet())));
                 if(getModel().isSelectedNextLevel()) {
                     getModel().nextLevel();
-                    game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena()));
+                    game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena(getModel().getWallet())));
                 }
-                if(getModel().isSelectedExit()) game.setState(new MenuState(new Menu()));
+                if(getModel().isSelectedExit()) game.setState(new MenuState(new Menu(getModel().getWallet())));
         }
     }
 }

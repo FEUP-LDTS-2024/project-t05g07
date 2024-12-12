@@ -24,7 +24,7 @@ public class ArenaController extends GameController {
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         switch (action) {
-            case QUIT -> game.setState(new MenuState(new Menu()));
+            case QUIT -> game.setState(new MenuState(new Menu(getModel().getWallet())));
             case UP, DOWN, RIGHT, LEFT -> {
                 if (getModel().getAstronaut().getDirection() == null)
                     getModel().getAstronaut().setDirection(action);
@@ -34,8 +34,8 @@ public class ArenaController extends GameController {
         }
 
         if (!getModel().getAstronaut().isAlive())
-            //game.setState(new MenuState(new Menu()));
-            game.setState(new EndGameMenuState(new EndGameMenu(getModel().getCurrentLevel())));
+            //game.setState(new MenuState(new Menu(getModel().getWallet())));
+            game.setState(new EndGameMenuState(new EndGameMenu(getModel().getCurrentLevel(), getModel().getWallet())));
 
         monsterController.step(game, null, time);
         cameraController.step(game, null, time);

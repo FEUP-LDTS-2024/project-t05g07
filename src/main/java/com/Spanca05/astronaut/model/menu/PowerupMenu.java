@@ -1,5 +1,7 @@
 package com.Spanca05.astronaut.model.menu;
 
+import com.Spanca05.astronaut.model.Wallet;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -7,12 +9,19 @@ public class PowerupMenu {
     private final List<String> entries;
     private int currentEntry = 0;
 
-    public PowerupMenu() {
+    private Wallet wallet;
+
+    public PowerupMenu(Wallet wallet) {
         this.entries = Arrays.asList("Escudo", "Imobilizador", "Moedas x2", "Score x2", "Iman", "Go Back");
+        this.wallet = wallet;
     }
 
     // Não faz sentido estar a repetir estas funções tho,
     // são iguais às do Menu
+
+    public Wallet getWallet() {
+        return wallet;
+    }
 
     public void nextEntry() {
         currentEntry++;

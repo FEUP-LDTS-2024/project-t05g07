@@ -1,13 +1,14 @@
 package com.Spanca05.astronaut.model.game.arena;
 
+import com.Spanca05.astronaut.model.Wallet;
 import com.Spanca05.astronaut.model.game.elements.*;
 import com.Spanca05.astronaut.model.game.elements.Monster;
 
 import java.util.List;
 
 public abstract class ArenaBuilder {
-    public Arena createArena() {
-        Arena arena = new Arena(getWidth(), getHeight(), getCurrentLevel());
+    public Arena createArena(Wallet wallet) {
+        Arena arena = new Arena(getWidth(), getHeight(), getCurrentLevel(), wallet);
 
         arena.setAstronaut(createAstronaut());
         arena.setMonsters(createMonsters());
@@ -16,7 +17,6 @@ public abstract class ArenaBuilder {
         arena.setPoints(createPoints());
         //arena.setCoins(createCoins());
         arena.setStar(createStar());
-
 
         return arena;
     }

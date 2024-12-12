@@ -25,7 +25,7 @@ public class PowerupMenuController extends Controller<PowerupMenu> {
                 getModel().nextEntry();
                 break;
             case SELECT:
-                if (getModel().isSelectedGoBack()) game.setState(new MenuState(new Menu()));
+                if (getModel().isSelectedGoBack()) game.setState(new MenuState(new Menu(getModel().getWallet())));
         }
     }
 }

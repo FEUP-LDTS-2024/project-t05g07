@@ -1,5 +1,7 @@
 package com.Spanca05.astronaut.model.menu;
 
+import com.Spanca05.astronaut.model.Wallet;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,9 +10,15 @@ public class Menu {
     private int currentEntry = 0;
 
     private int currentLevel = 1;
+    private Wallet wallet;
 
     public Menu() {
         this.entries = Arrays.asList("Level " + currentLevel, "Power-ups", "Exit");
+    }
+
+    public Menu(Wallet wallet) {
+        this.entries = Arrays.asList("Level " + currentLevel, "Power-ups", "Exit");
+        this.wallet = wallet;
     }
 
     // Como é que eu faço voltar pro menu com o currentLevel no
@@ -20,6 +28,10 @@ public class Menu {
         this.currentLevel = currentLevel;
         this.entries = Arrays.asList("Level " + this.currentLevel, "Power-ups", "Exit");
     }*/
+
+    public Wallet getWallet() {
+        return wallet;
+    }
 
     public void nextEntry() {
         currentEntry++;

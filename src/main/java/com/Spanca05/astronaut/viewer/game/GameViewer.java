@@ -7,10 +7,14 @@ import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.arena.Arena;
 import com.Spanca05.astronaut.model.game.elements.Element;
 import com.Spanca05.astronaut.viewer.Viewer;
+import com.Spanca05.astronaut.viewer.WalletViewer;
 
 public class GameViewer extends Viewer<Arena> {
+    private final WalletViewer walletViewer;
+
     public GameViewer(Arena arena) {
         super(arena);
+        this.walletViewer = new WalletViewer(arena.getWallet());
     }
 
     @Override
@@ -22,6 +26,8 @@ public class GameViewer extends Viewer<Arena> {
         //drawElements(gui, getModel().getCoins(), new CoinViewer());
         drawElement(gui, getModel().getAstronaut(), new AstronautViewer());
         drawElements(gui, getModel().getStars(),new StarViewer());
+
+        walletViewer.drawElements(gui);
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {

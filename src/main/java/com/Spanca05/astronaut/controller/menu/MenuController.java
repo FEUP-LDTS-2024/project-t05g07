@@ -3,6 +3,7 @@ package com.Spanca05.astronaut.controller.menu;
 import com.Spanca05.astronaut.Game;
 import com.Spanca05.astronaut.controller.Controller;
 import com.Spanca05.astronaut.gui.GUI;
+import com.Spanca05.astronaut.model.Wallet;
 import com.Spanca05.astronaut.model.game.arena.LoaderArenaBuilder;
 import com.Spanca05.astronaut.model.menu.Menu;
 import com.Spanca05.astronaut.model.menu.PowerupMenu;
@@ -34,8 +35,8 @@ public class MenuController extends Controller<Menu> {
                 break;
             case SELECT:
                 if (getModel().isSelectedExit()) game.setState(null);
-                if (getModel().isSelectedPowerups()) game.setState(new PowerupMenuState(new PowerupMenu()));
-                if (getModel().isSelectedStart()) game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena()));
+                if (getModel().isSelectedPowerups()) game.setState(new PowerupMenuState(new PowerupMenu(getModel().getWallet())));
+                if (getModel().isSelectedStart()) game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena(getModel().getWallet())));
         }
     }
 }
