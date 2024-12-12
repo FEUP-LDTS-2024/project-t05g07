@@ -1,7 +1,5 @@
 package com.Spanca05.astronaut.model.menu;
 
-import com.Spanca05.astronaut.model.Wallet;
-
 import java.util.Arrays;
 import java.util.List;
 

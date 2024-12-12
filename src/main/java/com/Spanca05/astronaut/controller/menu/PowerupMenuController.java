@@ -18,6 +18,9 @@ public class PowerupMenuController extends Controller<PowerupMenu> {
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         switch (action) {
+            case QUIT:
+                game.setState(new MenuState(new Menu()));
+                break;
             case UP:
                 getModel().previousEntry();
                 break;
