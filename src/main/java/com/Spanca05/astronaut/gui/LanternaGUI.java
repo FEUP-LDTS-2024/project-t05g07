@@ -1,6 +1,7 @@
 package com.Spanca05.astronaut.gui;
 
 import com.Spanca05.astronaut.model.Position;
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
@@ -25,15 +26,43 @@ import java.util.Objects;
 public class LanternaGUI implements GUI {
     private final Screen screen;
     private static final int BLOCK_SIZE = 16;
+    private final BufferedImage WallSprite;
+    private final BufferedImage NautaSprite1;
+    private final BufferedImage NautaSprite2;
+    private final BufferedImage EndBlockSprite1;
+    private final BufferedImage EndBlockSprite2;
+    private final BufferedImage Point1Sprite;
+    private final BufferedImage Point2Sprite;
+    private final BufferedImage Coin2Sprite;
+    private final BufferedImage Coin1Sprite;
 
-    public LanternaGUI(Screen screen) {
+    public LanternaGUI(Screen screen) throws IOException {
         this.screen = screen;
+        Point2Sprite = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/point2.png")));
+        this.Point1Sprite = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/point1.png")));
+        this.EndBlockSprite1 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/endBlock.png")));
+        this.EndBlockSprite2 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/endBlock3.png")));
+        this.WallSprite = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/wall.png")));
+        this.NautaSprite1 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/character/nauta-idle-animation1.png")));
+        this.NautaSprite2 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/character/nauta-idle-animation2.png")));
+        this.Coin1Sprite = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/coin1.png")));
+        this.Coin2Sprite = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/coin2.png")));
     }
 
     public LanternaGUI(int width, int height) throws IOException, FontFormatException, URISyntaxException {
         AWTTerminalFontConfiguration fontConfig = loadSquareFont();
         Terminal terminal = createTerminal(width, height, fontConfig);
         this.screen = createScreen(terminal);
+        this.WallSprite = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/wall.png")));
+        this.Point1Sprite = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/point1.png")));
+        this.Point2Sprite = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/point2.png")));
+        this.NautaSprite1 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/character/nauta-idle-animation1.png")));
+        this.NautaSprite2 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/character/nauta-idle-animation2.png")));
+        this.EndBlockSprite1 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/endBlock.png")));
+        this.EndBlockSprite2 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/endBlock3.png")));
+        this.Coin1Sprite = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/coin1.png")));
+        this.Coin2Sprite = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/coin2.png")));
+
     }
 
     private Screen createScreen(Terminal terminal) throws IOException {
@@ -48,8 +77,7 @@ public class LanternaGUI implements GUI {
 
     private Terminal createTerminal(int width, int height, AWTTerminalFontConfiguration fontConfig) throws IOException {
         TerminalSize terminalSize = new TerminalSize(width, height + 1);
-        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory()
-                .setInitialTerminalSize(terminalSize);
+        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
         terminalFactory.setForceAWTOverSwing(true);
         terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
         Terminal terminal = terminalFactory.createTerminal();
@@ -64,7 +92,7 @@ public class LanternaGUI implements GUI {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 4);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 3);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }
@@ -86,10 +114,10 @@ public class LanternaGUI implements GUI {
         return ACTION.NONE;
     }
 
-    public void drawImage(Position position, String imagePath) throws IOException {
-        BufferedImage sprite = ImageIO.read((Objects.requireNonNull(getClass().getClassLoader().getResource(imagePath))));
-        TextGraphics graphics = screen.newTextGraphics();
+    public void drawImage(Position position, BufferedImage sprite) throws IOException {
+        if (position.getX() < 0 || position.getX() > 17 || position.getY() < 0 || position.getY() > 15) return;
 
+        TextGraphics graphics = screen.newTextGraphics();
         for (int x = 0; x < sprite.getWidth(); x++) {
             for (int y = 0; y < sprite.getHeight(); y++) {
                 int a = sprite.getRGB(x, y);
@@ -100,16 +128,20 @@ public class LanternaGUI implements GUI {
 
                 if (alpha != 0) {
                     TextCharacter c = new TextCharacter(' ', new TextColor.RGB(red, green, blue), new TextColor.RGB(red, green, blue));
-                    graphics.setCharacter(position.getX() * 16 + x, position.getY() * 16 + y + 1, c);
+                    graphics.setCharacter(position.getX() * BLOCK_SIZE + x, position.getY() * BLOCK_SIZE + y + 1, c);
                 }
             }
         }
     }
 
     @Override
-    public void drawAstronaut(Position position) {
+    public void drawAstronaut(Position position, int spriteNumber) {
         try {
-            drawImage(position, "sprites/character/nauta-idle-animation1.png");
+            if (spriteNumber == 1) {
+                drawImage(position, this.NautaSprite1);
+            } else {
+                drawImage(position, this.NautaSprite2);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -118,12 +150,52 @@ public class LanternaGUI implements GUI {
     @Override
     public void drawWall(Position position) {
         try {
-            drawImage(position, "sprites/UI/coin/coin.png");
+            drawImage(position, this.WallSprite);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
+
+    @Override
+    public void drawEndBlock(Position position, int endBlockColor) {
+        try {
+            if (endBlockColor == 1) {
+                drawImage(position, this.EndBlockSprite1);
+            } else {
+                drawImage(position, this.EndBlockSprite2);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void drawPoint(Position position, int spriteNumber) {
+        try {
+            if (spriteNumber == 1) {
+                drawImage(position, this.Point1Sprite);
+            } else {
+                drawImage(position, this.Point2Sprite);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void drawCoin(Position position, int coinColor) {
+        try {
+            if (coinColor == 1) {
+                drawImage(position, this.Coin1Sprite);
+            } else {
+                drawImage(position, this.Coin2Sprite);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void drawMonster(Position position) {
@@ -140,10 +212,6 @@ public class LanternaGUI implements GUI {
         drawCharacter(position.getX(), position.getY(), '█', "#25C8FF");
     }
 
-    @Override
-    public void drawCoin(Position position) {
-        drawCharacter(position.getX(), position.getY(), 'C', "#FFFF00");
-    }
 
     @Override
     public void drawIman(Position position) {
@@ -156,19 +224,10 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawPoint(Position position) {
-        drawCharacter(position.getX(), position.getY(), '.', "#FFFFFF");
-    }
-
-    @Override
     public void drawStar(Position position) {
         drawCharacter(position.getX(), position.getY(), 'S', "#F8E559");
     }
 
-    @Override
-    public void drawEndBlock(Position position) {
-        drawCharacter(position.getX(), position.getY(), 'E', "#FFFF00");
-    }
 
     @Override
     public void drawText(Position position, String text, String color) {
@@ -185,8 +244,9 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void clear() {
-
-        screen.clear();
+        TextGraphics tg = this.screen.newTextGraphics();
+        tg.setBackgroundColor(TextColor.ANSI.BLACK);
+        tg.fillRectangle(new TerminalPosition(0, 0), this.screen.getTerminalSize(), ' ');
     }
 
     @Override

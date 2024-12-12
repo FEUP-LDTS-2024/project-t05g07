@@ -7,9 +7,11 @@ import java.io.IOException;
 public interface GUI {
     ACTION getNextAction() throws IOException;
 
-    void drawAstronaut(Position position);
+    void drawAstronaut(Position position, int spriteNumber);
 
     void drawWall(Position position);
+
+    void drawPoint(Position position, int spriteNumber);
 
     void drawMonster(Position position);
 
@@ -17,17 +19,15 @@ public interface GUI {
 
     void drawTrap(Position position);
 
-    void drawCoin(Position position);
+    void drawCoin(Position position, int coinColor);
 
     void drawIman(Position position);
 
     void drawEscudo(Position position);
 
-    void drawPoint(Position position);
-
     void drawStar(Position position);
 
-    void drawEndBlock(Position position);
+    void drawEndBlock(Position position, int endBlockColor);
 
     void drawText(Position position, String text, String color);
 

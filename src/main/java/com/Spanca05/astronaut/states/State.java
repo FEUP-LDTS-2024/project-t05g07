@@ -30,5 +30,7 @@ public abstract class State<T> {
         GUI.ACTION action = gui.getNextAction();
         controller.step(game, action, time);
         viewer.draw(gui);
+
+
     }
 }

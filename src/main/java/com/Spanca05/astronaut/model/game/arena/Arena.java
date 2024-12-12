@@ -18,13 +18,13 @@ public class Arena implements Power {
     private Camera camera;
 
     private List<Monster> monsters;
-    //private List<Coin> coins;
     private List<Wall> walls;
     private EndBlock endblock;
     private List<Point> points;
     private List<Star> stars;
 
     private final int currentLevel;
+
 
     public Arena(int width, int height, int currentLevel) {
         this.width = width;
@@ -52,7 +52,6 @@ public class Arena implements Power {
 
     public void setAstronaut(Astronaut astronaut) {
         this.astronaut = astronaut;
-        this.camera.setPosition(this.astronaut.getPosition().minus(new Position(9, 9)));
     }
 
     @Override
@@ -101,6 +100,7 @@ public class Arena implements Power {
     public List<Point> getPoints() {
         return points;
     }
+
 
     public void setPoints(List<Point> points) {
         this.points = points;
