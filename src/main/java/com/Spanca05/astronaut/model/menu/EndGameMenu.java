@@ -10,16 +10,10 @@ public class EndGameMenu {
     private int currentEntry = 0;
 
     private int currentLevel = 1;
-    private Wallet wallet;
 
-    public EndGameMenu(int currentLevel, Wallet wallet) {
+    public EndGameMenu(int currentLevel) {
         this.currentLevel = currentLevel;
         this.entries = Arrays.asList("Retry", "Next Level", "Exit");
-        this.wallet = wallet;
-    }
-
-    public Wallet getWallet() {
-        return wallet;
     }
 
     public void nextEntry() {

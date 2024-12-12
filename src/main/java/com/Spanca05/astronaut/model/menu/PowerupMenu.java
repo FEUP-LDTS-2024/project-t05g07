@@ -12,19 +12,15 @@ public class PowerupMenu {
     private final List<String> entries;
     private int currentEntry = 0;
 
-    private Wallet wallet;
+    private final Wallet wallet;
 
-    public PowerupMenu(Wallet wallet) {
+    public PowerupMenu() {
         this.entries = Arrays.asList("Escudo", "Imobilizador", "Moedas x2", "Score x2", "Iman", "Go Back");
-        this.wallet = wallet;
+        this.wallet = new Wallet();
     }
 
     // Não faz sentido estar a repetir estas funções tho,
     // são iguais às do Menu
-
-    public Wallet getWallet() {
-        return wallet;
-    }
 
     public void nextEntry() {
         currentEntry++;

@@ -25,12 +25,12 @@ public class EndGameMenuController extends Controller<EndGameMenu> {
                 getModel().nextEntry();
                 break;
             case SELECT:
-                if(getModel().isSelectedRetry()) game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena(getModel().getWallet())));
+                if(getModel().isSelectedRetry()) game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena()));
                 if(getModel().isSelectedNextLevel()) {
                     getModel().nextLevel();
-                    game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena(getModel().getWallet())));
+                    game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena()));
                 }
-                if(getModel().isSelectedExit()) game.setState(new MenuState(new Menu(getModel().getWallet())));
+                if(getModel().isSelectedExit()) game.setState(new MenuState(new Menu()));
         }
     }
 }

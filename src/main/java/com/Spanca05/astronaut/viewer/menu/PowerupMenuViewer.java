@@ -2,6 +2,7 @@ package com.Spanca05.astronaut.viewer.menu;
 
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
+import com.Spanca05.astronaut.model.Wallet;
 import com.Spanca05.astronaut.model.menu.PowerupMenu;
 import com.Spanca05.astronaut.viewer.Viewer;
 import com.Spanca05.astronaut.viewer.WalletViewer;
@@ -11,7 +12,7 @@ public class PowerupMenuViewer extends Viewer<PowerupMenu> {
 
     public PowerupMenuViewer(PowerupMenu powerupMenu) {
         super(powerupMenu);
-        this.walletViewer = new WalletViewer(powerupMenu.getWallet());
+        this.walletViewer = new WalletViewer(new Wallet());
     }
 
     @Override
@@ -29,8 +30,8 @@ public class PowerupMenuViewer extends Viewer<PowerupMenu> {
 
     private String powerupColour(int i) {
         return switch (i) {
-            //case 0 -> "#FFC0CB";
-            //case 4 -> "#FFA500";
+            case 0 -> "#FFC0CB";
+            case 4 -> "#FFA500";
             default -> "#FFD700";
         };
     }

@@ -1,7 +1,6 @@
 package com.Spanca05.astronaut;
 
 import com.Spanca05.astronaut.gui.LanternaGUI;
-import com.Spanca05.astronaut.model.Wallet;
 import com.Spanca05.astronaut.model.menu.Menu;
 import com.Spanca05.astronaut.states.MenuState;
 import com.Spanca05.astronaut.states.State;
@@ -14,14 +13,10 @@ public class Game {
     private final LanternaGUI gui;
     private State state;
 
-    private Wallet wallet;
-
     public Game() throws FontFormatException, IOException, URISyntaxException {
         this.gui = new LanternaGUI(20, 20);
 
-        this.wallet = new Wallet();
-
-        this.state = new MenuState(new Menu(wallet));
+        this.state = new MenuState(new Menu());
     }
 
     public static void main(String[] args) throws IOException, FontFormatException, URISyntaxException {

@@ -25,7 +25,7 @@ public class Arena implements Power {
     private List<Point> points;
     private List<Star> stars;
 
-    private Wallet wallet;
+    private final Wallet wallet;
 
     private final int currentLevel;
 
@@ -34,15 +34,7 @@ public class Arena implements Power {
         this.height = height;
         this.currentLevel = currentLevel;
 
-        this.camera = new Camera(0, 0);
-    }
-
-    public Arena(int width, int height, int currentLevel, Wallet wallet) {
-        this.width = width;
-        this.height = height;
-        this.currentLevel = currentLevel;
-        this.wallet = wallet;
-
+        this.wallet = new Wallet();
         this.camera = new Camera(0, 0);
     }
 
