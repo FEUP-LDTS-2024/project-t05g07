@@ -34,6 +34,10 @@ public class Astronaut extends Element {
         if (!shield) this.life = false;
     }
 
+    public void win() {
+        this.life = false;
+    }
+
     public boolean isAlive() {
         return life;
     }
