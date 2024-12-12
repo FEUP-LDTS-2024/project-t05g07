@@ -3,7 +3,9 @@ package com.Spanca05.astronaut.controller.game;
 import com.Spanca05.astronaut.Game;
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.game.arena.Arena;
+import com.Spanca05.astronaut.model.menu.EndGameMenu;
 import com.Spanca05.astronaut.model.menu.Menu;
+import com.Spanca05.astronaut.states.EndGameMenuState;
 import com.Spanca05.astronaut.states.MenuState;
 
 import java.io.IOException;
@@ -32,7 +34,8 @@ public class ArenaController extends GameController {
         }
 
         if (!getModel().getAstronaut().isAlive())
-            game.setState(new MenuState(new Menu()));
+            //game.setState(new MenuState(new Menu()));
+            game.setState(new EndGameMenuState(new EndGameMenu(getModel().getCurrentLevel())));
 
         monsterController.step(game, null, time);
         cameraController.step(game, null, time);

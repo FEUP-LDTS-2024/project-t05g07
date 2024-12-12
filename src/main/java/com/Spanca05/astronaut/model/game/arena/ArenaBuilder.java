@@ -7,7 +7,7 @@ import java.util.List;
 
 public abstract class ArenaBuilder {
     public Arena createArena() {
-        Arena arena = new Arena(getWidth(), getHeight());
+        Arena arena = new Arena(getWidth(), getHeight(), getCurrentLevel());
 
         arena.setAstronaut(createAstronaut());
         arena.setMonsters(createMonsters());
@@ -20,6 +20,8 @@ public abstract class ArenaBuilder {
 
         return arena;
     }
+
+    protected abstract int getCurrentLevel();
 
     protected abstract int getWidth();
 
