@@ -29,7 +29,7 @@ public class EndGameMenu {
 
     public void nextLevel() {
         // Atualizar aqui quando se adicionarem mais níveis.
-        if (currentLevel < 4 ) {
+        if (currentLevel < 8) {
             ++currentLevel;
         }
     }
