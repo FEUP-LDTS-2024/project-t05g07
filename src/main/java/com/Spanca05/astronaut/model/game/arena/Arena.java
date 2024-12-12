@@ -2,6 +2,7 @@ package com.Spanca05.astronaut.model.game.arena;
 
 import com.Spanca05.astronaut.decorator.Power;
 import com.Spanca05.astronaut.model.Position;
+import com.Spanca05.astronaut.model.Wallet;
 import com.Spanca05.astronaut.model.game.elements.*;
 import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
 import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
@@ -24,6 +25,8 @@ public class Arena implements Power {
     private List<Point> points;
     private List<Star> stars;
 
+    private final Wallet wallet;
+
     private final int currentLevel;
 
     public Arena(int width, int height, int currentLevel) {
@@ -31,6 +34,7 @@ public class Arena implements Power {
         this.height = height;
         this.currentLevel = currentLevel;
 
+        this.wallet = new Wallet();
         this.camera = new Camera(0, 0);
     }
 
@@ -44,6 +48,10 @@ public class Arena implements Power {
 
     public int getHeight() {
         return height;
+    }
+
+    public Wallet getWallet() {
+        return wallet;
     }
 
     public Astronaut getAstronaut() {
@@ -182,6 +190,8 @@ public class Arena implements Power {
         for (Point point : points) {
             if (position.equals(point.getPosition())) {
                 points.remove(point);
+                if (point instanceof Coin) wallet.addToTotal(10);
+                else if (!(point instanceof Powerup)) wallet.addToTotal(1);
                 break;
             }
         }

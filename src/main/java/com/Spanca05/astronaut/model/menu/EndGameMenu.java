@@ -9,7 +9,6 @@ public class EndGameMenu {
 
     private int currentLevel = 1;
 
-
     public EndGameMenu(int currentLevel) {
         this.currentLevel = currentLevel;
         this.entries = Arrays.asList("Retry", "Next Level", "Exit");

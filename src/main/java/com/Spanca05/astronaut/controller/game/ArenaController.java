@@ -34,7 +34,7 @@ public class ArenaController extends GameController {
         }
 
         if (!getModel().getAstronaut().isAlive())
-            //game.setState(new MenuState(new Menu()));
+            //game.setState(new MenuState(new Menu(getModel().getWallet())));
             game.setState(new EndGameMenuState(new EndGameMenu(getModel().getCurrentLevel())));
 
         monsterController.step(game, null, time);

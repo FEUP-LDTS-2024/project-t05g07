@@ -17,7 +17,6 @@ public abstract class ArenaBuilder {
         //arena.setCoins(createCoins());
         arena.setStar(createStar());
 
-
         return arena;
     }
 

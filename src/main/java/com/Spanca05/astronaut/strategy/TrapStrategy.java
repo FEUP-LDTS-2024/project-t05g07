@@ -56,12 +56,10 @@ public class TrapStrategy implements HostileStrategy {
         spike.setStrategy(new SpikeStrategy());
         spike.setType("spike");
         arena.addToMonsters(spike);
-        System.out.println("spawned");
     }
 
     private void despawnSpike(Arena arena, Position position) {
         arena.removeFromMonsters(position);
-        System.out.println("despawned");
     }
 
     private static class GangOfSpike {
