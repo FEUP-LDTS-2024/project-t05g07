@@ -2,6 +2,7 @@ package com.Spanca05.astronaut.decorator;
 
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.elements.Monster;
+import com.Spanca05.astronaut.model.game.elements.Point;
 
 import java.util.List;
 
@@ -18,6 +19,11 @@ public class PowerupDecorator implements Power {
     }
 
     @Override
+    public List<Point> getPoints() {
+        return wrappee.getPoints();
+    }
+
+    @Override
     public boolean isEmpty(Position position) {
         return wrappee.isEmpty(position);
     }
@@ -27,4 +33,8 @@ public class PowerupDecorator implements Power {
         wrappee.catchPoint(position);
     }
 
+    @Override
+    public int amount(Point point) {
+        return wrappee.amount(point);
+    }
 }

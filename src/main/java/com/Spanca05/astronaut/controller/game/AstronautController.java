@@ -1,12 +1,14 @@
 package com.Spanca05.astronaut.controller.game;
 
 import com.Spanca05.astronaut.Game;
+import com.Spanca05.astronaut.decorator.concretedecorators.BonusCoinsDecorator;
 import com.Spanca05.astronaut.decorator.concretedecorators.EscudoDecorator;
 import com.Spanca05.astronaut.decorator.concretedecorators.ImanDecorator;
 import com.Spanca05.astronaut.decorator.Power;
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.arena.Arena;
+import com.Spanca05.astronaut.model.game.elements.powerups.BonusCoins;
 import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
 import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
@@ -84,6 +86,14 @@ public class AstronautController extends GameController {
             power = new EscudoDecorator(power);
             currentPower = new Escudo();
             getModel().getAstronaut().setShield(true);
+        }
+
+        else if (getModel().isBonusCoinsPowerup(position)
+                && !(currentPower instanceof BonusCoins)) {
+            power = getModel();
+            power = new BonusCoinsDecorator(power);
+            currentPower = new BonusCoins();
+            getModel().getAstronaut().setShield(false);
         }
 
         isPowerActive = true;
