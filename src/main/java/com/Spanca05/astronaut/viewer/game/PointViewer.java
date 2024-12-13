@@ -3,6 +3,7 @@ package com.Spanca05.astronaut.viewer.game;
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.elements.Coin;
+import com.Spanca05.astronaut.model.game.elements.powerups.BonusCoins;
 import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
 import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.Point;
@@ -25,6 +26,9 @@ public class PointViewer implements ElementViewer<Point> {
         }
         else if (powerup instanceof Escudo) {
             gui.drawEscudo(powerup.getPosition().minus(cameraOffSet));
+        }
+        else if (powerup instanceof BonusCoins) {
+            gui.drawBonusCoins(powerup.getPosition().minus(cameraOffSet));
         }
     }
 }

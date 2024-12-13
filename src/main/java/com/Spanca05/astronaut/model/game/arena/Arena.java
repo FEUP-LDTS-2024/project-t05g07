@@ -4,6 +4,7 @@ import com.Spanca05.astronaut.decorator.Power;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.Wallet;
 import com.Spanca05.astronaut.model.game.elements.*;
+import com.Spanca05.astronaut.model.game.elements.powerups.BonusCoins;
 import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
 import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
@@ -106,6 +107,7 @@ public class Arena implements Power {
         this.endblock = endblock;
     }
 
+    @Override
     public List<Point> getPoints() {
         return points;
     }
@@ -185,18 +187,30 @@ public class Arena implements Power {
         return false;
     }
 
+    public boolean isBonusCoinsPowerup(Position position) {
+        for (Point powerup : points)
+            if (powerup.getPosition().equals(position) && powerup instanceof BonusCoins)
+                return true;
+        return false;
+    }
+
     @Override
     public void catchPoint(Position position) {
         for (Point point : points) {
             if (position.equals(point.getPosition())) {
                 points.remove(point);
-                if (point instanceof Coin) wallet.addToTotal(10);
-                else if (!(point instanceof Powerup)) wallet.addToTotal(1);
+                wallet.addToTotal(amount(point));
                 break;
             }
         }
     }
 
+    @Override
+    public int amount(Point point) {
+        if (point instanceof Coin) return 10;
+        else if (!(point instanceof Powerup)) return 1;
+        else return 0;
+    }
 
     /*public void catchCoin(Position position) {
         for(Coin coin : coins) {

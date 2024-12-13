@@ -23,6 +23,8 @@ public interface GUI {
 
     void drawEscudo(Position position);
 
+    void drawBonusCoins(Position position);
+
     void drawPoint(Position position);
 
     void drawStar(Position position);

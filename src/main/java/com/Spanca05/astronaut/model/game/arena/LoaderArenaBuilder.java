@@ -2,6 +2,7 @@ package com.Spanca05.astronaut.model.game.arena;
 
 import com.Spanca05.astronaut.model.game.elements.*;
 import com.Spanca05.astronaut.model.game.elements.MonsterWall;
+import com.Spanca05.astronaut.model.game.elements.powerups.BonusCoins;
 import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
 import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
@@ -136,9 +137,10 @@ public class LoaderArenaBuilder extends ArenaBuilder {
     }
 
     private Powerup oneRandomPowerup(int x, int y) {
-        int n = (int) (Math.random() * 2);
+        int n = (int) (Math.random() * 3);
         return switch (n) {
             case 0 -> new Iman(x, y);
+            case 1 -> new BonusCoins(x, y);
             default -> new Escudo(x, y);
         };
     }
