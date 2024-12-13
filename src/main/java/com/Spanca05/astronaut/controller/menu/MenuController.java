@@ -9,6 +9,8 @@ import com.Spanca05.astronaut.model.menu.PowerupMenu;
 import com.Spanca05.astronaut.states.GameState;
 import com.Spanca05.astronaut.states.PowerupMenuState;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 public class MenuController extends Controller<Menu> {
@@ -18,7 +20,7 @@ public class MenuController extends Controller<Menu> {
     }
 
     @Override
-    public void step(Game game, GUI.ACTION action, long time) throws IOException {
+    public void step(Game game, GUI.ACTION action, long time) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         switch (action) {
             case UP:
                 getModel().previousEntry();

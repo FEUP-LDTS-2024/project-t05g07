@@ -9,13 +9,15 @@ import com.Spanca05.astronaut.model.menu.Menu;
 import com.Spanca05.astronaut.states.GameState;
 import com.Spanca05.astronaut.states.MenuState;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 public class EndGameMenuController extends Controller<EndGameMenu> {
     public EndGameMenuController(EndGameMenu endGameMenu) {super(endGameMenu);}
 
     @Override
-    public void step(Game game, GUI.ACTION action, long time) throws IOException {
+    public void step(Game game, GUI.ACTION action, long time) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         switch (action) {
             case UP:
                 getModel().previousEntry();

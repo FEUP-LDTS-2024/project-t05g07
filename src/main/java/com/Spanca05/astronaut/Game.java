@@ -1,10 +1,13 @@
 package com.Spanca05.astronaut;
 
+import com.Spanca05.astronaut.audio.BackGroundMusic;
 import com.Spanca05.astronaut.gui.LanternaGUI;
 import com.Spanca05.astronaut.model.menu.Menu;
 import com.Spanca05.astronaut.states.MenuState;
 import com.Spanca05.astronaut.states.State;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -13,13 +16,13 @@ public class Game {
     private final LanternaGUI gui;
     private State state;
 
-    public Game() throws FontFormatException, IOException, URISyntaxException {
+    public Game() throws FontFormatException, IOException, URISyntaxException, UnsupportedAudioFileException, LineUnavailableException {
         this.gui = new LanternaGUI(20, 20);
 
         this.state = new MenuState(new Menu());
     }
 
-    public static void main(String[] args) throws IOException, FontFormatException, URISyntaxException {
+    public static void main(String[] args) throws IOException, FontFormatException, URISyntaxException, UnsupportedAudioFileException, LineUnavailableException {
         new Game().start();
     }
 
@@ -27,7 +30,7 @@ public class Game {
         this.state = state;
     }
 
-    private void start() throws IOException {
+    private void start() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         int FPS = 50;
         int frameTime = 1000 / FPS;
 
