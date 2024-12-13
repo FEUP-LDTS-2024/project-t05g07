@@ -31,7 +31,8 @@ public class PowerupMenuViewer extends Viewer<PowerupMenu> {
     private String powerupColour(int i) {
         return switch (i) {
             case 0 -> "#FFC0CB";
-            case 4 -> "#FFA500";
+            case 1 -> "#00FF00";
+            case 2 -> "#FFA500";
             default -> "#FFD700";
         };
     }

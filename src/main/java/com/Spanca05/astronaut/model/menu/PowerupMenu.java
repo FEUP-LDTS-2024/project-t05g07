@@ -1,6 +1,7 @@
 package com.Spanca05.astronaut.model.menu;
 
 import com.Spanca05.astronaut.model.Wallet;
+import com.Spanca05.astronaut.model.game.elements.powerups.BonusCoins;
 import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
 import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
@@ -15,7 +16,7 @@ public class PowerupMenu {
     private final Wallet wallet;
 
     public PowerupMenu() {
-        this.entries = Arrays.asList("Escudo", "Imobilizador", "Moedas x2", "Score x2", "Iman", "Go Back");
+        this.entries = Arrays.asList("Escudo", "Moedasx2", "Iman", "Go Back");
         this.wallet = new Wallet();
     }
 
@@ -50,42 +51,51 @@ public class PowerupMenu {
         Escudo escudo = new Escudo();
         if (wallet.getTotal() >= escudo.getUpgradeAmount())
             extendDuration(escudo);
-        else System.out.println("Not enough coins to upgrade. You need "
-                + escudo.getUpgradeAmount() + " coins. Current duration: "
-                + escudo.getDuration()/1000.0 + " seconds.");
+        else cannotUpgradeMessage(escudo);
     }
 
-    public boolean isSelectedMoedas() {
-        return isSelected(2);
+    public boolean isSelectedBonusCoins() {
+        return isSelected(1);
+    }
+
+    public void extendBonusCoinsDuration() {
+        BonusCoins bonusCoins = new BonusCoins();
+        if (wallet.getTotal() >= bonusCoins.getUpgradeAmount())
+            extendDuration(bonusCoins);
+        else cannotUpgradeMessage(bonusCoins);
     }
 
     public boolean isSelectedIman() {
-        return isSelected(4);
+        return isSelected(2);
     }
 
     public void extendImanDuration() {
         Iman iman = new Iman();
         if (wallet.getTotal() >= iman.getUpgradeAmount())
             extendDuration(iman);
-        else System.out.println("Not enough coins to upgrade. You need "
-                + iman.getUpgradeAmount() + " coins. Current duration: "
-                + iman.getDuration()/1000.0 + " seconds.");
+        else cannotUpgradeMessage(iman);
     }
 
     public boolean isSelectedGoBack() {
-        return isSelected(5);
+        return isSelected(3);
     }
 
     public int getNumberEntries() {
         return this.entries.size();
     }
 
-    public void extendDuration(Powerup powerup) {
+    private void extendDuration(Powerup powerup) {
         wallet.subtractFromTotal(powerup.getUpgradeAmount());
         long previousDuration = powerup.getDuration();
         powerup.extendDuration();
         System.out.println("Previous Duration: " + previousDuration/1000.0 + " seconds.");
         System.out.println("Current Duration: " + powerup.getDuration()/1000.0 + " seconds.");
+    }
+
+    private void cannotUpgradeMessage(Powerup powerup) {
+        System.out.println("Not enough coins to upgrade. You need "
+                + powerup.getUpgradeAmount() + " coins. Current duration: "
+                + powerup.getDuration()/1000.0 + " seconds.");
     }
 }
 
