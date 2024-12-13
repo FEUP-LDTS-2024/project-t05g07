@@ -7,18 +7,21 @@ import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.arena.Arena;
 import com.Spanca05.astronaut.model.game.elements.Astronaut;
 import com.Spanca05.astronaut.model.game.elements.Element;
+import com.Spanca05.astronaut.model.game.elements.Star;
 import com.Spanca05.astronaut.viewer.Viewer;
 
 public class GameViewer extends Viewer<Arena> {
     private PointViewer pv;
     private AstronautViewer nautav;
     private EndBlockViewer endv;
+    private StarViewer starv;
 
     public GameViewer(Arena arena) {
         super(arena);
         this.pv = new PointViewer();
         this.nautav = new AstronautViewer();
         this.endv = new EndBlockViewer();
+        this.starv = new StarViewer();
     }
 
     @Override
@@ -27,14 +30,15 @@ public class GameViewer extends Viewer<Arena> {
         this.pv.update();
         this.nautav.update();
         this.endv.update();
+        this.starv.update();
 
         drawElements(gui, getModel().getWalls(), new WallViewer());
         drawElement(gui, getModel().getEndBlock(), this.endv);
         drawElement(gui, getModel().getAstronaut(), this.nautav );
         drawElements(gui, getModel().getPoints(), this.pv);
-        //drawElements(gui, getModel().getMonsters(), new MonsterViewer());
+        drawElements(gui, getModel().getStars(), this.starv);
+        drawElements(gui, getModel().getMonsters(), new MonsterViewer());
         // drawElements(gui, getModel().getCoins(), new CoinViewer());
-        //drawElements(gui, getModel().getStars(),new StarViewer());
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {

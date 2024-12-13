@@ -7,7 +7,8 @@ import java.io.IOException;
 public interface GUI {
     ACTION getNextAction() throws IOException;
 
-    void drawAstronaut(Position position, int spriteNumber);
+    void drawAstronaut(Position position, int spriteNumber, int angle);
+
 
     void drawWall(Position position);
 
@@ -25,7 +26,7 @@ public interface GUI {
 
     void drawEscudo(Position position);
 
-    void drawStar(Position position);
+    void drawStar(Position position, int starColor);
 
     void drawEndBlock(Position position, int endBlockColor);
 
