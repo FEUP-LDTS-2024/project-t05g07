@@ -1,6 +1,7 @@
 package com.Spanca05.astronaut.controller.game;
 
 import com.Spanca05.astronaut.Game;
+import com.Spanca05.astronaut.audio.SoundEffect;
 import com.Spanca05.astronaut.decorator.concretedecorators.BonusCoinsDecorator;
 import com.Spanca05.astronaut.decorator.concretedecorators.EscudoDecorator;
 import com.Spanca05.astronaut.decorator.concretedecorators.ImanDecorator;
@@ -13,38 +14,49 @@ import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
 import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+
 public class AstronautController extends GameController {
     private Power power;
     private long activationTime;
     private boolean isPowerActive;
     private Powerup currentPower;
+    private final SoundEffect movementSound;
+    private final SoundEffect powerUpSound;
 
-    public AstronautController(Arena arena) {
+    public AstronautController(Arena arena) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         super(arena);
         power = arena;
         activationTime = 0;
         isPowerActive = false;
         currentPower = null;
+        movementSound = new SoundEffect("movement.wav");
+        powerUpSound = new SoundEffect("powerUp.wav");
     }
 
-    public void moveAstronautLeft() {
+    public void moveAstronautLeft() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         moveAstronaut(getModel().getAstronaut().getPosition().getLeft());
     }
 
-    public void moveAstronautRight() {
+    public void moveAstronautRight() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         moveAstronaut(getModel().getAstronaut().getPosition().getRight());
     }
 
-    public void moveAstronautUp() {
+    public void moveAstronautUp() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         moveAstronaut(getModel().getAstronaut().getPosition().getUp());
     }
 
-    public void moveAstronautDown() {
+    public void moveAstronautDown() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         moveAstronaut(getModel().getAstronaut().getPosition().getDown());
     }
 
-    private void moveAstronaut(Position position) {
+    private void moveAstronaut(Position position) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         if (power.isEmpty(position)) {
+
+            movementSound.play();
+
             getModel().getAstronaut().setPosition(position);
 
             if (getModel().isMonster(position)) {
@@ -61,7 +73,10 @@ public class AstronautController extends GameController {
 
             // Sim, o Iman está bugado porque isPowerup só aceita uma posição.
             // Depois corrijo.................................................
-            if (getModel().isPowerup(position)) activatePowerup(position);
+            if (getModel().isPowerup(position)) {
+                powerUpSound.playInNewThread();
+                activatePowerup(position);
+            }
 
             power.catchPoint(position);
         }
@@ -110,7 +125,7 @@ public class AstronautController extends GameController {
     }
 
     @Override
-    public void step(Game game, GUI.ACTION action, long time) {
+    public void step(Game game, GUI.ACTION action, long time) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         switch (getModel().getAstronaut().getDirection()) {
             case UP -> moveAstronautUp();
             case DOWN -> moveAstronautDown();

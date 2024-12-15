@@ -1,5 +1,6 @@
 package com.Spanca05.astronaut.model.game.arena;
 
+import com.Spanca05.astronaut.audio.SoundEffect;
 import com.Spanca05.astronaut.decorator.Power;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.Wallet;
@@ -10,6 +11,9 @@ import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
 import com.Spanca05.astronaut.model.game.elements.Monster;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.util.List;
 
 public class Arena implements Power {
@@ -30,7 +34,11 @@ public class Arena implements Power {
 
     private final int currentLevel;
 
-    public Arena(int width, int height, int currentLevel) {
+    private final SoundEffect starSound = new SoundEffect("star.wav");
+    //private final SoundEffect coinSound = new SoundEffect("coin.wav");
+    private final SoundEffect pointSound = new SoundEffect("point.wav");
+
+    public Arena(int width, int height, int currentLevel) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         this.width = width;
         this.height = height;
         this.currentLevel = currentLevel;
@@ -198,6 +206,7 @@ public class Arena implements Power {
     public void catchPoint(Position position) {
         for (Point point : points) {
             if (position.equals(point.getPosition())) {
+                pointSound.play();
                 points.remove(point);
                 wallet.addToTotal(amount(point));
                 break;
@@ -221,9 +230,10 @@ public class Arena implements Power {
         }
     }*/
 
-    public void catchStar(Position position){
+    public void catchStar(Position position) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         for (Star star : stars){
             if (position.equals(star.getPosition())){
+                starSound.play();
                 stars.remove(star);
 
                 break;

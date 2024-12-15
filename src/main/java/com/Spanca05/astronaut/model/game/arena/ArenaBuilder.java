@@ -3,10 +3,13 @@ package com.Spanca05.astronaut.model.game.arena;
 import com.Spanca05.astronaut.model.game.elements.*;
 import com.Spanca05.astronaut.model.game.elements.Monster;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.util.List;
 
 public abstract class ArenaBuilder {
-    public Arena createArena() {
+    public Arena createArena() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         Arena arena = new Arena(getWidth(), getHeight(), getCurrentLevel());
 
         arena.setAstronaut(createAstronaut());
@@ -16,6 +19,7 @@ public abstract class ArenaBuilder {
         arena.setPoints(createPoints());
         //arena.setCoins(createCoins());
         arena.setStar(createStar());
+
 
         return arena;
     }

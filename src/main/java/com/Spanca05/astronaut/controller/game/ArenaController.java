@@ -8,6 +8,8 @@ import com.Spanca05.astronaut.model.menu.Menu;
 import com.Spanca05.astronaut.states.EndGameMenuState;
 import com.Spanca05.astronaut.states.MenuState;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 public class ArenaController extends GameController {
@@ -15,14 +17,14 @@ public class ArenaController extends GameController {
     private final MonsterController monsterController;
     private final CameraController cameraController;
 
-    public ArenaController(Arena arena) {
+    public ArenaController(Arena arena) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         super(arena);
         this.astronautController = new AstronautController(arena);
         this.monsterController = new MonsterController(arena);
         this.cameraController = new CameraController(arena);
     }
 
-    public void step(Game game, GUI.ACTION action, long time) throws IOException {
+    public void step(Game game, GUI.ACTION action, long time) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         switch (action) {
             case QUIT -> game.setState(new MenuState(new Menu()));
             case UP, DOWN, RIGHT, LEFT -> {

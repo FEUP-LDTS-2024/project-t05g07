@@ -1,16 +1,24 @@
 package com.Spanca05.astronaut.model.menu;
 
+import com.Spanca05.astronaut.audio.BackGroundMusic;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
 public class Menu {
     private final List<String> entries;
     private int currentEntry = 0;
-
     private int currentLevel = 1;
+    private final BackGroundMusic themeMusic;
 
-    public Menu() {
+    public Menu() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         this.entries = Arrays.asList("Level " + currentLevel, "Power-ups", "Exit");
+        this.themeMusic = new BackGroundMusic("theme.wav");
+        this.themeMusic.setVolume(-30.0f);
+        this.themeMusic.playLoop();
     }
 
     // Como é que eu faço voltar pro menu com o currentLevel no
@@ -20,6 +28,10 @@ public class Menu {
         this.currentLevel = currentLevel;
         this.entries = Arrays.asList("Level " + this.currentLevel, "Power-ups", "Exit");
     }*/
+
+    public void stopMusic() {
+        themeMusic.stop();
+    }
 
     public void nextEntry() {
         currentEntry++;
@@ -69,6 +81,7 @@ public class Menu {
     }
 
     public boolean isSelectedStart() {
+        stopMusic();
         return isSelected(0);
     }
 
