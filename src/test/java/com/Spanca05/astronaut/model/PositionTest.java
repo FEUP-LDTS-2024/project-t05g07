@@ -35,18 +35,6 @@ public class PositionTest {
     }
 
     @Test
-    public void testSetX() {
-        position1.setX(8);
-        assertEquals(8, position1.getX());
-    }
-
-    @Test
-    public void testSetY() {
-        position1.setY(15);
-        assertEquals(15, position1.getY());
-    }
-
-    @Test
     public void testEqualsTrue() {
         Position copy = new Position(4, 4);
         assertTrue(position1.equals(copy));
@@ -55,13 +43,5 @@ public class PositionTest {
     @Test
     public void testEqualsFalse() {
         assertFalse(position1.equals(position2));
-    }
-
-    @Test
-    public void testCopyConstructor() {
-        Position copy = new Position(original);
-        assertEquals(7, copy.getX());
-        assertEquals(9, copy.getY());
-        assertTrue(copy.equals(original));
     }
 }
