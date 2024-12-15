@@ -5,43 +5,17 @@ import com.Spanca05.astronaut.model.game.arena.Arena;
 import com.Spanca05.astronaut.model.game.elements.Coin;
 import com.Spanca05.astronaut.model.game.elements.Monster;
 import com.Spanca05.astronaut.model.game.elements.Point;
-import com.Spanca05.astronaut.model.game.elements.Wall;
 import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PowerupDecoratorTest {
     private Power helper() {
-        Arena arenaMock = Mockito.mock(Arena.class);
-
-        List<Monster> monsters = new ArrayList<>();
-        Monster m1 = new Monster(1, 1);
-        Monster m2 = new Monster(2, 2);
-        Monster m3 = new Monster(3, 3);
-        monsters.add(m1);
-        monsters.add(m2);
-        monsters.add(m3);
-
-        List<Point> points = new ArrayList<>();
-        points.add(new Point(1, 1));
-        points.add(new Point(2, 2));
-        points.add(new Point(3, 3));
-
-        List<Wall> walls = new ArrayList<>();
-        walls.add(new Wall(1, 1));
-        walls.add(new Wall(2, 2));
-        walls.add(new Wall(3, 3));
-
-        arenaMock.setMonsters(monsters);
-        arenaMock.setPoints(points);
-        arenaMock.setWalls(walls);
-
-        return arenaMock;
+        return Mockito.mock(Arena.class);
     }
 
     @Test
@@ -81,14 +55,10 @@ public class PowerupDecoratorTest {
     @Test
     public void catchPoint() {
         Arena arena = Mockito.mock(Arena.class);
-        List<Point> points = new ArrayList<>();
-        points.add(new Point(1, 1));
-        arena.setPoints(points);
 
         arena.catchPoint(new Position(1,1));
         List<Point> p1 = arena.getPoints();
 
-        arena.setPoints(points);
         PowerupDecorator pd = new PowerupDecorator(arena);
         pd.catchPoint(new Position(1,1));
         List<Point> p2 = arena.getPoints();
