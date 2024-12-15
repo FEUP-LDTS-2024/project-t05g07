@@ -21,7 +21,7 @@ public class PowerupMenuState extends State<PowerupMenu> {
     }
 
     @Override
-    protected Controller<PowerupMenu> getController() {
+    protected Controller<PowerupMenu> getController() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         return new PowerupMenuController(getModel());
     }
 }

@@ -1,6 +1,7 @@
 package com.Spanca05.astronaut.controller.menu;
 
 import com.Spanca05.astronaut.Game;
+import com.Spanca05.astronaut.audio.SoundEffect;
 import com.Spanca05.astronaut.controller.Controller;
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.game.arena.LoaderArenaBuilder;
@@ -14,9 +15,12 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 public class MenuController extends Controller<Menu> {
+    private final SoundEffect clickSound;
 
-    public MenuController(Menu menu) {
+    public MenuController(Menu menu) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         super(menu);
+        clickSound = new SoundEffect("click.wav");
+        clickSound.setVolume(0.0f);
     }
 
     @Override
@@ -35,6 +39,7 @@ public class MenuController extends Controller<Menu> {
                 getModel().nextLevel();
                 break;
             case SELECT:
+                clickSound.play();
                 if (getModel().isSelectedExit()) game.setState(null);
                 if (getModel().isSelectedPowerups()) game.setState(new PowerupMenuState(new PowerupMenu()));
                 if (getModel().isSelectedStart()) game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena()));

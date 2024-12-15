@@ -6,6 +6,8 @@ import com.Spanca05.astronaut.model.game.arena.Arena;
 import com.Spanca05.astronaut.model.game.elements.Wall;
 import com.Spanca05.astronaut.model.game.elements.Monster;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 public class MonsterController extends GameController {
@@ -16,7 +18,7 @@ public class MonsterController extends GameController {
     }
 
     @Override
-    public void step(Game game, GUI.ACTION action, long time) throws IOException {
+    public void step(Game game, GUI.ACTION action, long time) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         for (Monster monster : getModel().getMonsters()) {
             monster.execute(getModel(), action, time);
         }

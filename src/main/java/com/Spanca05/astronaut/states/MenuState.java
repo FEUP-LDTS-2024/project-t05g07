@@ -21,7 +21,7 @@ public class MenuState extends State<Menu> {
     }
 
     @Override
-    protected Controller<Menu> getController() {
+    protected Controller<Menu> getController() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         return new MenuController(getModel());
     }
 }

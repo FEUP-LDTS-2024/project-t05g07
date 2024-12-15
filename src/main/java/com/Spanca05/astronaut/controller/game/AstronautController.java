@@ -24,6 +24,7 @@ public class AstronautController extends GameController {
     private boolean isPowerActive;
     private Powerup currentPower;
     private final SoundEffect movementSound;
+    private final SoundEffect powerUpSound;
 
     public AstronautController(Arena arena) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         super(arena);
@@ -32,6 +33,7 @@ public class AstronautController extends GameController {
         isPowerActive = false;
         currentPower = null;
         movementSound = new SoundEffect("movement.wav");
+        powerUpSound = new SoundEffect("powerUp.wav");
     }
 
     public void moveAstronautLeft() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
@@ -71,7 +73,10 @@ public class AstronautController extends GameController {
 
             // Sim, o Iman está bugado porque isPowerup só aceita uma posição.
             // Depois corrijo.................................................
-            if (getModel().isPowerup(position)) activatePowerup(position);
+            if (getModel().isPowerup(position)) {
+                powerUpSound.playInNewThread();
+                activatePowerup(position);
+            }
 
             power.catchPoint(position);
         }

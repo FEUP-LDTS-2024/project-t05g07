@@ -1,6 +1,5 @@
 package com.Spanca05.astronaut;
 
-import com.Spanca05.astronaut.audio.BackGroundMusic;
 import com.Spanca05.astronaut.gui.LanternaGUI;
 import com.Spanca05.astronaut.model.menu.Menu;
 import com.Spanca05.astronaut.states.MenuState;

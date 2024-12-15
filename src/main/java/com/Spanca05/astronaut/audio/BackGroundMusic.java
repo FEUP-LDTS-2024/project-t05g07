@@ -27,8 +27,9 @@ public class BackGroundMusic {
     }
 
     public void setVolume(float value) {
-        if(clip != null) {
+        if(clip != null && clip.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
             FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            value = Math.max(volume.getMinimum(), Math.min(value, volume.getMaximum()));
             volume.setValue(value);
         }
     }

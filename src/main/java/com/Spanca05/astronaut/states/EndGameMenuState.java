@@ -17,5 +17,5 @@ public class EndGameMenuState extends State<EndGameMenu> {
     protected Viewer<EndGameMenu> getViewer() {return new EndGameMenuViewer(getModel());}
 
     @Override
-    protected Controller<EndGameMenu> getController() {return new EndGameMenuController(getModel());}
+    protected Controller<EndGameMenu> getController() throws UnsupportedAudioFileException, LineUnavailableException, IOException {return new EndGameMenuController(getModel());}
 }
