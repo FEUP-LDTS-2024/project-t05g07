@@ -41,6 +41,15 @@ public class LanternaGUI implements GUI {
     private final BufferedImage Coin2Sprite;
     private final BufferedImage StarSprite1;
     private final BufferedImage StarSprite2;
+    private final BufferedImage MenuBackground;
+    private final BufferedImage Button1;
+    private final BufferedImage Button1v2;
+    private final BufferedImage Button2;
+    private final BufferedImage Button2v2;
+    private final BufferedImage Button3;
+    private final BufferedImage Button3v2;
+
+
 
 
     public LanternaGUI(Screen screen) throws IOException {
@@ -59,6 +68,13 @@ public class LanternaGUI implements GUI {
         this.Coin2Sprite = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/coin2.png")));
         this.StarSprite1 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/star1.png")));
         this.StarSprite2 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/star2.png")));
+        this.MenuBackground =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/mainMenu.png")));
+        this.Button1 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao1.png")));
+        this.Button2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao2.png")));
+        this.Button3 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao3.png")));
+        this.Button1v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao1v2.png")));
+        this.Button2v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao2v2.png")));
+        this.Button3v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao3v2.png")));
 
     }
 
@@ -80,7 +96,13 @@ public class LanternaGUI implements GUI {
         this.Coin2Sprite = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/coin2.png")));
         this.StarSprite1 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/star1.png")));
         this.StarSprite2 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/star2.png")));
-
+        this.MenuBackground =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/mainMenu.png")));
+        this.Button1 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao1.png")));
+        this.Button2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao2.png")));
+        this.Button3 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao3.png")));
+        this.Button1v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao1v2.png")));
+        this.Button2v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao2v2.png")));
+        this.Button3v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao3v2.png")));
     }
 
     private Screen createScreen(Terminal terminal) throws IOException {
@@ -171,9 +193,6 @@ public class LanternaGUI implements GUI {
         return rotatedImage;
     }
 
-
-
-
     @Override
     public void drawAstronaut(Position position, int spriteNumber, int angle) {
         try {
@@ -190,8 +209,6 @@ public class LanternaGUI implements GUI {
         }
     }
 
-
-
     @Override
     public void drawWall(Position position) {
         try {
@@ -199,7 +216,56 @@ public class LanternaGUI implements GUI {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    @Override
+    public void drawMenu(Position position){
+        try {
+            drawImage(position, this.MenuBackground);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    private BufferedImage getButtonSprite(int buttonNumber, boolean isSelected) {
+        return switch (buttonNumber) {
+            case 1 -> isSelected ? Button1v2 : Button1;
+            case 2 -> isSelected ? Button2v2 : Button2;
+            case 3 -> isSelected ? Button3v2 : Button3;
+            default -> Button1;
+        };
+    }
+
+    @Override
+    public void drawButton1(Position position, boolean isSelected) {
+        try {
+            BufferedImage buttonSprite = getButtonSprite(1, isSelected);
+            drawImage(position, buttonSprite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void drawButton2(Position position, boolean isSelected){
+        try {
+            BufferedImage buttonSprite = getButtonSprite(2, isSelected);
+            drawImage(position, buttonSprite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void drawButton3(Position position, boolean isSelected){
+        try {
+            BufferedImage buttonSprite = getButtonSprite(3, isSelected);
+            drawImage(position, buttonSprite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

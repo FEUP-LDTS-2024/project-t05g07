@@ -5,9 +5,7 @@ import java.util.List;
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.arena.Arena;
-import com.Spanca05.astronaut.model.game.elements.Astronaut;
 import com.Spanca05.astronaut.model.game.elements.Element;
-import com.Spanca05.astronaut.model.game.elements.Star;
 import com.Spanca05.astronaut.viewer.Viewer;
 
 public class GameViewer extends Viewer<Arena> {
@@ -38,7 +36,7 @@ public class GameViewer extends Viewer<Arena> {
         drawElements(gui, getModel().getPoints(), this.pv);
         drawElements(gui, getModel().getStars(), this.starv);
         drawElements(gui, getModel().getMonsters(), new MonsterViewer());
-        // drawElements(gui, getModel().getCoins(), new CoinViewer());
+        //drawElements(gui, getModel().getCoins(), new CoinViewer());
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
@@ -50,7 +48,6 @@ public class GameViewer extends Viewer<Arena> {
         drawElement(gui, element, viewer, getModel().getCameraPosition());
     }
 
-    // This one is called by the above draws.
     private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer, Position cameraOffSet) {
         viewer.draw(element, gui, cameraOffSet);
     }

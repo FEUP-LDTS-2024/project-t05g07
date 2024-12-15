@@ -33,6 +33,10 @@ public class Menu {
             currentEntry = this.entries.size() - 1;
     }
 
+    public boolean isSelectedEntry(int i) {
+        return currentEntry == i;
+    }
+
     public void nextLevel() {
         // Atualizar aqui quando se adicionarem mais níveis.
         if (currentLevel < 8 && isSelectedStart()) {
@@ -56,9 +60,7 @@ public class Menu {
         return currentLevel;
     }
 
-    public boolean isSelected(int i) {
-        return currentEntry == i;
-    }
+    public boolean isSelected(int i) {return currentEntry == i;}
 
     public boolean isSelectedExit() {
         return isSelected(2);

@@ -28,6 +28,14 @@ public interface GUI {
 
     void drawStar(Position position, int starColor);
 
+    void drawMenu(Position position);
+
+    void drawButton1(Position position, boolean isSelected);
+
+    void drawButton2(Position position, boolean isSelected);
+
+    void drawButton3(Position position, boolean isSelected);
+
     void drawEndBlock(Position position, int endBlockColor);
 
     void drawText(Position position, String text, String color);
