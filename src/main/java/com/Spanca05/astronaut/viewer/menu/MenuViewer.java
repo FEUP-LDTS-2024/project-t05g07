@@ -19,11 +19,5 @@ public class MenuViewer extends Viewer<Menu> {
         gui.drawButton1(new Position(5, 7), getModel().isSelected(0));
         gui.drawButton2(new Position(5, 9), getModel().isSelected(1));
         gui.drawButton3(new Position(5, 11), getModel().isSelected(2));
-
-        for (int i = 0; i < getModel().getNumberEntries(); i++)
-            gui.drawText(
-                    new Position(5, 7 + i),
-                    getModel().getEntry(i),
-                    getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
     }
 }

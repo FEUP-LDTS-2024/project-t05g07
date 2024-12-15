@@ -48,6 +48,13 @@ public class LanternaGUI implements GUI {
     private final BufferedImage Button2v2;
     private final BufferedImage Button3;
     private final BufferedImage Button3v2;
+    private final BufferedImage Button4;
+    private final BufferedImage Button5;
+    private final BufferedImage Button4v2;
+    private final BufferedImage Button5v2;
+    private final BufferedImage Button6;
+    private final BufferedImage Button6v2;
+    private final BufferedImage SecondMenuBackground;
 
 
 
@@ -75,7 +82,13 @@ public class LanternaGUI implements GUI {
         this.Button1v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao1v2.png")));
         this.Button2v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao2v2.png")));
         this.Button3v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao3v2.png")));
-
+        this.Button4 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao4.png")));
+        this.Button4v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao4v2.png")));
+        this.Button5 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao5.png")));
+        this.Button5v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao5v2.png")));
+        this.Button6 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao6.png")));
+        this.Button6v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao6v2.png")));
+        this.SecondMenuBackground =ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecundaryMenu/secondMenu.png"))));
     }
 
     public LanternaGUI(int width, int height) throws IOException, FontFormatException, URISyntaxException {
@@ -103,6 +116,13 @@ public class LanternaGUI implements GUI {
         this.Button1v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao1v2.png")));
         this.Button2v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao2v2.png")));
         this.Button3v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao3v2.png")));
+        this.Button4 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecondaryMenu/botao4.png")));
+        this.Button4v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecondaryMenu/botao4v2.png")));
+        this.Button5 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecondaryMenu/botao5.png")));
+        this.Button5v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecondaryMenu/botao5v2.png")));
+        this.Button6 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecondaryMenu/botao6.png")));
+        this.Button6v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecondaryMenu/botao6v2.png")));
+        this.SecondMenuBackground =ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecondaryMenu/secondMenu.png"))));
     }
 
     private Screen createScreen(Terminal terminal) throws IOException {
@@ -227,7 +247,14 @@ public class LanternaGUI implements GUI {
         }
     }
 
-
+    @Override
+    public void drawSecondMenu(Position position){
+        try {
+            drawImage(position, this.SecondMenuBackground);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private BufferedImage getButtonSprite(int buttonNumber, boolean isSelected) {
         return switch (buttonNumber) {
@@ -237,6 +264,46 @@ public class LanternaGUI implements GUI {
             default -> Button1;
         };
     }
+
+    private BufferedImage get2ButtonSprite(int buttonNumber, boolean isSelected) {
+        return switch (buttonNumber) {
+            case 1 -> isSelected ? Button4v2 : Button4;
+            case 2 -> isSelected ? Button5v2 : Button5;
+            case 3 -> isSelected ? Button6v2 : Button6;
+            default -> Button4;
+        };
+    }
+
+    @Override
+    public void draw2Button1(Position position, boolean isSelected) {
+        try {
+            BufferedImage buttonSprite = get2ButtonSprite(1, isSelected);
+            drawImage(position, buttonSprite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void draw2Button2(Position position, boolean isSelected){
+        try {
+            BufferedImage buttonSprite = get2ButtonSprite(2, isSelected);
+            drawImage(position, buttonSprite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void draw2Button3(Position position, boolean isSelected){
+        try {
+            BufferedImage buttonSprite = get2ButtonSprite(3, isSelected);
+            drawImage(position, buttonSprite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void drawButton1(Position position, boolean isSelected) {
@@ -334,12 +401,10 @@ public class LanternaGUI implements GUI {
         drawCharacter(position.getX(), position.getY(), 'M', "#669900");
     }
 
-
     @Override
     public void drawTrap(Position position) {
         drawCharacter(position.getX(), position.getY(), '█', "#25C8FF");
     }
-
 
     @Override
     public void drawIman(Position position) {
@@ -350,7 +415,6 @@ public class LanternaGUI implements GUI {
     public void drawEscudo(Position position) {
         drawCharacter(position.getX(), position.getY(), 'U', "#FFC0CB");
     }
-
 
     @Override
     public void drawText(Position position, String text, String color) {

@@ -10,14 +10,9 @@ public class EndGameMenuViewer extends Viewer<EndGameMenu> {
 
     @Override
     public void drawElements(GUI gui) {
-        gui.drawText(new Position(5, 5), "Game Over", "#FFFFFF");
-
-        for(int i = 0; i < getModel().getNumberEntries(); i++)
-            gui.drawText(
-                    new Position(5, 7 + i),
-                    getModel().getEntry(i),
-                    getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
-
-
+        gui.drawSecondMenu(new Position(0,0));
+        gui.draw2Button1(new Position(5, 5), getModel().isSelected(0));
+        gui.draw2Button2(new Position(5, 7), getModel().isSelected(1));
+        gui.draw2Button3(new Position(5, 9), getModel().isSelected(2));
     }
 }
