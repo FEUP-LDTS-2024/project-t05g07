@@ -104,11 +104,11 @@ public class TrapStrategyTest {
         ss.step(arenaMock, e1, action, time + 501);
         ss.step(arenaMock, e1, action, time + 1501);
 
-        Mockito.verify(arenaMock, Mockito.times(1)).removeFromMonsters(Mockito.any(Position.class));
+        Mockito.verify(arenaMock, Mockito.times(1)).removeFromMonsters(new Position(0, 1));
 
         ss.step(arenaMock, e1, action, time + 1502);
 
-        Mockito.verify(arenaMock, Mockito.times(1)).removeFromMonsters(Mockito.any(Position.class));
+        Mockito.verify(arenaMock, Mockito.times(1)).removeFromMonsters(new Position(0, 1));
     }
 
     /*@Test
