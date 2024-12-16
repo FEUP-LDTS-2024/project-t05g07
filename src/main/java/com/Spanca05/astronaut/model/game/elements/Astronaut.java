@@ -11,6 +11,7 @@ public class Astronaut extends Element {
     private boolean life;
     private boolean shield;
     private GUI.ACTION direction;
+    private boolean levelPassed;
 
     public Astronaut(int x, int y) {
         super(x, y);
@@ -40,6 +41,7 @@ public class Astronaut extends Element {
             SoundEffect loseSound = new SoundEffect("lose.wav");
             loseSound.play();
             this.life = false;
+            this.levelPassed = false;
         }
     }
 
@@ -47,6 +49,11 @@ public class Astronaut extends Element {
         SoundEffect winSound = new SoundEffect("win.wav");
         winSound.play();
         this.life = false;
+        this.levelPassed = true;
+    }
+
+    public boolean isLevelPassed() {
+        return levelPassed;
     }
 
     public boolean isAlive() {

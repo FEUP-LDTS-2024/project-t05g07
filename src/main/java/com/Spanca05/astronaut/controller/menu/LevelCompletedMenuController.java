@@ -5,20 +5,21 @@ import com.Spanca05.astronaut.audio.SoundEffect;
 import com.Spanca05.astronaut.controller.Controller;
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.game.arena.LoaderArenaBuilder;
+import com.Spanca05.astronaut.model.menu.LevelCompletedMenu;
 import com.Spanca05.astronaut.model.menu.Menu;
-import com.Spanca05.astronaut.model.menu.PowerupMenu;
 import com.Spanca05.astronaut.states.GameState;
-import com.Spanca05.astronaut.states.PowerupMenuState;
+import com.Spanca05.astronaut.states.MenuState;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
-public class MenuController extends Controller<Menu> {
+public class LevelCompletedMenuController extends Controller<LevelCompletedMenu> {
     private final SoundEffect clickSound;
 
-    public MenuController(Menu menu) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        super(menu);
+    public LevelCompletedMenuController(LevelCompletedMenu levelCompletedMenu) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        super(levelCompletedMenu);
+
         clickSound = new SoundEffect("click.wav");
         clickSound.setVolume(0.0f);
     }
@@ -32,20 +33,16 @@ public class MenuController extends Controller<Menu> {
             case DOWN:
                 getModel().nextEntry();
                 break;
-            case LEFT:
-                getModel().previousLevel();
-                break;
-            case RIGHT:
-                getModel().nextLevel();
-                break;
             case SELECT:
                 clickSound.play();
-                if (getModel().isSelectedExit()) game.setState(null);
-                if (getModel().isSelectedPowerups()) game.setState(new PowerupMenuState(new PowerupMenu()));
-                if (getModel().isSelectedStart()) {
-                    getModel().stopMusic();
+                if(getModel().isSelectedNextLevel()) {
+                    getModel().nextLevel();
                     game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena()));
                 }
+                if(getModel().isSelectedRetry()) game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena()));
+                if(getModel().isSelectedExit()) game.setState(new MenuState(new Menu()));
         }
     }
+
+
 }

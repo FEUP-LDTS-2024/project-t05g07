@@ -8,15 +8,15 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-public class EndGameMenu {
+public class LevelCompletedMenu {
     private final List<String> entries;
     private int currentEntry = 0;
     private int currentLevel = 1;
     private final BackGroundMusic themeMusic;
 
-    public EndGameMenu(int currentLevel) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+    public LevelCompletedMenu(int currentLevel) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         this.currentLevel = currentLevel;
-        this.entries = Arrays.asList("Retry", "Next Level", "Exit");
+        this.entries = Arrays.asList("Next Level", "Retry", "Exit");
         this.themeMusic = new BackGroundMusic("theme.wav");
         this.themeMusic.setVolume(-5.0f);
         this.themeMusic.playLoop();
@@ -47,9 +47,12 @@ public class EndGameMenu {
 
     public boolean isSelected(int i) {return currentEntry == i;}
 
-    public boolean isSelectedRetry() {return isSelected(0);}
+    public boolean isSelectedRetry() {
+        themeMusic.stop();
+        return isSelected(1);
+    }
 
-    public boolean isSelectedNextLevel() {return isSelected(1);}
+    public boolean isSelectedNextLevel() {return isSelected(0);}
 
     public boolean isSelectedExit() {return isSelected(2);}
 
