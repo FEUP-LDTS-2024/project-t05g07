@@ -10,7 +10,7 @@ public class CoinViewer implements ElementViewer<Coin> {
 
     public void update() {
         frameCount++;
-        if (frameCount > 15) {
+        if (frameCount > 10) {
             coinColor = coinColor == 1 ? 2 : 1;
             frameCount = 0;
         }

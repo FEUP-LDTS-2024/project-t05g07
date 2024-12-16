@@ -271,6 +271,21 @@ public class LanternaGUI implements GUI {
         }
     }
 
+
+    @Override
+    public void drawCoin(Position position, int coinColor) {
+        try {
+            if (coinColor == 1) {
+                drawImage(position, this.Coin1Sprite);
+            } else {
+                drawImage(position, this.Coin2Sprite);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     @Override
     public void drawMenu(Position position){
         try {
@@ -455,18 +470,6 @@ public class LanternaGUI implements GUI {
         }
     }
 
-    @Override
-    public void drawCoin(Position position, int coinColor) {
-        try {
-            if (coinColor == 1) {
-                drawImage(position, this.Coin1Sprite);
-            } else {
-                drawImage(position, this.Coin2Sprite);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void drawStar(Position position, int starColor) {

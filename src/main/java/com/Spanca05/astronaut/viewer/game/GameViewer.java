@@ -39,7 +39,7 @@ public class GameViewer extends Viewer<Arena> {
         drawElements(gui, getModel().getPoints(), this.pv);
         drawElements(gui, getModel().getStars(), this.starv);
         drawElements(gui, getModel().getMonsters(), new MonsterViewer());
-        //drawElements(gui, getModel().getCoins(), this.coinv);
+        drawElements(gui, getModel().getCoins(), this.coinv);
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {

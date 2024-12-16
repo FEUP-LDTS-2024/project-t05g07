@@ -8,6 +8,8 @@ import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
 import com.Spanca05.astronaut.model.game.elements.Monster;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Arena implements Power {
@@ -16,8 +18,6 @@ public class Arena implements Power {
 
     private Astronaut astronaut;
     private Camera camera;
-    //private List<Coin> coins;
-
     private List<Monster> monsters;
     private List<Wall> walls;
     private EndBlock endblock;
@@ -74,12 +74,14 @@ public class Arena implements Power {
                 break;
             }
     }
-
-    /*public List<Coin> getCoins() {
+    public List<Coin> getCoins() {
+        List<Coin> coins = new ArrayList<>();
+        for (Point point : points) {
+            if (point instanceof Coin)
+                coins.add((Coin) point);
+        }
         return coins;
-    }*/
-
-    //public void setCoins(List<Coin> coins) {this.coins = coins; }
+    }
 
     public List<Wall> getWalls() {
         return walls;
