@@ -3,9 +3,11 @@ package com.Spanca05.astronaut.controller.game;
 import com.Spanca05.astronaut.Game;
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.game.arena.Arena;
+import com.Spanca05.astronaut.model.menu.GameFinishedMenu;
 import com.Spanca05.astronaut.model.menu.LevelCompletedMenu;
 import com.Spanca05.astronaut.model.menu.LevelFailedMenu;
 import com.Spanca05.astronaut.model.menu.Menu;
+import com.Spanca05.astronaut.states.GameFinishedMenuState;
 import com.Spanca05.astronaut.states.LevelCompletedMenuState;
 import com.Spanca05.astronaut.states.LevelFailedMenuState;
 import com.Spanca05.astronaut.states.MenuState;
@@ -39,7 +41,9 @@ public class ArenaController extends GameController {
 
         if (!getModel().getAstronaut().isAlive())
             //game.setState(new MenuState(new Menu(getModel().getWallet())));
-            if(getModel().getAstronaut().isLevelPassed()) game.setState(new LevelCompletedMenuState(new LevelCompletedMenu(getModel().getCurrentLevel())));
+            if(getModel().getAstronaut().isLevelPassed())
+                if(getModel().getCurrentLevel() == 8) game.setState(new GameFinishedMenuState(new GameFinishedMenu()));
+                else game.setState(new LevelCompletedMenuState(new LevelCompletedMenu(getModel().getCurrentLevel())));
             else game.setState(new LevelFailedMenuState(new LevelFailedMenu(getModel().getCurrentLevel())));
 
         monsterController.step(game, null, time);

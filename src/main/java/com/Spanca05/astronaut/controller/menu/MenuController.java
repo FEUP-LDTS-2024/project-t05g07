@@ -42,7 +42,10 @@ public class MenuController extends Controller<Menu> {
                 clickSound.play();
                 if (getModel().isSelectedExit()) game.setState(null);
                 if (getModel().isSelectedPowerups()) game.setState(new PowerupMenuState(new PowerupMenu()));
-                if (getModel().isSelectedStart()) game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena()));
+                if (getModel().isSelectedStart()) {
+                    getModel().stopMusic();
+                    game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena()));
+                }
         }
     }
 }
