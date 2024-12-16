@@ -17,7 +17,7 @@ public class Menu {
     public Menu() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         this.entries = Arrays.asList("Level " + currentLevel, "Power-ups", "Exit");
         this.themeMusic = new BackGroundMusic("theme.wav");
-        this.themeMusic.setVolume(-30.0f);
+        this.themeMusic.setVolume(-5.0f);
         this.themeMusic.playLoop();
     }
 
