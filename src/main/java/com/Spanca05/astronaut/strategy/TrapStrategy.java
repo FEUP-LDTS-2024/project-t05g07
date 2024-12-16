@@ -89,4 +89,8 @@ public class TrapStrategy implements HostileStrategy {
             return timer;
         }
     }
+
+    protected Position getAstronautLastPosition() {
+        return this.astronautLastPosition;
+    }
 }
