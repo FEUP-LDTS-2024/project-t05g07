@@ -17,7 +17,6 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImagingOpException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -57,8 +56,16 @@ public class LanternaGUI implements GUI {
     private final BufferedImage Button6v2;
     private final BufferedImage SecondMenuBackground;
     private final BufferedImage infectedWall;
-
-
+    private final BufferedImage freezePower;
+    private final BufferedImage imanPower;
+    private final BufferedImage coinsPower;
+    private final BufferedImage pointsPower;
+    private final BufferedImage sheildPower;
+    private final BufferedImage freezePowerv2;
+    private final BufferedImage imanPowerv2;
+    private final BufferedImage coinsPowerv2;
+    private final BufferedImage pointsPowerv2;
+    private final BufferedImage sheildPowerv2;
 
 
     public LanternaGUI(Screen screen) throws IOException {
@@ -92,6 +99,17 @@ public class LanternaGUI implements GUI {
         this.Button6v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao6v2.png")));
         this.SecondMenuBackground =ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecundaryMenu/secondMenu.png"))));
         this.infectedWall =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/infectedWall.png")));
+        this.sheildPower =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/sheild.png")));
+        this.freezePower =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/freeze.png")));
+        this.pointsPower =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/points.png")));
+        this.coinsPower =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/coins.png")));
+        this.imanPower =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/iman.png")));
+        this.sheildPowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/sheildv2.png")));
+        this.freezePowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/freezev2.png")));
+        this.pointsPowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/pointsv2.png")));
+        this.coinsPowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/coinsv2.png")));
+        this.imanPowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/imanv2.png")));
+
     }
 
     public LanternaGUI(int width, int height) throws IOException, FontFormatException, URISyntaxException {
@@ -119,14 +137,24 @@ public class LanternaGUI implements GUI {
         this.Button1v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao1v2.png")));
         this.Button2v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao2v2.png")));
         this.Button3v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao3v2.png")));
-        this.Button4 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecondaryMenu/botao4.png")));
-        this.Button4v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecondaryMenu/botao4v2.png")));
-        this.Button5 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecondaryMenu/botao5.png")));
-        this.Button5v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecondaryMenu/botao5v2.png")));
-        this.Button6 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecondaryMenu/botao6.png")));
-        this.Button6v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecondaryMenu/botao6v2.png")));
-        this.SecondMenuBackground =ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecondaryMenu/secondMenu.png"))));
+        this.Button4 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/botao4.png")));
+        this.Button4v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/botao4v2.png")));
+        this.Button5 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/botao5.png")));
+        this.Button5v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/botao5v2.png")));
+        this.Button6 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/botao6.png")));
+        this.Button6v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/botao6v2.png")));
+        this.SecondMenuBackground =ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/secondMenu.png"))));
         this.infectedWall =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/infectedWall.png")));
+        this.sheildPower =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/sheild.png")));
+        this.freezePower =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/freeze.png")));
+        this.pointsPower =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/points.png")));
+        this.coinsPower =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/coins.png")));
+        this.imanPower =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/iman.png")));
+        this.sheildPowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/shieldv2.png")));
+        this.freezePowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/freezev2.png")));
+        this.pointsPowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/pointsv2.png")));
+        this.coinsPowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/coinsv2.png")));
+        this.imanPowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/imanv2.png")));
 
     }
 
@@ -279,6 +307,68 @@ public class LanternaGUI implements GUI {
         };
     }
 
+    private BufferedImage getPowerButtonSprite(int buttonNumber, boolean isSelected) {
+        return switch (buttonNumber) {
+            case 1 -> isSelected ? sheildPowerv2: sheildPower;
+            case 2 -> isSelected ? freezePowerv2 : freezePower;
+            case 3 -> isSelected ? coinsPowerv2 : coinsPower;
+            case 4 -> isSelected ? pointsPowerv2 : pointsPower;
+            case 5 -> isSelected ? imanPowerv2 : imanPower;
+
+            default -> Button4;
+        };
+    }
+
+    @Override
+    public void drawPower1(Position position, boolean isSelected) {
+        try {
+            BufferedImage buttonSprite = getPowerButtonSprite(1, isSelected);
+            drawImage(position, buttonSprite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void drawPower2(Position position, boolean isSelected) {
+        try {
+            BufferedImage buttonSprite = getPowerButtonSprite(2, isSelected);
+            drawImage(position, buttonSprite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void drawPower3(Position position, boolean isSelected) {
+        try {
+            BufferedImage buttonSprite = getPowerButtonSprite(3, isSelected);
+            drawImage(position, buttonSprite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void drawPower4(Position position, boolean isSelected) {
+        try {
+            BufferedImage buttonSprite = getPowerButtonSprite(4, isSelected);
+            drawImage(position, buttonSprite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void drawPower5(Position position, boolean isSelected) {
+        try {
+            BufferedImage buttonSprite = getPowerButtonSprite(5, isSelected);
+            drawImage(position, buttonSprite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void draw2Button1(Position position, boolean isSelected) {
         try {
@@ -308,7 +398,6 @@ public class LanternaGUI implements GUI {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public void drawButton1(Position position, boolean isSelected) {

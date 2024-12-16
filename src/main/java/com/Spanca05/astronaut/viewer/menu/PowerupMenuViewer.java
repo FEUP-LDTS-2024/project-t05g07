@@ -12,20 +12,12 @@ public class PowerupMenuViewer extends Viewer<PowerupMenu> {
 
     @Override
     public void drawElements(GUI gui) {
-        gui.drawText(new Position(5, 5), "Power-ups", "#FFFFFF");
-
-        for (int i = 0; i < getModel().getNumberEntries(); i++)
-            gui.drawText(
-                    new Position(5, 7 + i),
-                    getModel().getEntry(i),
-                    getModel().isSelected(i) ? powerupColour(i) : "#FFFFFF");
-    }
-
-    private String powerupColour(int i) {
-        return switch (i) {
-            //case 0 -> "#FFC0CB";
-            //case 4 -> "#FFA500";
-            default -> "#FFD700";
-        };
+        gui.drawSecondMenu(new Position(0, 0));
+        gui.drawPower1(new Position(5, 2), getModel().isSelected(0));
+        gui.drawPower2(new Position(5, 4), getModel().isSelected(1));
+        gui.drawPower3(new Position(5, 6), getModel().isSelected(2));
+        gui.drawPower4(new Position(5, 8), getModel().isSelected(3));
+        gui.drawPower5(new Position(5, 10), getModel().isSelected(4));
+        gui.draw2Button3(new Position(5,12), getModel().isSelected(5));
     }
 }
