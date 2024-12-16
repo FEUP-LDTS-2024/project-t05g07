@@ -66,6 +66,8 @@ public class LanternaGUI implements GUI {
     private final BufferedImage coinsPowerv2;
     private final BufferedImage pointsPowerv2;
     private final BufferedImage sheildPowerv2;
+    private final BufferedImage ImanSprite1;
+    private final BufferedImage ImanSprite2;
 
 
     public LanternaGUI(Screen screen) throws IOException {
@@ -109,6 +111,8 @@ public class LanternaGUI implements GUI {
         this.pointsPowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/pointsv2.png")));
         this.coinsPowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/coinsv2.png")));
         this.imanPowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/imanv2.png")));
+        this.ImanSprite1=ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/iman.png")));
+        this.ImanSprite2=ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/imanv2.png")));
 
     }
 
@@ -155,6 +159,8 @@ public class LanternaGUI implements GUI {
         this.pointsPowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/pointsv2.png")));
         this.coinsPowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/coinsv2.png")));
         this.imanPowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/imanv2.png")));
+        this.ImanSprite1=ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/iman.png")));
+        this.ImanSprite2=ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/imanv2.png")));
 
     }
 
@@ -271,7 +277,6 @@ public class LanternaGUI implements GUI {
         }
     }
 
-
     @Override
     public void drawCoin(Position position, int coinColor) {
         try {
@@ -284,7 +289,6 @@ public class LanternaGUI implements GUI {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public void drawMenu(Position position){
@@ -470,7 +474,6 @@ public class LanternaGUI implements GUI {
         }
     }
 
-
     @Override
     public void drawStar(Position position, int starColor) {
         try {
@@ -493,10 +496,6 @@ public class LanternaGUI implements GUI {
         }
     }
 
-    @Override
-    public void drawMonster(Position position) {
-        drawCharacter(position.getX(), position.getY(), 'M', "#669900");
-    }
 
     @Override
     public void drawTrap(Position position) {
@@ -508,12 +507,19 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawIman(Position position) {
-        drawCharacter(position.getX(), position.getY(), 'I', "#FFA500");
-    }
+    public void drawIman(Position position, int powerColor) {
+        try {
+            if (powerColor == 1) {
+                drawImage(position, this.ImanSprite1);
+            } else {
+                drawImage(position, this.ImanSprite2);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }    }
 
     @Override
-    public void drawEscudo(Position position) {
+    public void drawEscudo(Position position, int powerColor) {
         drawCharacter(position.getX(), position.getY(), 'U', "#FFC0CB");
     }
 

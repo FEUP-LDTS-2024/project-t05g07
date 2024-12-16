@@ -9,7 +9,6 @@ import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
 import com.Spanca05.astronaut.model.game.elements.Monster;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Arena implements Power {
@@ -82,6 +81,16 @@ public class Arena implements Power {
         }
         return coins;
     }
+
+    public List<Powerup> getPowers() {
+        List<Powerup> powerups = new ArrayList<>();
+        for (Point point : points) {
+            if (point instanceof Powerup)
+                powerups.add((Powerup) point);
+        }
+        return powerups;
+    }
+
 
     public List<Wall> getWalls() {
         return walls;

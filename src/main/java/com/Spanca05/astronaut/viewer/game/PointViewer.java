@@ -3,10 +3,12 @@ package com.Spanca05.astronaut.viewer.game;
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.elements.Point;
+import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
 
 public class PointViewer implements ElementViewer<Point> {
     int frameCount = 0;
     int pointColor = 1;
+    public PowerUpViewer powerv = new PowerUpViewer();
 
     public void update() {
         frameCount++;
@@ -15,23 +17,8 @@ public class PointViewer implements ElementViewer<Point> {
             frameCount = 0;
         }
     }
-
-    @Override
     public void draw(Point point, GUI gui, Position cameraOffSet) {
-        gui.drawPoint(point.getPosition().minus(cameraOffSet), pointColor);
+        if (point instanceof Powerup) {powerv.draw( (Powerup) point,gui,cameraOffSet);}
+        else gui.drawPoint(point.getPosition().minus(cameraOffSet), pointColor);
     }
-
-        /*if (point instanceof Powerup)
-            drawPowerUp((Powerup) point, gui, cameraOffSet);
-        if (point instanceof Coin)
-            gui.drawCoin(point.getPosition().minus(cameraOffSet));
-        else{*/
-    /*private void drawPowerUp(Powerup powerup, GUI gui, Position cameraOffSet) {
-        if (powerup instanceof Iman) {
-            gui.drawIman(powerup.getPosition().minus(cameraOffSet));
-        }
-        else if (powerup instanceof Escudo) {
-            gui.drawEscudo(powerup.getPosition().minus(cameraOffSet));
-        }
-    }*/
 }

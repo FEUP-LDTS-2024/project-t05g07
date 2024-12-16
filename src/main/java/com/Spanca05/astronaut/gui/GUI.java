@@ -9,12 +9,9 @@ public interface GUI {
 
     void drawAstronaut(Position position, int spriteNumber, int angle);
 
-
     void drawWall(Position position);
 
     void drawPoint(Position position, int spriteNumber);
-
-    void drawMonster(Position position);
 
     void drawSpike(Position position);
 
@@ -22,9 +19,9 @@ public interface GUI {
 
     void drawCoin(Position position, int coinColor);
 
-    void drawIman(Position position);
+    void drawIman(Position position, int powerColor);
 
-    void drawEscudo(Position position);
+    void drawEscudo(Position position, int powerColor);
 
     void drawStar(Position position, int starColor);
 
