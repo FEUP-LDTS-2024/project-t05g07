@@ -21,8 +21,6 @@ public interface GUI {
 
     void drawIman(Position position, int powerColor);
 
-    void drawEscudo(Position position, int powerColor);
-
     void drawStar(Position position, int starColor);
 
     void drawMenu(Position position);
@@ -52,6 +50,8 @@ public interface GUI {
     void drawButton3(Position position, boolean isSelected);
 
     void drawEndBlock(Position position, int endBlockColor);
+
+    void drawSheild(Position position, int powerColor);
 
     void drawText(Position position, String text, String color);
 

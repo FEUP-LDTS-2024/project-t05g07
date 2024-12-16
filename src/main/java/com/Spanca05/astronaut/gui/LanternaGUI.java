@@ -68,6 +68,9 @@ public class LanternaGUI implements GUI {
     private final BufferedImage sheildPowerv2;
     private final BufferedImage ImanSprite1;
     private final BufferedImage ImanSprite2;
+    private final BufferedImage SheildSprite1;
+    private final BufferedImage SheildSprite2;
+
 
 
     public LanternaGUI(Screen screen) throws IOException {
@@ -113,6 +116,8 @@ public class LanternaGUI implements GUI {
         this.imanPowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/imanv2.png")));
         this.ImanSprite1=ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/iman.png")));
         this.ImanSprite2=ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/imanv2.png")));
+        this.SheildSprite1=ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/sheild.png")));
+        this.SheildSprite2=ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/sheildv2.png")));
 
     }
 
@@ -161,6 +166,8 @@ public class LanternaGUI implements GUI {
         this.imanPowerv2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/imanv2.png")));
         this.ImanSprite1=ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/iman.png")));
         this.ImanSprite2=ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/imanv2.png")));
+        this.SheildSprite1=ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/shield.png")));
+        this.SheildSprite2=ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/shieldv2.png")));
 
     }
 
@@ -516,11 +523,20 @@ public class LanternaGUI implements GUI {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }    }
+        }
+    }
 
     @Override
-    public void drawEscudo(Position position, int powerColor) {
-        drawCharacter(position.getX(), position.getY(), 'U', "#FFC0CB");
+    public void drawSheild(Position position, int powerColor) {
+        try {
+            if (powerColor == 1) {
+                drawImage(position, this.SheildSprite1);
+            } else {
+                drawImage(position, this.SheildSprite2);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

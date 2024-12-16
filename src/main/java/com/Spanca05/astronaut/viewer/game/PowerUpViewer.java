@@ -23,7 +23,7 @@ public class PowerUpViewer implements ElementViewer<Powerup> {
         if (element instanceof Iman)
             gui.drawIman(element.getPosition().minus(cameraOffSet), powerColor);
         if (element instanceof Escudo)
-            gui.drawEscudo(element.getPosition().minus(cameraOffSet), powerColor);
+            gui.drawSheild(element.getPosition().minus(cameraOffSet), powerColor);
         //if (element instanceof )
     }
 }
