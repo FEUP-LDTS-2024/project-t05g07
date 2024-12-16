@@ -17,6 +17,7 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImagingOpException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -55,6 +56,7 @@ public class LanternaGUI implements GUI {
     private final BufferedImage Button6;
     private final BufferedImage Button6v2;
     private final BufferedImage SecondMenuBackground;
+    private final BufferedImage infectedWall;
 
 
 
@@ -89,6 +91,7 @@ public class LanternaGUI implements GUI {
         this.Button6 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao6.png")));
         this.Button6v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao6v2.png")));
         this.SecondMenuBackground =ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecundaryMenu/secondMenu.png"))));
+        this.infectedWall =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/infectedWall.png")));
     }
 
     public LanternaGUI(int width, int height) throws IOException, FontFormatException, URISyntaxException {
@@ -123,6 +126,8 @@ public class LanternaGUI implements GUI {
         this.Button6 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecondaryMenu/botao6.png")));
         this.Button6v2 =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecondaryMenu/botao6v2.png")));
         this.SecondMenuBackground =ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecondaryMenu/secondMenu.png"))));
+        this.infectedWall =ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/infectedWall.png")));
+
     }
 
     private Screen createScreen(Terminal terminal) throws IOException {
@@ -403,7 +408,11 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawTrap(Position position) {
-        drawCharacter(position.getX(), position.getY(), '█', "#25C8FF");
+        try {
+            drawImage(position, this.infectedWall);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

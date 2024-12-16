@@ -13,6 +13,7 @@ public class GameViewer extends Viewer<Arena> {
     private AstronautViewer nautav;
     private EndBlockViewer endv;
     private StarViewer starv;
+    private CoinViewer coinv;
 
     public GameViewer(Arena arena) {
         super(arena);
@@ -20,15 +21,17 @@ public class GameViewer extends Viewer<Arena> {
         this.nautav = new AstronautViewer();
         this.endv = new EndBlockViewer();
         this.starv = new StarViewer();
+        this.coinv = new CoinViewer();
     }
 
     @Override
     public void drawElements(GUI gui) {
-        // Update points color
+        // Update color
         this.pv.update();
         this.nautav.update();
         this.endv.update();
         this.starv.update();
+        this.coinv.update();
 
         drawElements(gui, getModel().getWalls(), new WallViewer());
         drawElement(gui, getModel().getEndBlock(), this.endv);
@@ -36,7 +39,7 @@ public class GameViewer extends Viewer<Arena> {
         drawElements(gui, getModel().getPoints(), this.pv);
         drawElements(gui, getModel().getStars(), this.starv);
         drawElements(gui, getModel().getMonsters(), new MonsterViewer());
-        //drawElements(gui, getModel().getCoins(), new CoinViewer());
+        //drawElements(gui, getModel().getCoins(), this.coinv);
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {

@@ -18,14 +18,14 @@ public class PointViewer implements ElementViewer<Point> {
 
     @Override
     public void draw(Point point, GUI gui, Position cameraOffSet) {
+        gui.drawPoint(point.getPosition().minus(cameraOffSet), pointColor);
+    }
+
         /*if (point instanceof Powerup)
             drawPowerUp((Powerup) point, gui, cameraOffSet);
         if (point instanceof Coin)
             gui.drawCoin(point.getPosition().minus(cameraOffSet));
         else{*/
-        gui.drawPoint(point.getPosition().minus(cameraOffSet), pointColor);
-    }
-
     /*private void drawPowerUp(Powerup powerup, GUI gui, Position cameraOffSet) {
         if (powerup instanceof Iman) {
             gui.drawIman(powerup.getPosition().minus(cameraOffSet));

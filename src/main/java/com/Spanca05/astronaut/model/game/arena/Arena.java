@@ -16,6 +16,7 @@ public class Arena implements Power {
 
     private Astronaut astronaut;
     private Camera camera;
+    //private List<Coin> coins;
 
     private List<Monster> monsters;
     private List<Wall> walls;
@@ -30,7 +31,6 @@ public class Arena implements Power {
         this.width = width;
         this.height = height;
         this.currentLevel = currentLevel;
-
         this.camera = new Camera(0, 0);
     }
 
