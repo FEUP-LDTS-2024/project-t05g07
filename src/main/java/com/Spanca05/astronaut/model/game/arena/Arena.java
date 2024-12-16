@@ -34,9 +34,9 @@ public class Arena implements Power {
 
     private final int currentLevel;
 
-    private final SoundEffect starSound = new SoundEffect("star.wav");
-    //private final SoundEffect coinSound = new SoundEffect("coin.wav");
-    private final SoundEffect pointSound = new SoundEffect("point.wav");
+    private final SoundEffect starSound;
+    private final SoundEffect coinSound;
+    private final SoundEffect pointSound;
 
     public Arena(int width, int height, int currentLevel) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         this.width = width;
@@ -45,6 +45,10 @@ public class Arena implements Power {
 
         this.wallet = new Wallet();
         this.camera = new Camera(0, 0);
+        this.starSound = new SoundEffect("star.wav");
+        this.pointSound = new SoundEffect("point.wav");
+        this.coinSound = new SoundEffect("coin.wav");
+        pointSound.setVolume(-15.0f);
     }
 
     public int getCurrentLevel() {
@@ -206,7 +210,8 @@ public class Arena implements Power {
     public void catchPoint(Position position) {
         for (Point point : points) {
             if (position.equals(point.getPosition())) {
-                pointSound.play();
+                if(point instanceof Coin) coinSound.play();
+                else pointSound.play();
                 points.remove(point);
                 wallet.addToTotal(amount(point));
                 break;

@@ -1,23 +1,30 @@
 package com.Spanca05.astronaut.model.menu;
 
+import com.Spanca05.astronaut.audio.BackGroundMusic;
 import com.Spanca05.astronaut.model.Wallet;
 import com.Spanca05.astronaut.model.game.elements.powerups.BonusCoins;
 import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
 import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
 public class PowerupMenu {
     private final List<String> entries;
     private int currentEntry = 0;
-
     private final Wallet wallet;
+    private final BackGroundMusic themeMusic;
 
-    public PowerupMenu() {
+    public PowerupMenu() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         this.entries = Arrays.asList("Escudo", "Moedasx2", "Iman", "Go Back");
         this.wallet = new Wallet();
+        this.themeMusic = new BackGroundMusic("theme.wav");
+        this.themeMusic.setVolume(-10.0f);
+        this.themeMusic.playLoop();
     }
 
     // Não faz sentido estar a repetir estas funções tho,
@@ -77,6 +84,7 @@ public class PowerupMenu {
     }
 
     public boolean isSelectedGoBack() {
+        this.themeMusic.stop();
         return isSelected(3);
     }
 
