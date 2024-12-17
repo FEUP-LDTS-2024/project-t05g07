@@ -6,7 +6,6 @@ import java.util.List;
 public class Menu {
     private final List<String> entries;
     private int currentEntry = 0;
-
     private int currentLevel = 1;
 
     public Menu() {

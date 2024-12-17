@@ -8,7 +8,7 @@ public class PowerupMenu {
     private int currentEntry = 0;
 
     public PowerupMenu() {
-        this.entries = Arrays.asList("Escudo", "Imobilizador", "Moedas x2", "Score x2", "Iman", "Go Back");
+        this.entries = Arrays.asList("Escudo", "Moedas x2", "Iman", "Go Back");
     }
 
     // Não faz sentido estar a repetir estas funções tho,
@@ -35,7 +35,7 @@ public class PowerupMenu {
     }
 
     public boolean isSelectedGoBack() {
-        return isSelected(5);
+        return isSelected(3);
     }
 
     public int getNumberEntries() {

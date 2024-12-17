@@ -33,9 +33,7 @@ public interface GUI {
 
     void drawPower3(Position position, boolean isSelected);
 
-    void drawPower4(Position position, boolean isSelected);
-
-    void drawPower5(Position position, boolean isSelected);
+    void drawReturn(Position position, boolean isSelected);
 
     void draw2Button1(Position position, boolean isSelected);
 
@@ -52,8 +50,6 @@ public interface GUI {
     void drawEndBlock(Position position, int endBlockColor);
 
     void drawSheild(Position position, int powerColor);
-
-    void drawText(Position position, String text, String color);
 
     void clear();
 

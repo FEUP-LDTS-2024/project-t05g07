@@ -12,7 +12,6 @@ import com.Spanca05.astronaut.states.PowerupMenuState;
 import java.io.IOException;
 
 public class MenuController extends Controller<Menu> {
-
     public MenuController(Menu menu) {
         super(menu);
     }
@@ -27,10 +26,10 @@ public class MenuController extends Controller<Menu> {
                 getModel().nextEntry();
                 break;
             case LEFT:
-                getModel().previousLevel();
+                //getModel().previousLevel();
                 break;
             case RIGHT:
-                getModel().nextLevel();
+                //getModel().nextLevel();
                 break;
             case SELECT:
                 if (getModel().isSelectedExit()) game.setState(null);
