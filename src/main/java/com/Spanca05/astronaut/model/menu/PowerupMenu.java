@@ -20,13 +20,13 @@ public class PowerupMenu {
     private final BackGroundMusic themeMusic;
 
 
-        public PowerupMenu() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-            this.entries = Arrays.asList("Escudo", "Moedas x2", "Iman", "Go Back");
-            this.wallet = new Wallet();
-            this.themeMusic = new BackGroundMusic("theme.wav");
-            this.themeMusic.setVolume(-10.0f);
-            this.themeMusic.playLoop();
-        }
+    public PowerupMenu() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        this.entries = Arrays.asList("Escudo", "Moedas x2", "Iman", "Go Back");
+        this.wallet = new Wallet();
+        this.themeMusic = new BackGroundMusic("theme.wav");
+        this.themeMusic.setVolume(-10.0f);
+        this.themeMusic.playLoop();
+    }
 
     // Não faz sentido estar a repetir estas funções tho,
     // são iguais às do Menu

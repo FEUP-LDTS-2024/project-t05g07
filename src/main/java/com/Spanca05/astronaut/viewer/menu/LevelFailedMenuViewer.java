@@ -11,17 +11,7 @@ public class LevelFailedMenuViewer extends Viewer<LevelFailedMenu> {
     @Override
     public void drawElements(GUI gui) {
         gui.drawSecondMenu(new Position(0,0));
-        gui.draw2Button1(new Position(5, 5), getModel().isSelected(0));
-        gui.draw2Button2(new Position(5, 7), getModel().isSelected(1));
-        gui.draw2Button3(new Position(5, 9), getModel().isSelected(2));
-       /* gui.drawText(new Position(5, 5), "Level Failed", "#FFFFFF");
-
-        for(int i = 0; i < getModel().getNumberEntries(); i++)
-            gui.drawText(
-                    new Position(5, 7 + i),
-                    getModel().getEntry(i),
-                    getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
-
-*/
+        gui.drawFailedButton1(new Position(5, 6), getModel().isSelected(0));
+        gui.drawFailedButton2(new Position(5, 8), getModel().isSelected(1));
     }
 }
