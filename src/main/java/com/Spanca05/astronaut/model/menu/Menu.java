@@ -66,6 +66,7 @@ public class Menu {
         }
 
         public boolean isSelectedPowerups() {
+            themeMusic.stop();
             return isSelected(1);
         }
 
