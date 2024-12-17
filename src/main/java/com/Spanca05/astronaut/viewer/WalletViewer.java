@@ -4,6 +4,8 @@ import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.Wallet;
 
+import java.io.IOException;
+
 public class WalletViewer extends Viewer<Wallet> {
 
     public WalletViewer(Wallet wallet) {
@@ -11,7 +13,8 @@ public class WalletViewer extends Viewer<Wallet> {
     }
 
     @Override
-    public void drawElements(GUI gui) {
-        //gui.drawText(new Position(1, 1), "Coins: " + getModel().getTotal(), "#FFFFFF");
+    public void drawElements(GUI gui) throws IOException {
+        gui.drawWallet();
+        gui.drawScore(getModel().getTotal());
     }
 }

@@ -1,7 +1,7 @@
 package com.Spanca05.astronaut.model;
 
 public class Wallet {
-    private static int total = 0;
+    public static int total = 0;
 
     public int getTotal() {
         return total;

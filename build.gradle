@@ -6,6 +6,12 @@ plugins {
 group = 'com.Spanca05.astronaut'
 version = '1.0-SNAPSHOT'
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
 repositories {
     mavenCentral()
 }
