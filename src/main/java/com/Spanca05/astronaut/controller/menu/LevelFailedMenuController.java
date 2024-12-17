@@ -36,7 +36,10 @@ public class LevelFailedMenuController extends Controller<LevelFailedMenu> {
             case SELECT:
                 clickSound.play();
                 if(getModel().isSelectedRetry()) game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena()));
-                if(getModel().isSelectedExit()) game.setState(new MenuState(new Menu()));
+                if(getModel().isSelectedExit()) {
+                    game.setCurrentLevel(getModel().getCurrentLevel());
+                    game.setState(new MenuState(new Menu(game)));
+                }
         }
     }
 }

@@ -14,11 +14,22 @@ import java.net.URISyntaxException;
 public class Game {
     private final LanternaGUI gui;
     private State state;
+    private int currentLevel;
 
     public Game() throws FontFormatException, IOException, URISyntaxException,UnsupportedAudioFileException,LineUnavailableException {
         this.gui = new LanternaGUI(288, 240);
-        
-        this.state = new MenuState(new Menu());
+        this.currentLevel = 1;
+        this.state = new MenuState(new Menu(this));
+    }
+
+    public void setCurrentLevel(int level) {
+        if (level > 0) {
+            this.currentLevel = level;
+        }
+    }
+
+    public int getCurrentLevel() {
+        return this.currentLevel;
     }
 
     public static void main(String[] args) throws IOException, FontFormatException, URISyntaxException, UnsupportedAudioFileException, LineUnavailableException {

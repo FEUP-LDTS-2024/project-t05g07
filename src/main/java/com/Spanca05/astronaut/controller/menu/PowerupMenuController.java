@@ -26,7 +26,7 @@ public class PowerupMenuController extends Controller<PowerupMenu> {
     public void step(Game game, GUI.ACTION action, long time) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         switch (action) {
             case QUIT:
-                game.setState(new MenuState(new Menu()));
+                game.setState(new MenuState(new Menu(game)));
                 break;
             case UP:
                 getModel().previousEntry();
@@ -39,7 +39,7 @@ public class PowerupMenuController extends Controller<PowerupMenu> {
                 if (getModel().isSelectedEscudo()) getModel().extendEscudoDuration();
                 if (getModel().isSelectedBonusCoins()) getModel().extendBonusCoinsDuration();
                 if (getModel().isSelectedIman()) getModel().extendImanDuration();
-                if (getModel().isSelectedGoBack()) game.setState(new MenuState(new Menu()));
+                if (getModel().isSelectedGoBack()) game.setState(new MenuState(new Menu(game)));
         }
     }
 }

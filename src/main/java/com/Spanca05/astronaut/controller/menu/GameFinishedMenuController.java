@@ -31,7 +31,8 @@ public class GameFinishedMenuController extends Controller<GameFinishedMenu> {
             clickSound.play();
             if(getModel().isSelectedExit()); {
                 getModel().stopMusic();
-                game.setState(new MenuState(new Menu()));
+                game.setCurrentLevel(1);
+                game.setState(new MenuState(new Menu(game)));
             }
         }
     }
