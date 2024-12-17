@@ -6,7 +6,6 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.graphics.Theme;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
@@ -78,6 +77,7 @@ public class LanternaGUI implements GUI {
     private final BufferedImage Seven;
     private final BufferedImage Eight;
     private final BufferedImage Nine;
+    private final BufferedImage finalMenu;
 
 
     public LanternaGUI(Screen screen) throws IOException {
@@ -132,6 +132,7 @@ public class LanternaGUI implements GUI {
         this.Seven = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/7.png")));
         this.Eight = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/8.png")));
         this.Nine = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/9.png")));
+        this.finalMenu = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/finaLmenu.png"))));
 
     }
 
@@ -189,7 +190,7 @@ public class LanternaGUI implements GUI {
         this.Seven = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/7.png")));
         this.Eight = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/8.png")));
         this.Nine = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/9.png")));
-
+        this.finalMenu = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/finaLmenu.png"))));
 
     }
 
@@ -352,6 +353,15 @@ public class LanternaGUI implements GUI {
     public void drawSecondMenu(Position position) {
         try {
             drawImage(position, this.SecondMenuBackground);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void drawFinalMenu(Position position) {
+        try {
+            drawImage(position, this.finalMenu);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -579,12 +589,13 @@ public class LanternaGUI implements GUI {
     public void drawScore(int number) throws IOException {
         System.out.println(number);
         int yOffset = 12;
-        int xOffset = 240;
+        int xOffset = 245;
 
         if (number == 0) {
             drawNonPos(Zero, yOffset, xOffset);
             drawNonPos(Zero, yOffset, xOffset - 10);
             drawNonPos(Zero, yOffset, xOffset - 20);
+            drawNonPos(Zero, yOffset, xOffset - 30);
         }
         while (number != 0) {
             int digit = number % 10;

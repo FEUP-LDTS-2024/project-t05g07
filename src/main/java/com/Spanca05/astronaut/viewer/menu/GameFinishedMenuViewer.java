@@ -11,15 +11,7 @@ public class GameFinishedMenuViewer extends Viewer<GameFinishedMenu> {
 
     @Override
     public void drawElements(GUI gui) {
-        //gui.drawText(new Position(5, 5), "YOU WON", "#FFFFFF");
-
-        for(int i = 0; i < getModel().getNumberEntries(); i++){}
-           /* gui.drawText(
-                    new Position(5, 7 + i),
-                    getModel().getEntry(i),
-                    getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");*/
-
-
+        gui.drawFinalMenu(new Position(0, 0));
+        gui.drawFailedButton2(new Position(5, 8), getModel().isSelected(1));
     }
-
 }

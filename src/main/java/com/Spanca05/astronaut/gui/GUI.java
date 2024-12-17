@@ -27,6 +27,8 @@ public interface GUI {
 
     void drawSecondMenu(Position position);
 
+    void drawFinalMenu(Position position);
+
     void drawPower1(Position position, boolean isSelected);
 
     void drawPower2(Position position, boolean isSelected);
