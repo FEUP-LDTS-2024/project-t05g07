@@ -318,7 +318,16 @@ public class LanternaGUI implements GUI {
             case 1 -> isSelected ? Button4v2 : Button4;
             case 2 -> isSelected ? Button5v2 : Button5;
             case 3 -> isSelected ? Button6v2 : Button6;
-            default -> Button4;
+            default -> Button4v2;
+        };
+    }
+
+    private BufferedImage getCompletedButtonSprite(int buttonNumber, boolean isSelected) {
+        return switch (buttonNumber) {
+            case 1 -> isSelected ? Button5v2 : Button5;
+            case 2 -> isSelected ? Button4v2 : Button4;
+            case 3 -> isSelected ? Button6v2 : Button6;
+            default -> Button5v2;
         };
     }
 
@@ -366,6 +375,36 @@ public class LanternaGUI implements GUI {
     public void drawReturn(Position position, boolean isSelected){
         try {
             BufferedImage buttonSprite = getPowerButtonSprite(4, isSelected);
+            drawImage(position, buttonSprite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void drawCompleteButton1(Position position, boolean isSelected) {
+        try {
+            BufferedImage buttonSprite = getCompletedButtonSprite(1, isSelected);
+            drawImage(position, buttonSprite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void drawCompleteButton2(Position position, boolean isSelected){
+        try {
+            BufferedImage buttonSprite = getCompletedButtonSprite(2, isSelected);
+            drawImage(position, buttonSprite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void drawCompleteButton3(Position position, boolean isSelected){
+        try {
+            BufferedImage buttonSprite = getCompletedButtonSprite(3, isSelected);
             drawImage(position, buttonSprite);
         } catch (IOException e) {
             e.printStackTrace();

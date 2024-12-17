@@ -37,6 +37,12 @@ public interface GUI {
 
     void drawBonusCoins(Position position);
 
+    void drawCompleteButton1(Position position, boolean isSelected);
+
+    void drawCompleteButton2(Position position, boolean isSelected);
+
+    void drawCompleteButton3(Position position, boolean isSelected);
+
     void draw2Button1(Position position, boolean isSelected);
 
     void draw2Button2(Position position, boolean isSelected);
