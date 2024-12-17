@@ -3,6 +3,8 @@ package com.Spanca05.astronaut.controller;
 import com.Spanca05.astronaut.Game;
 import com.Spanca05.astronaut.gui.GUI;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 public abstract class Controller<T> {
@@ -16,5 +18,5 @@ public abstract class Controller<T> {
         return model;
     }
 
-    public abstract void step(Game game, GUI.ACTION action, long time) throws IOException;
+    public abstract void step(Game game, GUI.ACTION action, long time) throws IOException, UnsupportedAudioFileException, LineUnavailableException;
 }

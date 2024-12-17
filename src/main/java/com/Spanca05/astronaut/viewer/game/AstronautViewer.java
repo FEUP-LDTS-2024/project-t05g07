@@ -17,6 +17,6 @@ public class AstronautViewer implements ElementViewer<Astronaut> {
     }
     @Override
     public void draw(Astronaut astronaut, GUI gui, Position cameraOffSet) {
-        gui.drawAstronaut(astronaut.getPosition().minus(cameraOffSet), nautaPos, astronaut.getAngle());
+        gui.drawAstronaut(astronaut.getPosition().minus(cameraOffSet),nautaPos,astronaut.getAngle());
     }
 }

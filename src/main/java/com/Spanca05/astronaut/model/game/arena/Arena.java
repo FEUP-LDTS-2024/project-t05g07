@@ -1,14 +1,20 @@
 package com.Spanca05.astronaut.model.game.arena;
 
+import com.Spanca05.astronaut.audio.SoundEffect;
 import com.Spanca05.astronaut.decorator.Power;
 import com.Spanca05.astronaut.model.Position;
+import com.Spanca05.astronaut.model.Wallet;
 import com.Spanca05.astronaut.model.game.elements.*;
+import com.Spanca05.astronaut.model.game.elements.powerups.BonusCoins;
 import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
 import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
 import com.Spanca05.astronaut.model.game.elements.Monster;
 
 import java.util.ArrayList;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.util.List;
 
 public class Arena implements Power {
@@ -17,20 +23,33 @@ public class Arena implements Power {
 
     private Astronaut astronaut;
     private Camera camera;
+
     private List<Monster> monsters;
+    //private List<Coin> coins;
     private List<Wall> walls;
     private EndBlock endblock;
     private List<Point> points;
     private List<Star> stars;
 
+    private final Wallet wallet;
+
     private final int currentLevel;
 
+    private final SoundEffect starSound;
+    private final SoundEffect coinSound;
+    private final SoundEffect pointSound;
 
-    public Arena(int width, int height, int currentLevel) {
+    public Arena(int width, int height, int currentLevel) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         this.width = width;
         this.height = height;
         this.currentLevel = currentLevel;
+
+        this.wallet = new Wallet();
         this.camera = new Camera(0, 0);
+        this.starSound = new SoundEffect("star.wav");
+        this.pointSound = new SoundEffect("point.wav");
+        this.coinSound = new SoundEffect("coin.wav");
+        pointSound.setVolume(-15.0f);
     }
 
     public int getCurrentLevel() {
@@ -45,12 +64,17 @@ public class Arena implements Power {
         return height;
     }
 
+    public Wallet getWallet() {
+        return wallet;
+    }
+
     public Astronaut getAstronaut() {
         return astronaut;
     }
 
     public void setAstronaut(Astronaut astronaut) {
         this.astronaut = astronaut;
+        this.camera.setPosition(this.astronaut.getPosition().minus(new Position(9, 9)));
     }
 
     @Override
@@ -108,10 +132,10 @@ public class Arena implements Power {
         this.endblock = endblock;
     }
 
+    @Override
     public List<Point> getPoints() {
         return points;
     }
-
 
     public void setPoints(List<Point> points) {
         this.points = points;
@@ -188,16 +212,32 @@ public class Arena implements Power {
         return false;
     }
 
+    public boolean isBonusCoinsPowerup(Position position) {
+        for (Point powerup : points)
+            if (powerup.getPosition().equals(position) && powerup instanceof BonusCoins)
+                return true;
+        return false;
+    }
+
     @Override
     public void catchPoint(Position position) {
         for (Point point : points) {
             if (position.equals(point.getPosition())) {
+                if(point instanceof Coin) coinSound.play();
+                else pointSound.play();
                 points.remove(point);
+                wallet.addToTotal(amount(point));
                 break;
             }
         }
     }
 
+    @Override
+    public int amount(Point point) {
+        if (point instanceof Coin) return 10;
+        else if (!(point instanceof Powerup)) return 1;
+        else return 0;
+    }
 
     /*public void catchCoin(Position position) {
         for(Coin coin : coins) {
@@ -208,9 +248,10 @@ public class Arena implements Power {
         }
     }*/
 
-    public void catchStar(Position position){
+    public void catchStar(Position position) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         for (Star star : stars){
             if (position.equals(star.getPosition())){
+                starSound.play();
                 stars.remove(star);
 
                 break;

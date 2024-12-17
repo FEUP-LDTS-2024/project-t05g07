@@ -35,6 +35,8 @@ public interface GUI {
 
     void drawReturn(Position position, boolean isSelected);
 
+    void drawBonusCoins(Position position);
+
     void draw2Button1(Position position, boolean isSelected);
 
     void draw2Button2(Position position, boolean isSelected);

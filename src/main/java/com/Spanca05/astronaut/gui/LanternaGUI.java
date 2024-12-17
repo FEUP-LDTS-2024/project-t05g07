@@ -258,6 +258,7 @@ public class LanternaGUI implements GUI {
             }
             BufferedImage rotatedSprite = rotateSprite(sprite, angle);
             drawImage(position, rotatedSprite);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -430,6 +431,12 @@ public class LanternaGUI implements GUI {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void drawBonusCoins(Position position) {
+        //drawCharacter(position.getX(), position.getY(), 'M', "#00FF00");
+    }
+
 
     @Override
     public void drawEndBlock(Position position, int endBlockColor) {

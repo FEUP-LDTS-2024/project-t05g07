@@ -2,6 +2,7 @@ package com.Spanca05.astronaut.model.game.arena;
 
 import com.Spanca05.astronaut.model.game.elements.*;
 import com.Spanca05.astronaut.model.game.elements.MonsterWall;
+import com.Spanca05.astronaut.model.game.elements.powerups.BonusCoins;
 import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
 import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
@@ -87,6 +88,24 @@ public class LoaderArenaBuilder extends ArenaBuilder {
 
         return monsters;
     }
+
+    /*@Override
+    protected List<Coin> createCoins() {
+        List<Point> points = createPoints();
+        List<Coin> coins = new ArrayList<>();
+        double coinNum = points.size() * 0.1;
+        Collections.shuffle(points);
+
+        for(int i = 0; i < coinNum; i++) {
+            coins.add(new Coin(points.get(i).getPosition().getX(), points.get(i).getPosition().getY()));
+        }
+
+        for(int i = 0; i < coinNum; i++) {
+            points.removeFirst();
+        }
+
+        return coins;
+    }*/
   
     @Override
     protected List<Star> createStar() {
@@ -118,9 +137,10 @@ public class LoaderArenaBuilder extends ArenaBuilder {
     }
 
     private Powerup oneRandomPowerup(int x, int y) {
-        int n = (int) (Math.random() * 2);
+        int n = (int) (Math.random() * 3);
         return switch (n) {
             case 0 -> new Iman(x, y);
+            case 1 -> new BonusCoins(x, y);
             default -> new Escudo(x, y);
         };
     }
