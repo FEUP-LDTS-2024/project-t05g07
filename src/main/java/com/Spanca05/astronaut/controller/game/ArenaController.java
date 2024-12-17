@@ -30,7 +30,7 @@ public class ArenaController extends GameController {
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         switch (action) {
-            case QUIT -> game.setState(new MenuState(new Menu()));
+            case QUIT -> game.setState(new MenuState(new Menu(game)));
             case UP, DOWN, RIGHT, LEFT -> {
                 if (getModel().getAstronaut().getDirection() == null)
                     getModel().getAstronaut().setDirection(action);

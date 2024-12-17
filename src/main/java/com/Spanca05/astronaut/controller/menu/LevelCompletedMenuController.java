@@ -40,7 +40,10 @@ public class LevelCompletedMenuController extends Controller<LevelCompletedMenu>
                     game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena()));
                 }
                 if(getModel().isSelectedRetry()) game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena()));
-                if(getModel().isSelectedExit()) game.setState(new MenuState(new Menu()));
+                if(getModel().isSelectedExit()) {
+                    game.setCurrentLevel(getModel().getCurrentLevel() + 1);
+                    game.setState(new MenuState(new Menu(game)));
+                }
         }
     }
 

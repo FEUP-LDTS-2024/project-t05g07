@@ -1,5 +1,6 @@
     package com.Spanca05.astronaut.model.menu;
 
+    import com.Spanca05.astronaut.Game;
     import com.Spanca05.astronaut.audio.BackGroundMusic;
     import javax.sound.sampled.LineUnavailableException;
     import javax.sound.sampled.UnsupportedAudioFileException;
@@ -13,12 +14,12 @@ public class Menu {
     private int currentLevel = 1;
     private final BackGroundMusic themeMusic;
 
-        public Menu() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        public Menu(Game game) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
             this.entries = Arrays.asList("Level " + currentLevel, "Power-ups", "Exit");
             this.themeMusic = new BackGroundMusic("theme.wav");
             this.themeMusic.setVolume(-5.0f);
             this.themeMusic.playLoop();
-            this.currentLevel = getCurrentLevel();
+            this.currentLevel = game.getCurrentLevel();
         }
 
         public void stopMusic() {
@@ -66,6 +67,7 @@ public class Menu {
         }
 
         public boolean isSelectedPowerups() {
+            themeMusic.stop();
             return isSelected(1);
         }
 
