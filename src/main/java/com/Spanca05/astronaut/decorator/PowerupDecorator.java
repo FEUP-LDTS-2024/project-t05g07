@@ -32,9 +32,4 @@ public class PowerupDecorator implements Power {
     public void catchPoint(Position position) {
         wrappee.catchPoint(position);
     }
-
-    @Override
-    public int amount(Point point) {
-        return wrappee.amount(point);
-    }
 }

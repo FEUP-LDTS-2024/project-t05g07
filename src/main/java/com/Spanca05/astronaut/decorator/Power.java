@@ -11,5 +11,4 @@ public interface Power {
     List<Point> getPoints();
     boolean isEmpty(Position position);
     void catchPoint(Position position);
-    int amount(Point point);
 }
