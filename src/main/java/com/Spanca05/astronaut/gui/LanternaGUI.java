@@ -331,6 +331,14 @@ public class LanternaGUI implements GUI {
         };
     }
 
+    private BufferedImage getFailedButtonSprite(int buttonNumber, boolean isSelected) {
+        return switch (buttonNumber) {
+            case 1 -> isSelected ? Button4v2 : Button4;
+            case 2 -> isSelected ? Button6v2 : Button6;
+            default -> Button4v2;
+        };
+    }
+
     private BufferedImage getPowerButtonSprite(int buttonNumber, boolean isSelected) {
         return switch (buttonNumber) {
             case 1 -> isSelected ? sheildPowerv2: sheildPower;
@@ -395,6 +403,26 @@ public class LanternaGUI implements GUI {
     public void drawCompleteButton2(Position position, boolean isSelected){
         try {
             BufferedImage buttonSprite = getCompletedButtonSprite(2, isSelected);
+            drawImage(position, buttonSprite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void drawFailedButton1(Position position, boolean isSelected) {
+        try {
+            BufferedImage buttonSprite = getFailedButtonSprite(1, isSelected);
+            drawImage(position, buttonSprite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void drawFailedButton2(Position position, boolean isSelected) {
+        try {
+            BufferedImage buttonSprite = getFailedButtonSprite(2, isSelected);
             drawImage(position, buttonSprite);
         } catch (IOException e) {
             e.printStackTrace();
@@ -475,7 +503,6 @@ public class LanternaGUI implements GUI {
     public void drawBonusCoins(Position position) {
         //drawCharacter(position.getX(), position.getY(), 'M', "#00FF00");
     }
-
 
     @Override
     public void drawEndBlock(Position position, int endBlockColor) {
