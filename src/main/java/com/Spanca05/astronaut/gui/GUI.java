@@ -37,8 +37,6 @@ public interface GUI {
 
     void drawReturn(Position position, boolean isSelected);
 
-    void drawBonusCoins(Position position);
-
     void drawCompleteButton1(Position position, boolean isSelected);
 
     void drawCompleteButton2(Position position, boolean isSelected);
@@ -64,6 +62,8 @@ public interface GUI {
     void refresh() throws IOException;
 
     void close() throws IOException;
+
+    void drawDoubleCoins(Position position, int powerColor);
 
     void drawWallet();
 
