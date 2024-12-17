@@ -47,12 +47,6 @@ public interface GUI {
 
     void drawCompleteButton3(Position position, boolean isSelected);
 
-    void draw2Button1(Position position, boolean isSelected);
-
-    void draw2Button2(Position position, boolean isSelected);
-
-    void draw2Button3(Position position, boolean isSelected);
-
     void drawButton1(Position position, boolean isSelected);
 
     void drawButton2(Position position, boolean isSelected);
@@ -68,6 +62,10 @@ public interface GUI {
     void refresh() throws IOException;
 
     void close() throws IOException;
+
+    void drawWallet();
+
+    void drawScore(int total) throws IOException;
 
     enum ACTION {UP, RIGHT, DOWN, LEFT, NONE, QUIT, SELECT}
 }

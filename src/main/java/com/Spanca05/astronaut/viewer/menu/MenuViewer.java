@@ -8,6 +8,7 @@ import com.Spanca05.astronaut.viewer.Viewer;
 import com.Spanca05.astronaut.viewer.WalletViewer;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class MenuViewer extends Viewer<Menu> {
 
@@ -19,9 +20,9 @@ public class MenuViewer extends Viewer<Menu> {
     }
 
     @Override
-    public void drawElements(GUI gui) {
-        walletViewer.drawElements(gui);
+    public void drawElements(GUI gui) throws IOException {
         gui.drawMenu(new Position(0,0));
+        walletViewer.drawElements(gui);
         gui.drawButton1(new Position(5, 7), getModel().isSelected(0));
         gui.drawButton2(new Position(5, 9), getModel().isSelected(1));
         gui.drawButton3(new Position(5, 11), getModel().isSelected(2));

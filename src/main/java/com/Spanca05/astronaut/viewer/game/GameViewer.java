@@ -1,5 +1,6 @@
 package com.Spanca05.astronaut.viewer.game;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.Spanca05.astronaut.gui.GUI;
@@ -30,7 +31,7 @@ public class GameViewer extends Viewer<Arena> {
     }
 
     @Override
-    public void drawElements(GUI gui) {
+    public void drawElements(GUI gui) throws IOException {
         // Update color
         this.pv.update();
         this.nautav.update();
