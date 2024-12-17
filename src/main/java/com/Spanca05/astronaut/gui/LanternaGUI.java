@@ -79,6 +79,7 @@ public class LanternaGUI implements GUI {
     private final BufferedImage Seven;
     private final BufferedImage Eight;
     private final BufferedImage Nine;
+    private final BufferedImage Price;
     private final BufferedImage finalMenu;
 
 
@@ -137,7 +138,7 @@ public class LanternaGUI implements GUI {
         this.finalMenu = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/finaLmenu.png"))));
         this.CoinsSprite1 = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/doubleCoins.png"))));
         this.CoinsSprite2 = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/doubleCoinsv2.png"))));
-
+        this.Price = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/price.png")));
     }
 
     public LanternaGUI(int width, int height) throws IOException, FontFormatException, URISyntaxException {
@@ -197,6 +198,7 @@ public class LanternaGUI implements GUI {
         this.finalMenu = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/finaLmenu.png"))));
         this.CoinsSprite1 = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/doubleCoins.png"))));
         this.CoinsSprite2 = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/doubleCoinsv2.png"))));
+        this.Price = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/price.png")));
 
     }
 
@@ -573,6 +575,39 @@ public class LanternaGUI implements GUI {
     public void drawSpike(Position position) {
         try {
             drawImage(position, this.SpikeSprite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public void drawPrice(Position position, int price) throws IOException {
+        int yOffset = 67;
+        int xOffset = 36;
+        while (price != 0) {
+            int digit = price % 10;
+            switch (digit) {
+                case 0 -> drawNonPos(Zero, yOffset + position.getY(), xOffset);
+                case 1 -> drawNonPos(One, yOffset + position.getY(), xOffset);
+                case 2 -> drawNonPos(Two, yOffset + position.getY(), xOffset);
+                case 3 -> drawNonPos(Three, yOffset + position.getY(), xOffset);
+                case 4 -> drawNonPos(Four, yOffset + position.getY(), xOffset);
+                case 5 -> drawNonPos(Five, yOffset + position.getY(), xOffset);
+                case 6 -> drawNonPos(Six, yOffset + position.getY(), xOffset);
+                case 7 -> drawNonPos(Seven, yOffset + position.getY(), xOffset);
+                case 8 -> drawNonPos(Eight, yOffset + position.getY(), xOffset);
+                case 9 -> drawNonPos(Nine, yOffset + position.getY(), xOffset);
+            }
+            xOffset -= 10;
+
+            price /= 10;
+        }
+    }
+    @Override
+    public void drawPricetag(Position position) {
+        try {
+            drawImage(position, this.Price);
         } catch (IOException e) {
             e.printStackTrace();
         }

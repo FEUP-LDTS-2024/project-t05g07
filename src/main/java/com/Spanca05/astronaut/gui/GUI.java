@@ -15,6 +15,10 @@ public interface GUI {
 
     void drawSpike(Position position);
 
+    void drawPrice(Position position, int shieldPrice) throws IOException;
+
+    void drawPricetag(Position position);
+
     void drawTrap(Position position);
 
     void drawCoin(Position position, int coinColor);
