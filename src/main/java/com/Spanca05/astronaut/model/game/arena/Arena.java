@@ -27,7 +27,6 @@ public class Arena implements Power {
     private Camera camera;
 
     private List<Monster> monsters;
-    //private List<Coin> coins;
     private List<Wall> walls;
     private EndBlock endblock;
     private List<Point> points;
@@ -121,7 +120,6 @@ public class Arena implements Power {
         return powerups;
     }
 
-
     public List<Wall> getWalls() {
         return walls;
     }
@@ -177,22 +175,8 @@ public class Arena implements Power {
         return false;
     }
 
-    /*public boolean isCoin(Position position) {
-        for(Coin coin : coins)
-            if(coin.getPosition().equals(position))
-                return true;
-        return false;
-    }*/
-
     public boolean isEndBlock(Position position) {
         return endblock.getPosition().equals(position);
-    }
-
-    public boolean isPoint(Position position) {
-        for (Point point : points)
-            if (point.getPosition().equals(position))
-                return true;
-        return false;
     }
 
     public boolean isStar(Position position) {
@@ -200,35 +184,6 @@ public class Arena implements Power {
             if (star.getPosition().equals(position))
                 return true;
         }
-        return false;
-    }
-
-    public boolean isPowerup(Position position) {
-        for (Point powerup : points)
-            if (powerup.getPosition().equals(position)
-                    && powerup instanceof Powerup)
-                return true;
-        return false;
-    }
-
-    public boolean isImanPowerup(Position position) {
-        for (Point powerup : points)
-            if (powerup.getPosition().equals(position) && powerup instanceof Iman)
-                return true;
-        return false;
-    }
-
-    public boolean isEscudoPowerup(Position position) {
-        for (Point powerup : points)
-            if (powerup.getPosition().equals(position) && powerup instanceof Escudo)
-                return true;
-        return false;
-    }
-
-    public boolean isBonusCoinsPowerup(Position position) {
-        for (Point powerup : points)
-            if (powerup.getPosition().equals(position) && powerup instanceof BonusCoins)
-                return true;
         return false;
     }
 
@@ -254,15 +209,6 @@ public class Arena implements Power {
         else if (!(point instanceof Powerup)) return 1;
         else return 0;
     }
-
-    /*public void catchCoin(Position position) {
-        for(Coin coin : coins) {
-            if(position.equals(coin.getPosition())) {
-                coins.remove(coin);
-                break;
-            }
-        }
-    }*/
 
     public void catchStar(Position position) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         for (Star star : stars){

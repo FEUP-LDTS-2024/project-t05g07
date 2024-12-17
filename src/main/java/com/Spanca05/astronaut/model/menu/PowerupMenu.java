@@ -28,9 +28,6 @@ public class PowerupMenu {
         this.themeMusic.playLoop();
     }
 
-    // Não faz sentido estar a repetir estas funções tho,
-    // são iguais às do Menu
-
     public void nextEntry() {
         currentEntry++;
         if (currentEntry > this.entries.size() - 1)
@@ -106,11 +103,4 @@ public class PowerupMenu {
                 + powerup.getUpgradeAmount() + " coins. Current duration: "
                 + powerup.getDuration()/1000.0 + " seconds.");
     }
-
-    public PowerupMenu(List<String> entries, Wallet wallet, BackGroundMusic themeMusic) {
-        this.entries = entries;
-        this.wallet = wallet;
-        this.themeMusic = themeMusic;
-    }
-
 }

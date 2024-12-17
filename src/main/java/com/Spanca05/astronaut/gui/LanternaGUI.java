@@ -588,7 +588,6 @@ public class LanternaGUI implements GUI {
     }
 
     public void drawScore(int number) throws IOException {
-        System.out.println(number);
         int yOffset = 12;
         int xOffset = 245;
 
