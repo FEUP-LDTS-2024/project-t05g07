@@ -48,6 +48,19 @@ public class PowerupMenu {
         return currentEntry == i;
     }
 
+    public int getImanPrice(){
+        return new Iman().getUpgradeAmount();
+    }
+
+    public int getShieldPrice(){
+        return new Escudo().getUpgradeAmount();
+    }
+
+    public int getBonusPrice(){
+        return new BonusCoins().getUpgradeAmount();
+    }
+
+
     public boolean isSelectedEscudo() {
         return isSelected(0);
     }

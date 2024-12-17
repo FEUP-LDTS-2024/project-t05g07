@@ -17,10 +17,17 @@ public class PowerupMenuViewer extends Viewer<PowerupMenu> {
         this.walletViewer = new WalletViewer(new Wallet());
     }
 
+
     @Override
     public void drawElements(GUI gui) throws IOException {
         gui.drawSecondMenu(new Position(0, 0));
         walletViewer.drawElements(gui);
+        gui.drawPricetag(new Position(1,4));
+        gui.drawPricetag(new Position(1,6));
+        gui.drawPricetag(new Position(1,8));
+        gui.drawPrice(new Position(1,0), getModel().getShieldPrice());
+        gui.drawPrice(new Position(1,32), getModel().getBonusPrice());
+        gui.drawPrice(new Position(1,64), getModel().getImanPrice());
         gui.drawPower1(new Position(5, 4), getModel().isSelected(0));
         gui.drawPower2(new Position(5, 6), getModel().isSelected(1));
         gui.drawPower3(new Position(5, 8), getModel().isSelected(2));
