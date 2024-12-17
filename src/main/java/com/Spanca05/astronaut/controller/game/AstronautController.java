@@ -107,7 +107,7 @@ public class AstronautController extends GameController {
         }
 
         isPowerActive = true;
-        System.out.println("activated power up");
+        //System.out.println("activated power up");
 
         activationTime = System.currentTimeMillis();
     }
@@ -117,7 +117,7 @@ public class AstronautController extends GameController {
         currentPower = null;
         getModel().getAstronaut().setShield(false);
         isPowerActive = false;
-        System.out.println("deactivated power up");
+        //System.out.println("deactivated power up");
     }
 
     @Override

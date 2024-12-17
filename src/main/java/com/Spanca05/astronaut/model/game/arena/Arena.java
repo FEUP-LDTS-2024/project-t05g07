@@ -157,7 +157,6 @@ public class Arena implements Power {
         return true;
     }
 
-    //@Override
     public boolean isMonster(Position position) {
         for (Monster monster : monsters)
             if (monster.getPosition().equals(position))

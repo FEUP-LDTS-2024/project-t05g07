@@ -28,11 +28,6 @@ public class PowerupDecorator implements Power {
         return wrappee.isEmpty(position);
     }
 
-    /*@Override
-    public boolean isPowerup(Position position) {
-        return wrappee.isPowerup(position);
-    }*/
-
     @Override
     public void catchPoint(Position position) {
         wrappee.catchPoint(position);
