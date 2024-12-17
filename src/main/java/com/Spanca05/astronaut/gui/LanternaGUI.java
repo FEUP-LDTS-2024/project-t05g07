@@ -6,7 +6,6 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.graphics.Theme;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
@@ -67,6 +66,8 @@ public class LanternaGUI implements GUI {
     private final BufferedImage ImanSprite2;
     private final BufferedImage SheildSprite1;
     private final BufferedImage SheildSprite2;
+    private final BufferedImage CoinsSprite1;
+    private final BufferedImage CoinsSprite2;
     private final BufferedImage wallet;
     private final BufferedImage Zero;
     private final BufferedImage One;
@@ -78,6 +79,7 @@ public class LanternaGUI implements GUI {
     private final BufferedImage Seven;
     private final BufferedImage Eight;
     private final BufferedImage Nine;
+    private final BufferedImage finalMenu;
 
 
     public LanternaGUI(Screen screen) throws IOException {
@@ -109,7 +111,7 @@ public class LanternaGUI implements GUI {
         this.Button5v2 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao5v2.png")));
         this.Button6 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao6.png")));
         this.Button6v2 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao6v2.png")));
-        this.SecondMenuBackground = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/SecundaryMenu/secondMenu.png"))));
+        this.SecondMenuBackground = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/secondMenu.png"))));
         this.infectedWall = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/infectedWall.png")));
         this.sheildPower = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/sheild.png")));
         this.coinsPower = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/coins.png")));
@@ -132,6 +134,9 @@ public class LanternaGUI implements GUI {
         this.Seven = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/7.png")));
         this.Eight = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/8.png")));
         this.Nine = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/9.png")));
+        this.finalMenu = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/finaLmenu.png"))));
+        this.CoinsSprite1 = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/doubleCoins.png"))));
+        this.CoinsSprite2 = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/doubleCoinsv2.png"))));
 
     }
 
@@ -189,7 +194,9 @@ public class LanternaGUI implements GUI {
         this.Seven = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/7.png")));
         this.Eight = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/8.png")));
         this.Nine = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/9.png")));
-
+        this.finalMenu = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/finaLmenu.png"))));
+        this.CoinsSprite1 = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/doubleCoins.png"))));
+        this.CoinsSprite2 = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/doubleCoinsv2.png"))));
 
     }
 
@@ -357,6 +364,15 @@ public class LanternaGUI implements GUI {
         }
     }
 
+    @Override
+    public void drawFinalMenu(Position position) {
+        try {
+            drawImage(position, this.finalMenu);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private BufferedImage getButtonSprite(int buttonNumber, boolean isSelected) {
         return switch (buttonNumber) {
             case 1 -> isSelected ? Button1v2 : Button1;
@@ -515,11 +531,6 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawBonusCoins(Position position) {
-        //drawCharacter(position.getX(), position.getY(), 'M', "#00FF00");
-    }
-
-    @Override
     public void drawEndBlock(Position position, int endBlockColor) {
         try {
             if (endBlockColor == 1) {
@@ -577,14 +588,14 @@ public class LanternaGUI implements GUI {
     }
 
     public void drawScore(int number) throws IOException {
-        System.out.println(number);
         int yOffset = 12;
-        int xOffset = 240;
+        int xOffset = 245;
 
         if (number == 0) {
             drawNonPos(Zero, yOffset, xOffset);
             drawNonPos(Zero, yOffset, xOffset - 10);
             drawNonPos(Zero, yOffset, xOffset - 20);
+            drawNonPos(Zero, yOffset, xOffset - 30);
         }
         while (number != 0) {
             int digit = number % 10;
@@ -626,6 +637,19 @@ public class LanternaGUI implements GUI {
                 drawImage(position, this.SheildSprite1);
             } else {
                 drawImage(position, this.SheildSprite2);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void drawDoubleCoins(Position position, int powerColor) {
+        try {
+            if (powerColor == 1) {
+                drawImage(position, this.CoinsSprite1);
+            } else {
+                drawImage(position, this.CoinsSprite2);
             }
         } catch (IOException e) {
             e.printStackTrace();

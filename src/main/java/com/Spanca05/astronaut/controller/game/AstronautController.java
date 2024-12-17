@@ -108,7 +108,6 @@ public class AstronautController extends GameController {
 
         isPowerActive = true;
         //System.out.println("activated power up");
-
         activationTime = System.currentTimeMillis();
     }
 

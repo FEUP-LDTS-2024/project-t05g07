@@ -18,15 +18,8 @@ public class Menu {
             this.themeMusic = new BackGroundMusic("theme.wav");
             this.themeMusic.setVolume(-5.0f);
             this.themeMusic.playLoop();
+            this.currentLevel = getCurrentLevel();
         }
-
-        // Como é que eu faço voltar pro menu com o currentLevel no
-        // nível em que tava...................
-
-        /*public Menu(int currentLevel) {
-            this.currentLevel = currentLevel;
-            this.entries = Arrays.asList("Level " + this.currentLevel, "Power-ups", "Exit");
-        }*/
 
         public void stopMusic() {
             themeMusic.stop();
@@ -49,7 +42,6 @@ public class Menu {
     }
 
         public void nextLevel() {
-            // Atualizar aqui quando se adicionarem mais níveis.
             if (currentLevel < 8 && isSelectedStart()) {
                 currentLevel++;
                 entries.set(0, "Level " + currentLevel);
@@ -61,10 +53,6 @@ public class Menu {
                 currentLevel--;
                 entries.set(0, "Level " + currentLevel);
             }
-        }
-
-        public String getEntry(int i) {
-            return entries.get(i);
         }
 
         public int getCurrentLevel() {
@@ -85,8 +73,5 @@ public class Menu {
             return isSelected(0);
         }
 
-        public int getNumberEntries() {
-            return this.entries.size();
-        }
     }
 
