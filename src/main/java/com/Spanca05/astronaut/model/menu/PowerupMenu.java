@@ -19,13 +19,14 @@ public class PowerupMenu {
     private final Wallet wallet;
     private final BackGroundMusic themeMusic;
 
-    public PowerupMenu() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        this.entries = Arrays.asList("Escudo", "Moedasx2", "Iman", "Go Back");
-        this.wallet = new Wallet();
-        this.themeMusic = new BackGroundMusic("theme.wav");
-        this.themeMusic.setVolume(-10.0f);
-        this.themeMusic.playLoop();
-    }
+
+        public PowerupMenu() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+            this.entries = Arrays.asList("Escudo", "Moedas x2", "Iman", "Go Back");
+            this.wallet = new Wallet();
+            this.themeMusic = new BackGroundMusic("theme.wav");
+            this.themeMusic.setVolume(-10.0f);
+            this.themeMusic.playLoop();
+        }
 
     // Não faz sentido estar a repetir estas funções tho,
     // são iguais às do Menu
@@ -105,5 +106,11 @@ public class PowerupMenu {
                 + powerup.getUpgradeAmount() + " coins. Current duration: "
                 + powerup.getDuration()/1000.0 + " seconds.");
     }
-}
 
+    public PowerupMenu(List<String> entries, Wallet wallet, BackGroundMusic themeMusic) {
+        this.entries = entries;
+        this.wallet = wallet;
+        this.themeMusic = themeMusic;
+    }
+
+}

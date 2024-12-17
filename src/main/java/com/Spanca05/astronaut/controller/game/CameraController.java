@@ -15,6 +15,6 @@ public class CameraController extends GameController {
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
-        getModel().setCameraPosition(getModel().getAstronaut().getPosition().minus(new Position(9,9)));
+        getModel().setCameraPosition(getModel().getAstronaut().getPosition().minus(new Position(8,7)));
     }
 }

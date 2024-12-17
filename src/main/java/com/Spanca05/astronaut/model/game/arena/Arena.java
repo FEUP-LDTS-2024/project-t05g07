@@ -11,6 +11,7 @@ import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
 import com.Spanca05.astronaut.model.game.elements.Monster;
 
+import java.util.ArrayList;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
@@ -96,12 +97,24 @@ public class Arena implements Power {
                 break;
             }
     }
-
-    /*public List<Coin> getCoins() {
+    public List<Coin> getCoins() {
+        List<Coin> coins = new ArrayList<>();
+        for (Point point : points) {
+            if (point instanceof Coin)
+                coins.add((Coin) point);
+        }
         return coins;
-    }*/
+    }
 
-    //public void setCoins(List<Coin> coins) {this.coins = coins; }
+    public List<Powerup> getPowers() {
+        List<Powerup> powerups = new ArrayList<>();
+        for (Point point : points) {
+            if (point instanceof Powerup)
+                powerups.add((Powerup) point);
+        }
+        return powerups;
+    }
+
 
     public List<Wall> getWalls() {
         return walls;

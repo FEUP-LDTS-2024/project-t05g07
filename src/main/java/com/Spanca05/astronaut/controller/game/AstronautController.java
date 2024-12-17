@@ -124,13 +124,33 @@ public class AstronautController extends GameController {
         System.out.println("deactivated power up");
     }
 
+    private void rotateAstronaut(Position position) {
+        switch (getModel().getAstronaut().getDirection()) {
+            case UP -> getModel().getAstronaut().setAngle(180);
+            case DOWN -> getModel().getAstronaut().setAngle(0);
+            case LEFT -> getModel().getAstronaut().setAngle(90);
+            case RIGHT -> getModel().getAstronaut().setAngle(-90);
+            default -> {}
+        }
+    }
+
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         switch (getModel().getAstronaut().getDirection()) {
-            case UP -> moveAstronautUp();
-            case DOWN -> moveAstronautDown();
-            case LEFT -> moveAstronautLeft();
-            case RIGHT -> moveAstronautRight();
+            case UP -> {
+                moveAstronautUp();
+                getModel().getAstronaut().setAngle(180);}
+            case DOWN -> {
+                moveAstronautDown();
+                getModel().getAstronaut().setAngle(0);}
+            case LEFT ->{
+                moveAstronautLeft();
+                getModel().getAstronaut().setAngle(90);
+            }
+            case RIGHT -> {
+                moveAstronautRight();
+                getModel().getAstronaut().setAngle(-90);}
+
             case null, default -> {
             }
         }

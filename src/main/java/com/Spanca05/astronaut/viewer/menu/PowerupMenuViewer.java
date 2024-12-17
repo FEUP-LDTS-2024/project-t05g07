@@ -18,22 +18,10 @@ public class PowerupMenuViewer extends Viewer<PowerupMenu> {
     @Override
     public void drawElements(GUI gui) {
         walletViewer.drawElements(gui);
-
-        gui.drawText(new Position(5, 5), "Power-ups", "#FFFFFF");
-
-        for (int i = 0; i < getModel().getNumberEntries(); i++)
-            gui.drawText(
-                    new Position(5, 7 + i),
-                    getModel().getEntry(i),
-                    getModel().isSelected(i) ? powerupColour(i) : "#FFFFFF");
-    }
-
-    private String powerupColour(int i) {
-        return switch (i) {
-            case 0 -> "#FFC0CB";
-            case 1 -> "#00FF00";
-            case 2 -> "#FFA500";
-            default -> "#FFD700";
-        };
+        gui.drawSecondMenu(new Position(0, 0));
+        gui.drawPower1(new Position(5, 4), getModel().isSelected(0));
+        gui.drawPower2(new Position(5, 6), getModel().isSelected(1));
+        gui.drawPower3(new Position(5, 8), getModel().isSelected(2));
+        gui.drawReturn(new Position(5,10), getModel().isSelected(3));
     }
 }

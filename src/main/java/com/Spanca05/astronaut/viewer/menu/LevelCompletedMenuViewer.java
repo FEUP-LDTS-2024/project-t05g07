@@ -10,15 +10,16 @@ public class LevelCompletedMenuViewer extends Viewer<LevelCompletedMenu> {
 
     @Override
     public void drawElements(GUI gui) {
-        gui.drawText(new Position(5, 5), "Level Completed", "#FFFFFF");
+        //gui.drawText(new Position(5, 5), "Level Completed", "#FFFFFF");
 
-        for(int i = 0; i < getModel().getNumberEntries(); i++)
-            gui.drawText(
+        for (int i = 0; i < getModel().getNumberEntries(); i++) {
+            /*gui.drawText(
                     new Position(5, 7 + i),
                     getModel().getEntry(i),
-                    getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
+                    getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");*/
 
 
+        }
     }
 
 }

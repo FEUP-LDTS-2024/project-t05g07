@@ -10,23 +10,43 @@ import com.Spanca05.astronaut.viewer.Viewer;
 import com.Spanca05.astronaut.viewer.WalletViewer;
 
 public class GameViewer extends Viewer<Arena> {
-    private final WalletViewer walletViewer;
+    private PointViewer pv;
+    private AstronautViewer nautav;
+    private EndBlockViewer endv;
+    private StarViewer starv;
+    private CoinViewer coinv;
+    private PowerUpViewer powerv;
+    private WalletViewer walletViewer;
 
     public GameViewer(Arena arena) {
         super(arena);
+        this.pv = new PointViewer();
+        this.nautav = new AstronautViewer();
+        this.endv = new EndBlockViewer();
+        this.starv = new StarViewer();
+        this.coinv = new CoinViewer();
+        this.powerv = new PowerUpViewer();
         this.walletViewer = new WalletViewer(arena.getWallet());
     }
 
     @Override
     public void drawElements(GUI gui) {
-        drawElements(gui, getModel().getWalls(), new WallViewer());
-        drawElement(gui, getModel().getEndBlock(), new EndBlockViewer());
-        drawElements(gui, getModel().getPoints(), new PointViewer());
-        drawElements(gui, getModel().getMonsters(), new MonsterViewer());
-        //drawElements(gui, getModel().getCoins(), new CoinViewer());
-        drawElement(gui, getModel().getAstronaut(), new AstronautViewer());
-        drawElements(gui, getModel().getStars(),new StarViewer());
+        // Update color
+        this.pv.update();
+        this.nautav.update();
+        this.endv.update();
+        this.starv.update();
+        this.coinv.update();
+        this.powerv.update();
 
+        drawElements(gui, getModel().getWalls(), new WallViewer());
+        drawElement(gui, getModel().getEndBlock(), this.endv);
+        drawElement(gui, getModel().getAstronaut(), this.nautav );
+        drawElements(gui, getModel().getPoints(), this.pv);
+        drawElements(gui, getModel().getStars(), this.starv);
+        drawElements(gui, getModel().getMonsters(), new MonsterViewer());
+        drawElements(gui, getModel().getCoins(), this.coinv);
+        drawElements(gui,getModel().getPowers(), this.powerv);
         walletViewer.drawElements(gui);
     }
 

@@ -33,10 +33,10 @@ public class MenuController extends Controller<Menu> {
                 getModel().nextEntry();
                 break;
             case LEFT:
-                getModel().previousLevel();
+                //getModel().previousLevel();
                 break;
             case RIGHT:
-                getModel().nextLevel();
+                //getModel().nextLevel();
                 break;
             case SELECT:
                 clickSound.play();

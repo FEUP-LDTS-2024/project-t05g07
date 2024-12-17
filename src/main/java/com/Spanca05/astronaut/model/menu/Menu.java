@@ -7,11 +7,11 @@
     import java.util.Arrays;
     import java.util.List;
 
-    public class Menu {
-        private final List<String> entries;
-        private int currentEntry = 0;
-        private int currentLevel = 1;
-        private final BackGroundMusic themeMusic;
+public class Menu {
+    private final List<String> entries;
+    private int currentEntry = 0;
+    private int currentLevel = 1;
+    private final BackGroundMusic themeMusic;
 
         public Menu() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
             this.entries = Arrays.asList("Level " + currentLevel, "Power-ups", "Exit");
@@ -44,6 +44,10 @@
                 currentEntry = this.entries.size() - 1;
         }
 
+    public boolean isSelectedEntry(int i) {
+        return currentEntry == i;
+    }
+
         public void nextLevel() {
             // Atualizar aqui quando se adicionarem mais níveis.
             if (currentLevel < 8 && isSelectedStart()) {
@@ -67,9 +71,7 @@
             return currentLevel;
         }
 
-        public boolean isSelected(int i) {
-            return currentEntry == i;
-        }
+        public boolean isSelected(int i) {return currentEntry == i;}
 
         public boolean isSelectedExit() {
             return isSelected(2);
@@ -87,3 +89,4 @@
             return this.entries.size();
         }
     }
+

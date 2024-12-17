@@ -17,9 +17,7 @@ public abstract class ArenaBuilder {
         arena.setWalls(createWalls());
         arena.setEndBlock(createEndBlock());
         arena.setPoints(createPoints());
-        //arena.setCoins(createCoins());
         arena.setStar(createStar());
-
 
         return arena;
     }

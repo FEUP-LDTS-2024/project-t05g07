@@ -7,31 +7,51 @@ import java.io.IOException;
 public interface GUI {
     ACTION getNextAction() throws IOException;
 
-    void drawAstronaut(Position position);
+    void drawAstronaut(Position position, int spriteNumber, int angle);
 
     void drawWall(Position position);
 
-    void drawMonster(Position position);
+    void drawPoint(Position position, int spriteNumber);
 
     void drawSpike(Position position);
 
     void drawTrap(Position position);
 
-    void drawCoin(Position position);
+    void drawCoin(Position position, int coinColor);
 
-    void drawIman(Position position);
+    void drawIman(Position position, int powerColor);
 
-    void drawEscudo(Position position);
+    void drawStar(Position position, int starColor);
+
+    void drawMenu(Position position);
+
+    void drawSecondMenu(Position position);
+
+    void drawPower1(Position position, boolean isSelected);
+
+    void drawPower2(Position position, boolean isSelected);
+
+    void drawPower3(Position position, boolean isSelected);
+
+    void drawReturn(Position position, boolean isSelected);
 
     void drawBonusCoins(Position position);
 
-    void drawPoint(Position position);
+    void draw2Button1(Position position, boolean isSelected);
 
-    void drawStar(Position position);
+    void draw2Button2(Position position, boolean isSelected);
 
-    void drawEndBlock(Position position);
+    void draw2Button3(Position position, boolean isSelected);
 
-    void drawText(Position position, String text, String color);
+    void drawButton1(Position position, boolean isSelected);
+
+    void drawButton2(Position position, boolean isSelected);
+
+    void drawButton3(Position position, boolean isSelected);
+
+    void drawEndBlock(Position position, int endBlockColor);
+
+    void drawSheild(Position position, int powerColor);
 
     void clear();
 

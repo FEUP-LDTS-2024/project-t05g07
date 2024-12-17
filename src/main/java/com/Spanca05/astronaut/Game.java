@@ -15,9 +15,9 @@ public class Game {
     private final LanternaGUI gui;
     private State state;
 
-    public Game() throws FontFormatException, IOException, URISyntaxException, UnsupportedAudioFileException, LineUnavailableException {
-        this.gui = new LanternaGUI(20, 20);
-
+    public Game() throws FontFormatException, IOException, URISyntaxException,UnsupportedAudioFileException,LineUnavailableException {
+        this.gui = new LanternaGUI(288, 240);
+        
         this.state = new MenuState(new Menu());
     }
 
@@ -35,6 +35,7 @@ public class Game {
 
         while (this.state != null) {
             long startTime = System.currentTimeMillis();
+
             state.step(this, gui, startTime);
 
             long elapsedTime = System.currentTimeMillis() - startTime;

@@ -12,6 +12,6 @@ public class WalletViewer extends Viewer<Wallet> {
 
     @Override
     public void drawElements(GUI gui) {
-        gui.drawText(new Position(1, 1), "Coins: " + getModel().getTotal(), "#FFFFFF");
+        //gui.drawText(new Position(1, 1), "Coins: " + getModel().getTotal(), "#FFFFFF");
     }
 }
