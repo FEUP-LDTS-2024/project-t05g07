@@ -219,8 +219,7 @@ public class Arena implements Power {
         }
     }
 
-    @Override
-    public int amount(Point point) {
+    private int amount(Point point) {
         if (point instanceof Coin) return 10;
         else if (!(point instanceof Powerup)) return 1;
         else return 0;

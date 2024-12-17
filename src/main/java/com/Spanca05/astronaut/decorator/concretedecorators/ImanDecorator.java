@@ -20,4 +20,16 @@ public class ImanDecorator extends PowerupDecorator {
             }
         }
     }
+
+    /*@Override
+    public boolean isPowerup(Position position) {
+        Position adj;
+        for (int i = position.getX() - 2; i <= position.getX() + 2; i++) {
+            for (int j = position.getY() - 2; j <= position.getY() + 2; j++) {
+                adj = new Position(i, j);
+                if (wrappee.isPowerup(adj)) return true;
+            }
+        }
+        return false;
+    }*/
 }

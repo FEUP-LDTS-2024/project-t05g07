@@ -10,6 +10,6 @@ public interface Power {
     List<Monster> getMonsters();
     List<Point> getPoints();
     boolean isEmpty(Position position);
+    //boolean isPowerup(Position position);
     void catchPoint(Position position);
-    int amount(Point point);
 }
