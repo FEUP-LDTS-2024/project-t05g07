@@ -14,7 +14,9 @@ import com.Spanca05.astronaut.model.game.elements.Monster;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class Arena implements Power {
     private final int width;
@@ -30,11 +32,13 @@ public class Arena implements Power {
     private List<Point> points;
     private List<Star> stars;
 
+    private Queue<Powerup> caughtPowerups;
     private final Wallet wallet;
 
     private final int currentLevel;
 
     private final SoundEffect starSound;
+    private final SoundEffect powerUpSound;
     private final SoundEffect coinSound;
     private final SoundEffect pointSound;
 
@@ -43,11 +47,13 @@ public class Arena implements Power {
         this.height = height;
         this.currentLevel = currentLevel;
 
+        this.caughtPowerups = new LinkedList<>();
         this.wallet = new Wallet();
         this.camera = new Camera(0, 0);
         this.starSound = new SoundEffect("star.wav");
         this.pointSound = new SoundEffect("point.wav");
         this.coinSound = new SoundEffect("coin.wav");
+        this.powerUpSound = new SoundEffect("powerUp.wav");
         pointSound.setVolume(-15.0f);
     }
 
@@ -135,6 +141,14 @@ public class Arena implements Power {
         this.stars = stars;
     }
 
+    public Queue<Powerup> getCaughtPowerups() {
+        return caughtPowerups;
+    }
+
+    public Powerup pollPowerup() {
+        return caughtPowerups.poll();
+    }
+
     @Override
     public boolean isEmpty(Position position) {
         for (Wall wall : walls)
@@ -210,7 +224,11 @@ public class Arena implements Power {
     public void catchPoint(Position position) {
         for (Point point : points) {
             if (position.equals(point.getPosition())) {
-                if(point instanceof Coin) coinSound.play();
+                if (point instanceof Coin) coinSound.play();
+                if (point instanceof Powerup) {
+                    powerUpSound.playInNewThread();
+                    caughtPowerups.add((Powerup) point);
+                }
                 else pointSound.play();
                 points.remove(point);
                 wallet.addToTotal(amount(point));

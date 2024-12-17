@@ -24,7 +24,6 @@ public class AstronautController extends GameController {
     private boolean isPowerActive;
     private Powerup currentPower;
     private final SoundEffect movementSound;
-    private final SoundEffect powerUpSound;
 
     public AstronautController(Arena arena) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         super(arena);
@@ -33,7 +32,6 @@ public class AstronautController extends GameController {
         isPowerActive = false;
         currentPower = null;
         movementSound = new SoundEffect("movement.wav");
-        powerUpSound = new SoundEffect("powerUp.wav");
     }
 
     public void moveAstronautLeft() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
@@ -71,43 +69,40 @@ public class AstronautController extends GameController {
 
             if (getModel().isStar(position)) getModel().catchStar(position);
 
-            // Sim, o Iman está bugado porque isPowerup só aceita uma posição.
-            // Depois corrijo.................................................
-            if (getModel().isPowerup(position)) {
-                powerUpSound.playInNewThread();
-                activatePowerup(position);
-            }
-
             power.catchPoint(position);
+
+            while (!getModel().getCaughtPowerups().isEmpty()) {
+                activatePowerup(getModel().pollPowerup());
+            }
         }
         else {
             getModel().getAstronaut().setDirection(null);
         }
     }
 
-    private void activatePowerup(Position position) {
+    private void activatePowerup(Powerup powerup) {
 
-        if (getModel().isImanPowerup(position)
+        if (powerup instanceof Iman
                 && !(currentPower instanceof Iman)) {
             power = getModel();
             power = new ImanDecorator(power);
-            currentPower = new Iman();
+            currentPower = powerup;
             getModel().getAstronaut().setShield(false);
         }
 
-        else if (getModel().isEscudoPowerup(position)
+        else if (powerup instanceof Escudo
                 && !(currentPower instanceof Escudo)) {
             power = getModel();
             power = new EscudoDecorator(power);
-            currentPower = new Escudo();
+            currentPower = powerup;
             getModel().getAstronaut().setShield(true);
         }
 
-        else if (getModel().isBonusCoinsPowerup(position)
+        else if (powerup instanceof BonusCoins
                 && !(currentPower instanceof BonusCoins)) {
             power = getModel();
             power = new BonusCoinsDecorator(power);
-            currentPower = new BonusCoins();
+            currentPower = powerup;
             getModel().getAstronaut().setShield(false);
         }
 
@@ -119,6 +114,7 @@ public class AstronautController extends GameController {
 
     private void deactivatePowerup() {
         power = getModel();
+        currentPower = null;
         getModel().getAstronaut().setShield(false);
         isPowerActive = false;
         System.out.println("deactivated power up");
