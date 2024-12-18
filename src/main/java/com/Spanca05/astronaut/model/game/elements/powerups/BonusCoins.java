@@ -28,6 +28,7 @@ public class BonusCoins extends Powerup {
 
     private void updateUpgradeAmount() {
         upgradeAmount *= 2;
+        if (upgradeAmount > 999) upgradeAmount = 999;
     }
 }
 
