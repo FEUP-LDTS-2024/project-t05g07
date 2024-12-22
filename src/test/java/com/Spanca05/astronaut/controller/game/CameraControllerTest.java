@@ -11,7 +11,7 @@ import org.mockito.Mockito;
 public class CameraControllerTest {
 
     @Test
-    public void stepLeft() throws Exception {
+    public void step() throws Exception {
         Arena arenaMock = Mockito.mock(Arena.class);
         Astronaut astronautMock = Mockito.mock(Astronaut.class);
         Mockito.when(astronautMock.getPosition()).thenReturn(Mockito.mock(Position.class));
