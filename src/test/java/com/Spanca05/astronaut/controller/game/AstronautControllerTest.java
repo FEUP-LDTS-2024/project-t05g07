@@ -6,7 +6,9 @@ import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.arena.Arena;
 import com.Spanca05.astronaut.model.game.elements.Astronaut;
+import com.Spanca05.astronaut.model.game.elements.Monster;
 import com.Spanca05.astronaut.model.game.elements.Point;
+import com.Spanca05.astronaut.model.game.elements.Wall;
 import com.Spanca05.astronaut.model.game.elements.powerups.BonusCoins;
 import com.Spanca05.astronaut.model.game.elements.powerups.Escudo;
 import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
@@ -14,7 +16,9 @@ import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -286,4 +290,46 @@ public class AstronautControllerTest {
         ac.step(game, action, 1000);
         Mockito.verify(arenaMock, Mockito.times(1)).catchStar(after);
     }
+
+    /*@Test
+    public void activatePowerup() throws Exception {
+        Arena arenaMock = Mockito.mock(Arena.class);
+        Position after = new Position(1, 0);
+        Mockito.when(((Power) arenaMock).isEmpty(after)).thenReturn(true);
+
+        Queue<Powerup> caughtPowerups = Mockito.spy(new LinkedList<>());
+        Iman iman = Mockito.mock(Iman.class);
+        Escudo escudo = Mockito.mock(Escudo.class);
+        BonusCoins bonusCoins = Mockito.mock(BonusCoins.class);
+        caughtPowerups.add(iman);
+        caughtPowerups.add(escudo);
+        caughtPowerups.add(bonusCoins);
+
+        Powerup p1 = caughtPowerups.poll();
+        Powerup p2 = caughtPowerups.poll();
+        Powerup p3 = caughtPowerups.poll();
+
+        Mockito.when(arenaMock.getCaughtPowerups()).thenReturn(caughtPowerups);
+        Mockito.when(arenaMock.pollPowerup()).thenReturn(p1);
+        Mockito.when(caughtPowerups.isEmpty()).thenReturn(false);
+
+        Mockito.when(arenaMock.getCaughtPowerups()).thenReturn(caughtPowerups);
+        Mockito.when(arenaMock.pollPowerup()).thenReturn(p2);
+        Mockito.when(caughtPowerups.isEmpty()).thenReturn(false);
+
+        Mockito.when(arenaMock.getCaughtPowerups()).thenReturn(caughtPowerups);
+        Mockito.when(arenaMock.pollPowerup()).thenReturn(p3);
+        Mockito.when(caughtPowerups.isEmpty()).thenReturn(true);
+
+        GUI.ACTION action = GUI.ACTION.RIGHT;
+        Astronaut astronaut = new Astronaut(0, 0);
+        astronaut.setDirection(action);
+        Mockito.when(arenaMock.getAstronaut()).thenReturn(astronaut);
+
+        AstronautController ac = new AstronautController(arenaMock);
+
+        Game game = Mockito.mock(Game.class);
+        ac.step(game, action, 1000);
+    }*/
+
 }
