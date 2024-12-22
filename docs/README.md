@@ -1,8 +1,10 @@
 ## LDTS_T05_G07 - ECLIPTICA
 
-In this exciting platform game you can help KangarooBoy save the world, by collecting all the coins throughout ten different levels in which you will […].
+In Eclipitica, the player plays as an astronaut navigating an arena. The goal is to collect coins, stars, and power-ups such as a Magnet to attract nearby coins, a Coin Multiplier for extra coins and a Shield to protect the player from dangerous obstacles. The astronaut moves in one direction until he finds a wall, this allows the player to jump quickly across the map in straight lines.
 
-This project was developed by *John Doe* (*john.doe*@fe.up.pt) and *Jane Doe* (*jane.doe*@fe.up.pt) for LPOO 2018⁄19.
+The game introduces two enemy types: Spike Walls that act as instant death zones, ending the game upon contact and Infected Walls that spawn spikes around them when the player passes by. As the player progresses, the arenas grow more difficult, with more obstacles to navigate.
+
+This project was developed by *Ana Pacheco* (*up202307150*@fe.up.pt) , *Carolina Mosqueiro* (*up202303637@up.pt*) and *Vasco Vieira* (*up202307797*@fe.up.pt) for LDTS 2024⁄25.
 
 ### IMPLEMENTED FEATURES
 
