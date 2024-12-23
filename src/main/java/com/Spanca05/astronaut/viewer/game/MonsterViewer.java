@@ -7,6 +7,6 @@ import com.Spanca05.astronaut.model.game.elements.Monster;
 public class MonsterViewer implements ElementViewer<Monster> {
     @Override
     public void draw(Monster monster, GUI gui, Position cameraOffSet) {
-        if (monster.getType().equals("spike")) gui.drawSpike(monster.getPosition().minus(cameraOffSet));
+        gui.drawSpike(monster.getPosition().minus(cameraOffSet));
     }
 }
