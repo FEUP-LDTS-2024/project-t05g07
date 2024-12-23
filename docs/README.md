@@ -106,7 +106,11 @@ Adding temporary power-ups (magnets, shields and coin multipliers) to the player
 
 **The Pattern**
 
-We have applied the **Decorator** pattern. This pattern allowed us to extend the astronaut's behavior without modifying the original class. This way, it is possible to stack power-ups while keeping the core player logic reusable.
+We have applied the **Decorator** pattern. This pattern allowed us to extend the arena's behavior without modifying the original class. Methods such as the one which is responsible for catching one point, coin or powerup at a time could be overriden in such a way that it became possible to catch the aforementioned elements in a radius, thus constituting, for example, a magnet. This way, it would be possible to stack power-ups while keeping the core arena logic reusable by "wrapping" the object as many times as we would like.
+
+Although the main goal with this pattern was precisely the possibility of stacking power-ups, it ended up not being possible to implement what was intended, as we belatedly acknowledged one of its main disadvantages: it's hard to remove a specific wrapper from the wrappers stack. Since each powerup has a duration for its effect, it would be troublesome to deactivate the oldest powerup once its duration ended while keeping the newest active. We considered making the duration of the oldest active powerup the same as the newest and, once it ended, unwrap everything at once, but since that is not how power-ups are usually implemented in games, the initial purpose was discarded and we settled for making only one power-up work at a time.
+
+Nevertheless, being able to override specific methods was useful.
 
 
 
@@ -127,6 +131,13 @@ The use of the **Decorator Pattern** in the current design allows the following 
 - Supports stacking multiple power-ups.
 - Keeps the core player class unchanged and focused on its primary behavior.
 
+However, it also brought us a big drawback:
+
+- Made the AstronautController class too complex.
+
+The pattern needs a **Client** class responsible for wrapping the arena, which cannot wrap or unwrap itself. Since the activation of a certain power-up depends on whether or not the player caught it during its movement, and the overriden methods ultimately simulate a change in the behaviour of the one who calls them, the AstronautController class became responsible not only for the player's controls, but also for activating and deactivating power-ups, wrapping and unwrapping the arena, arguably going against the Single Responsibility principle.
+
+All in all, since the pattern did not help us implement the sole feature that made us choose it, it was not as useful as expected. We should probably have chosen a different one.
 
 ------
 
