@@ -4,7 +4,7 @@ In Ecliptica, the player plays as an astronaut navigating an arena. The goal is 
 
 The game introduces two enemy types: Spike Walls that act as instant death zones, ending the game upon contact and Infected Walls that spawn spikes around them when the player passes by. As the player progresses, the arenas grow more difficult, with more obstacles to navigate.
 ***
-This project was developed by *Ana Pacheco* (*up202307150*@fe.up.pt) , *Carolina Mosqueiro* (*up202303637@up.pt*) and *Vasco Vieira* (*up202307797*@fe.up.pt) for LDTS 2024⁄25.
+This project was developed by *Ana Pacheco* (*up202307150*@fe.up.pt) , *Carolina Mosqueiro* (*up202303637*@fe.up.pt) and *Vasco Vieira* (*up202307797*@fe.up.pt) for LDTS 2024⁄25.
 ***
 ### IMPLEMENTED FEATURES
 
@@ -25,58 +25,137 @@ This project was developed by *Ana Pacheco* (*up202307150*@fe.up.pt) , *Carolina
   - **PowerUp's Menu** - The player can either buy upgrades or return to the Main Menu. 
   - **Completed Level Menu** - After completing a level, the player can proceed to the next one, retry the current one or return to the Main Menu. 
   - **Failed Level Menu** - After failing a level, the player can either retry the current level or return to the Main Menu, not allowing the player to progress in the game.
-  - **Completed Game Menu** - After completing all 8 levels, the player reaches a menu with a 'You Won!!' message, where the player's only option is to return to the Main Menu.
+  - **Completed Game Menu** - After completing all 8 levels, the player reaches a menu with a '*You Won!!*' message, where the player's only option is to return to the Main Menu.
 - **Sound** - The game includes background music and sound effects. Background music plays continuously during levels and in the menus, while specific sound effects are triggered for actions like collecting coins and points and activating power-ups.
 ***
 ### PLANNED FEATURES
 
-- **Pontuação** - ...
-- **Estrelas afetarem a progressão do jogo** - ...
-- **Nível do jogador** - ...
-- ...
-
-### DESIGN
-
-- MVC
-- State
-- Game loop
-- Builder (?)
-- Decorator
-- Strategy
+- **Score** - Initially, the game was going to include both a wallet and a score system. The score would have influenced the player's current level, providing a way to track progress and performance. However, this concept was discarded, and only the wallet system remains in the game.
+- **Stars** - Stars can be found in the different arenas and were originally intended to serve as a classification method for each level, allowing players to evaluate their performance in completing a level. Currently, stars exist in the game but do not serve a functional purpose.
+- **Player's Level** - The player's level was planned to be linked to their score, offering a sense of progression based on performance. Since the score system was removed, this feature was not implemented.
 
 ------
+### DESIGN
 
-#### THE JUMP ACTION OF THE KANGAROOBOY SHOULD BEHAVE DIFFERENTLY DEPENDING ON ITS STATE
 
+#### MANAGING GAME'S GENERAL LOGIC, RENDERING AND PLAYER'S INPUT
+  
 **Problem in Context**
 
-There was a lot of scattered conditional logic when deciding how the KangarooBoy should behave when jumping, as the jumps should be different depending on the items that came to his possession during the game (an helix will alow him to fly, driking a potion will allow him to jump double the height, etc.). This is a violation of the **Single Responsability Principle**. We could concentrate all the conditional logic in the same method to circumscribe the issue to that one method but the **Single Responsability Principle** would still be violated.
+Combining the game’s logic, rendering, and player input handling into a single module created a messy codebase that was difficult to work with. This setup made it harder to debug, extend, or test individual components. By mixing responsibilities, it became harder to keep the code organized and maintainable.
 
 **The Pattern**
 
-We have applied the **State** pattern. This pattern allows you to represent different states with different subclasses. We can switch to a different state of the application by switching to another implementation (i.e., another subclass). This pattern allowed to address the identified problems because […].
+We have applied the **MVC (Model-View-Controller)** pattern. This pattern separates the game into three components:
 
+- **Model:** Handles game data and logic.
+- **View:** Manages rendering of game elements.
+- **Controller:** Processes player input and updates the model or view accordingly.
+
+ 
 **Implementation**
-
-The following figure shows how the pattern’s roles were mapped to the application classes.
-
-![img](https://www.fe.up.pt/~arestivo/page/img/examples/lpoo/state.svg)
 
 These classes can be found in the following files:
 
-- [Character](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/Character.java)
-- [JumpAbilityState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/JumpAbilityState.java)
-- [DoubleJumpState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/DoubleJumpState.java)
-- [HelicopterState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/HelicopterState.java)
-- [IncreasedGravityState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/IncreasedGravityState.java)
+- [Model](https://github.com/FEUP-LDTS-2024/project-t05g07/blob/fdde9131465db4737f3d4bd39291d10bf814a557/src/main/java/com/Spanca05/astronaut/model)
+- [Viewer](https://github.com/FEUP-LDTS-2024/project-t05g07/blob/471be6ce1303f8316dac01fcbd60339147a2295f/src/main/java/com/Spanca05/astronaut/viewer)
+- [Controller](https://github.com/FEUP-LDTS-2024/project-t05g07/blob/b3a5b09b548e040a9937ec8f1f963c0033a322e1/src/main/java/com/Spanca05/astronaut/controller)
 
 **Consequences**
 
-The use of the State Pattern in the current design allows the following benefits:
+The use of the **MVC Pattern** in the current design allows the following benefits:
+- Clear separation of responsibilities.
+- Easier to update or replace one component without affecting other parts of the code. 
+- Improved maintainability and testability.
 
-- The several states that represent the character’s hability to jump become explicit in the code, instead of relying on a series of flags.
-- We don’t need to have a long set of conditional if or switch statements associated with the various states; instead, polimorphism is used to activate the right behavior.
-- There are now more classes and instances to manage, but still in a reasonable number.
+
+------
+
+#### ALTERNATING BETWEEN GAME STATES
+
+
+**Problem in Context**
+
+The game needed to switch between states, such as menus and gameplay. Implementing this with conditional logic would lead to a confusing, unmaintainable structure, making it difficult to add or modify states without risking bugs in unrelated sections.
+
+**The Pattern**
+
+We have applied the **State** pattern. Each state (MenuState, GameState, PowerUpMenuState, ...) is implemented as a separate class allowing a simple management of all states.
+
+**Implementation**
+
+These classes can be found in the following file:
+
+- [States](https://github.com/FEUP-LDTS-2024/project-t05g07/blob/30d68004018dca18d1f09fbac16111a619e59731/src/main/java/com/Spanca05/astronaut/states)
+
+**Consequences**
+
+The use of the **State Pattern** in the current design allows the following benefits:
+- Simple management of all states by separating each state into a dedicated class.
+- Easier to add or modify states without altering existing code.
+- Improved code readability.
+
+
+------
+
+#### MANAGING POWER-UPS
+
+**Problem in Context**
+
+Adding temporary power-ups (magnets, shields and coin multipliers) to the player required modifying the player's behaviour. Using conditional logic for each power-up would result in a confusing and unstable codebase.
+
+**The Pattern**
+
+We have applied the **Decorator** pattern. This pattern allowed us to extend the astronaut's behavior without modifying the original class. This way, it is possible to stack power-ups while keeping the core player logic reusable.
+
+
+
+**Implementation**
+
+These classes can be found in the following files:
+
+- [Power-up](https://github.com/FEUP-LDTS-2024/project-t05g07/blob/c3cbb33b0dfdae7c8bb91692a1c7a561bbd93f0d/src/main/java/com/Spanca05/astronaut/decorator/PowerupDecorator.java)
+- [BonusCoins](https://github.com/FEUP-LDTS-2024/project-t05g07/blob/afc4322cf3bb72bed804a890b70b9e771ea81511/src/main/java/com/Spanca05/astronaut/decorator/concretedecorators/BonusCoinsDecorator.java)
+- [Sheild](https://github.com/FEUP-LDTS-2024/project-t05g07/blob/31c29ff147768f1647cf10efd742d3acc9a8b1ed/src/main/java/com/Spanca05/astronaut/decorator/concretedecorators/EscudoDecorator.java)
+- [Magnet](https://github.com/FEUP-LDTS-2024/project-t05g07/blob/31c29ff147768f1647cf10efd742d3acc9a8b1ed/src/main/java/com/Spanca05/astronaut/decorator/concretedecorators/ImanDecorator.java)
+
+**Consequences**
+
+The use of the **Decorator Pattern** in the current design allows the following benefits:
+
+- Enabled dynamic modification of the player’s behavior without altering the original class.
+- Supports stacking multiple power-ups.
+- Keeps the core player class unchanged and focused on its primary behavior.
+
+
+------
+
+#### MANAGING ENEMIES
+
+**Problem in Context**
+Different enemy types required distinct behaviors. Handling these behaviors in a single enemy class would lead to code duplication and make it challenging to add new types of enemies.
+
+**The Pattern**
+
+We have applied the **Strategy** pattern. This pattern made it easy to introduce new enemy types by simply creating new behavior strategies, improving extensibility and reducing duplication.
+This pattern made it possible to modify a enemy's strategy without altering the other enemies' code.
+
+
+**Implementation**
+
+These classes can be found in the following files:
+
+- [EnemyInterface](https://github.com/FEUP-LDTS-2024/project-t05g07/blob/31c29ff147768f1647cf10efd742d3acc9a8b1ed/src/main/java/com/Spanca05/astronaut/strategy/HostileStrategy.java)
+- [SpikeStrategy](https://github.com/FEUP-LDTS-2024/project-t05g07/blob/31c29ff147768f1647cf10efd742d3acc9a8b1ed/src/main/java/com/Spanca05/astronaut/strategy/SpikeStrategy.java)
+- [InfectedWallStrategy](https://github.com/FEUP-LDTS-2024/project-t05g07/blob/2ac65b03de944be846fc92a2b3895ed0ffd5aec9/src/main/java/com/Spanca05/astronaut/strategy/TrapStrategy.java)
+
+**Consequences**
+
+The use of the **Strategy Pattern** in the current design allows the following benefits:
+- Simplified the addition of new enemy behaviors by allowing each behavior to be handled in a separate class.
+- Reduced code duplication by sharing common logic.
+- Made enemy behavior easier to manage and modify without affecting other enemy types, enhancing flexibility.
+
 
 ### KNOWN CODE SMELLS
 
