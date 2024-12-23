@@ -6,8 +6,8 @@ import com.Spanca05.astronaut.model.game.elements.Point;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
 
 public class PointViewer implements ElementViewer<Point> {
-    int frameCount = 0;
-    int pointColor = 1;
+    public int frameCount = 0;
+    public int pointColor = 1;
     public PowerUpViewer powerv = new PowerUpViewer();
 
     public void update() {

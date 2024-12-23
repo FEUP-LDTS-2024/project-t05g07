@@ -5,8 +5,8 @@ import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.elements.Coin;
 
 public class CoinViewer implements ElementViewer<Coin> {
-    int frameCount = 0;
-    int coinColor = 1;
+    public int frameCount = 0;
+    public int coinColor = 1;
 
     public void update() {
         frameCount++;

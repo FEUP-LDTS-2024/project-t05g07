@@ -10,7 +10,7 @@ import com.Spanca05.astronaut.viewer.WalletViewer;
 import java.io.IOException;
 
 public class PowerupMenuViewer extends Viewer<PowerupMenu> {
-    private final WalletViewer walletViewer;
+    WalletViewer walletViewer;
 
     public PowerupMenuViewer(PowerupMenu powerupMenu) {
         super(powerupMenu);

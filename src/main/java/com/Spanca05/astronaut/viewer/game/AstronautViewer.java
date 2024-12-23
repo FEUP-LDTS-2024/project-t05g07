@@ -5,8 +5,8 @@ import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.elements.Astronaut;
 
 public class AstronautViewer implements ElementViewer<Astronaut> {
-    int frameCount = 0;
-    int nautaPos = 1;
+    public int frameCount = 0;
+    public int nautaPos = 1;
 
     public void update() {
         frameCount++;

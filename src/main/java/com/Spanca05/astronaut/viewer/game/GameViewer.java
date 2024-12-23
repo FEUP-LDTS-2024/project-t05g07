@@ -11,13 +11,13 @@ import com.Spanca05.astronaut.viewer.Viewer;
 import com.Spanca05.astronaut.viewer.WalletViewer;
 
 public class GameViewer extends Viewer<Arena> {
-    private PointViewer pv;
-    private AstronautViewer nautav;
-    private EndBlockViewer endv;
-    private StarViewer starv;
-    private CoinViewer coinv;
-    private PowerUpViewer powerv;
-    private WalletViewer walletViewer;
+    public PointViewer pv;
+    public AstronautViewer nautav;
+    public EndBlockViewer endv;
+    public StarViewer starv;
+    public CoinViewer coinv;
+    public PowerUpViewer powerv;
+    public WalletViewer walletViewer;
 
     public GameViewer(Arena arena) {
         super(arena);
