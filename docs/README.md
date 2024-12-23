@@ -116,6 +116,8 @@ Nevertheless, being able to override specific methods was useful.
 
 **Implementation**
 
+The following figure shows how the pattern’s roles were mapped to the application classes.
+
 <img src="decorator_diagram.png" width="600">
 
 These classes can be found in the following files:
@@ -155,6 +157,8 @@ This pattern made it possible to modify a enemy's strategy without altering the 
 
 
 **Implementation**
+
+The following figure shows how the pattern’s roles were mapped to the application classes.
 
 <img src="strategy_diagram.png" width="600">
 
