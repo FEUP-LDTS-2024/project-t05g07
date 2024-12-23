@@ -40,7 +40,6 @@ public class ArenaController extends GameController {
         }
 
         if (!getModel().getAstronaut().isAlive())
-            //game.setState(new MenuState(new Menu(getModel().getWallet())));
             if(getModel().getAstronaut().isLevelPassed())
                 if(getModel().getCurrentLevel() == 8) game.setState(new GameFinishedMenuState(new GameFinishedMenu()));
                 else game.setState(new LevelCompletedMenuState(new LevelCompletedMenu(getModel().getCurrentLevel())));

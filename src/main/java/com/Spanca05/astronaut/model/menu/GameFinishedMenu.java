@@ -11,7 +11,6 @@ import java.util.List;
 public class GameFinishedMenu {
     private final List<String> entries;
     private int currentEntry = 0;
-    private int currentLevel = 8;
     private final BackGroundMusic themeMusic;
 
     public GameFinishedMenu() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
