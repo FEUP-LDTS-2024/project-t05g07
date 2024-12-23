@@ -5,8 +5,8 @@ import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.elements.Star;
 
 public class StarViewer implements ElementViewer<Star>{
-    int frameCount = 0;
-    int starColor = 1;
+    public int frameCount = 0;
+    public int starColor = 1;
 
     public void update() {
         frameCount++;
