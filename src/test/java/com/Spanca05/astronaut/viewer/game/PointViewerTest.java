@@ -1,11 +1,9 @@
-package com.Spanca05.astronaut.viewer;
+package com.Spanca05.astronaut.viewer.game;
 
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.elements.Point;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
-import com.Spanca05.astronaut.viewer.game.PointViewer;
-import com.Spanca05.astronaut.viewer.game.PowerUpViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

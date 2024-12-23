@@ -1,4 +1,4 @@
-package com.Spanca05.astronaut.viewer;
+package com.Spanca05.astronaut.viewer.game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -7,7 +7,6 @@ import static org.mockito.Mockito.times;
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.elements.Astronaut;
-import com.Spanca05.astronaut.viewer.game.AstronautViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
