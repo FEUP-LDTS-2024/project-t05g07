@@ -116,6 +116,8 @@ Nevertheless, being able to override specific methods was useful.
 
 **Implementation**
 
+<img src="decorator_diagram.png" width="600">
+
 These classes can be found in the following files:
 
 - [Power-up](https://github.com/FEUP-LDTS-2024/project-t05g07/blob/c3cbb33b0dfdae7c8bb91692a1c7a561bbd93f0d/src/main/java/com/Spanca05/astronaut/decorator/PowerupDecorator.java)
@@ -153,6 +155,8 @@ This pattern made it possible to modify a enemy's strategy without altering the 
 
 
 **Implementation**
+
+<img src="strategy_diagram.png" width="600">
 
 These classes can be found in the following files:
 
