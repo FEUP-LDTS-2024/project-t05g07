@@ -18,7 +18,6 @@ public class PowerUpViewerTest {
     private PowerUpViewer powerUpViewer;
     private GUI guiMock;
     private Position cameraOffSetMock;
-    private Powerup powerupMock;
     private Iman iman;
     private Escudo shield;
     private BonusCoins bonus;
@@ -27,7 +26,6 @@ public class PowerUpViewerTest {
     public void setUp() {
         guiMock = mock(GUI.class);
         cameraOffSetMock = mock(Position.class);
-        powerupMock = mock(Powerup.class);
         iman= mock(Iman.class);
         shield= mock(Escudo.class);
         bonus = mock(BonusCoins.class);
