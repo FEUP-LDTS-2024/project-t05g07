@@ -10,11 +10,15 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Game {
     private final LanternaGUI gui;
     private State state;
     private int currentLevel;
+    private static final Logger logger = Logger.getLogger(Game.class.getName());
+
 
     public Game() throws FontFormatException, IOException, URISyntaxException,UnsupportedAudioFileException,LineUnavailableException {
         this.gui = new LanternaGUI(288, 240);
@@ -59,6 +63,8 @@ public class Game {
             try {
                 if (sleepTime > 0) Thread.sleep(sleepTime);
             } catch (InterruptedException e) {
+                logger.log(Level.SEVERE, "", e);
+
             }
         }
 

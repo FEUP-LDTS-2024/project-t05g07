@@ -17,6 +17,7 @@ public class PointViewer implements ElementViewer<Point> {
             frameCount = 0;
         }
     }
+    @Override
     public void draw(Point point, GUI gui, Position cameraOffSet) {
         if (point instanceof Powerup) {powerv.draw( (Powerup) point,gui,cameraOffSet);}
         else gui.drawPoint(point.getPosition().minus(cameraOffSet), pointColor);

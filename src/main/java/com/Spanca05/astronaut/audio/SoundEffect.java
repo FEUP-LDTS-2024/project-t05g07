@@ -3,11 +3,15 @@ package com.Spanca05.astronaut.audio;
 import javax.sound.sampled.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static java.lang.Thread.sleep;
 
 public class SoundEffect {
     private Clip clip;
+    private static final Logger logger = Logger.getLogger(SoundEffect.class.getName());
+
 
     public SoundEffect(String soundFile) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         URL soundURL = getClass().getResource("/sounds/" + soundFile);
@@ -31,7 +35,7 @@ public class SoundEffect {
 
                 Thread.sleep((long) (clip.getMicrosecondLength() / 1000));
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.log(Level.SEVERE,"", e);
             }
         }).start();
     }

@@ -44,6 +44,9 @@ public class LevelCompletedMenuController extends Controller<LevelCompletedMenu>
                     game.setCurrentLevel(getModel().getCurrentLevel() + 1);
                     game.setState(new MenuState(new Menu(game)));
                 }
+                break;
+            default: break;
+
         }
     }
 

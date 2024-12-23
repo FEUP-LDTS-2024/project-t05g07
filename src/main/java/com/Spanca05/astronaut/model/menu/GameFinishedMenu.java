@@ -9,12 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GameFinishedMenu {
-    private final List<String> entries;
     private int currentEntry = 0;
     private final BackGroundMusic themeMusic;
 
     public GameFinishedMenu() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        this.entries = Arrays.asList("Exit");
         this.themeMusic = new BackGroundMusic("theme.wav");
         this.themeMusic.setVolume(-5.0f);
         this.themeMusic.playLoop();

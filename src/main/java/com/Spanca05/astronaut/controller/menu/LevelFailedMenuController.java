@@ -40,6 +40,8 @@ public class LevelFailedMenuController extends Controller<LevelFailedMenu> {
                     game.setCurrentLevel(getModel().getCurrentLevel());
                     game.setState(new MenuState(new Menu(game)));
                 }
+                break;
+            default:break;
         }
     }
 }
