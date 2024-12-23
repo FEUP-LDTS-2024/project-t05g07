@@ -13,7 +13,6 @@ public class MenuTest {
     public void nextPreviousEntry() throws Exception {
 
         Menu menu = new Menu(Mockito.mock(Game.class));
-        menu.stopMusic();
         assertTrue(menu.isSelected(0));
         assertTrue(menu.isSelectedStart());
 
@@ -38,7 +37,6 @@ public class MenuTest {
     @Test
     public void isSelected() throws Exception {
         Menu menu = new Menu(Mockito.mock(Game.class));
-        menu.stopMusic();
         assertTrue(menu.isSelected(0));
         assertFalse(menu.isSelected(1));
         assertFalse(menu.isSelected(2));
