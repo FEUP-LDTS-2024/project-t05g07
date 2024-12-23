@@ -29,7 +29,7 @@ public class MonsterViewerTest {
         Position wallPositionMock = mock(Position.class);
         when(monsterMock.getPosition()).thenReturn(wallPositionMock);
         when(wallPositionMock.minus(cameraOffSetMock)).thenReturn(wallPositionMock);
-        
+
         monsterViewer.draw(monsterMock, guiMock, cameraOffSetMock);
         verify(guiMock, times(1)).drawSpike(wallPositionMock.minus(cameraOffSetMock));
     }
