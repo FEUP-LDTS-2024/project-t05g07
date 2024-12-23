@@ -1,6 +1,8 @@
 package com.Spanca05.astronaut.viewer;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
 import com.Spanca05.astronaut.gui.GUI;
 import com.Spanca05.astronaut.model.Position;
@@ -8,39 +10,53 @@ import com.Spanca05.astronaut.model.game.elements.Astronaut;
 import com.Spanca05.astronaut.viewer.game.AstronautViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.*;
 
 public class AstronautViewerTest {
 
-    @Mock
-    GUI gui;
-
-    @Mock
-    Astronaut astronaut;
-
-    @Mock
-    Position cameraOffSet;
-
-    // Manually initialize AstronautViewer
     private AstronautViewer astronautViewer;
+    private GUI guiMock;
+    private Position cameraOffSetMock;
+    private Astronaut astronautMock;
 
     @BeforeEach
-    void setup() {
-        MockitoAnnotations.openMocks(this);  // Initialize mocks
-        astronautViewer = new AstronautViewer();  // Initialize class with mocks
+    public void setUp() {
+        guiMock = mock(GUI.class);
+        cameraOffSetMock = mock(Position.class);
+        astronautMock = mock(Astronaut.class);
+
+        astronautViewer = new AstronautViewer();
+    }
+
+    @Test
+    public void testUpdateTrue() {
+        astronautViewer.nautaPos=1;
+        astronautViewer.frameCount = 15;
+        astronautViewer.update();
+        assertEquals(2, astronautViewer.nautaPos);
+    }
+
+    @Test
+    public void testUpdateTruePos() {
+        astronautViewer.nautaPos=2;
+        astronautViewer.frameCount = 15;
+        astronautViewer.update();
+        assertEquals(1, astronautViewer.nautaPos);
     }
     @Test
-    void testUpdate_TogglesPositionAfter15Frames() {
-        // Verify that the astronaut position toggles after 15 frames
+    public void testUpdateFalse() {
+        astronautViewer.nautaPos=1;
+        astronautViewer.frameCount = 5;
         astronautViewer.update();
-        int initialPosition = astronautViewer.nautaPos;  // Store the initial position
+        assertEquals(1, astronautViewer.nautaPos);
+    }
+    @Test
+    public void testDrawAstronaut() {
+        Position nautaPositionMock = mock(Position.class);
+        when(astronautMock.getPosition()).thenReturn(nautaPositionMock);
+        when(nautaPositionMock.minus(cameraOffSetMock)).thenReturn(nautaPositionMock);
 
-        // Simulate 15 updates to toggle position
-        for (int i = 0; i < 15; i++) {
-            astronautViewer.update();
-        }
+        astronautViewer.draw(astronautMock, guiMock, cameraOffSetMock);
 
-        // After 15 updates, verify that the position has toggled
-        assertNotEquals(initialPosition, astronautViewer.nautaPos);
+        verify(guiMock, times(1)).drawAstronaut(nautaPositionMock, astronautViewer.nautaPos,astronautMock.getAngle());
     }
 }

@@ -49,7 +49,7 @@ public class CoinViewerTest {
     }
 
     @Test
-    public void testDrawCallsGuiDrawCoin() {
+    public void testDrawCoin() {
         Position coinPositionMock = mock(Position.class);
         when(coinMock.getPosition()).thenReturn(coinPositionMock);
         when(coinPositionMock.minus(cameraOffSetMock)).thenReturn(coinPositionMock);
