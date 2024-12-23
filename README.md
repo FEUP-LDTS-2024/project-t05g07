@@ -1,73 +1,59 @@
-# Descrição do Jogo
-O jogo ocorre num labirinto, onde o jogador controla um astronauta que se movimenta
-rapidamente em linha reta, parando apenas ao encontrar um obstáculo. Esta mecânica
-simples desafia o jogador a planear os seus movimentos com precisão para evitar perigos,
-tais como armadilhas, aliens e outras ameaças. O objetivo principal é encontrar a saída do
-labirinto enquanto coleta itens como estrelas e pontos, que podem ser usados para
-desbloquear novas habilidades.
-Conforme o jogador acumula pontos, ele sobe de nível e desbloqueia novas arenas em
-diferentes planetas que serão mais complexos e darão recompensas maiores.
+# ECLIPTICA 
+## Game Description
+In Ecliptica, the player plays as an astronaut navigating an arena. The goal is to collect coins, stars, and power-ups such as a Magnet to attract nearby coins, a Coin Multiplier for extra coins and a Shield to protect the player from dangerous obstacles. The astronaut moves in one direction until he finds a wall, this allows the player to jump quickly across the map in straight lines.
 
-# Mockups
+The game introduces two enemy types: Spike Walls that act as instant death zones, ending the game upon contact and Infected Walls that spawn spikes around them when the player passes by. As the player progresses, the arenas grow more difficult, with more obstacles to navigate.
+## Mockups
 
 <img src="docs/mockup_menu.png" width="413"> <img src="docs/mockup_alevel.png" width="413">
 
-# Funcionalidades do Jogador
+## Player's Functionalities
 
-## Movimentação
-- O jogador pode se mover em quatro direções (cima, baixo, esquerda e direita);
-- O movimento é uniforme até encontrar um obstáculo.
+### Movement
+- The player can move in four directions(up, down, left & right);
+- The astronaut moves until he founds a wall.
 
-## Coleta de Itens
-- O jogador coleta automaticamente itens ao tocá-los, como moedas, pontos,
-estrelas e power-ups.
+### Item Collection
+- The player automatically collects items upon touching them, such as coins, points, stars, and power-ups.
+- Throughout the levels, as the player collects coins and points, these contribute to the player's wallet.
+
+## Main Game Elements
 
 
-# Principais Elementos do Jogo
+### Arena 
 
-## Arena (Labirinto)
-- Cada nível ocorre numa arena única, representando um planeta diferente;
-- Existem armadilhas e obstáculos móveis ou estáticos que o jogador deve evitar.
+- Each level takes place in a unique arena, representing a different planet;
+- There are traps and obstacles, both static and moving, that the player must avoid.
 
-## Jogador
-- Movimenta-se rapidamente em linha reta até atingir um obstáculo;
-- Morre instantaneamente ao encontrar um inimigo/armadilha.
+### Player
+- Moves quickly in straight lines until hitting an obstacle;
+- Dies instantly upon contact with an enemy or trap.
 
-## Itens Colecionáveis
-### Pontos
-- São coletados ao longo das arenas;
-- Num planeta, se o jogador coletar todos os pontos, recebe 200 moedas;
-- Permitem subir de nível.
+## Collectible Items
+### Points
+- Collected throughout the arenas;
+- Contribute to the Wallet;
+ 
+### Coins
+- Collected throughout the arenas;
+- Contribute significantly to the Wallet;
 
-### Moedas
-- São coletadas ao longo das arenas;
-- Aumentam a pontuação e podem ser usadas para comprar upgrades no
-menu.
-
-### Estrelas
-- Elementos que permitem desbloquear novos planetas;
-- Usadas como método de classificação da performance do jogador num nível
-específico;
-- Para desbloquear a próxima arena, o jogador deve coletar pelo menos uma
-estrela.
 
 ### Power-ups
-- Garantem habilidades temporárias;
-- Podem ser melhorados no menu, aumentando eficácia ou duração;
-- Podem ser:
-  - **Escudo:** Torna o jogador imune a armadilhas;
-  - **Imobilizador:** Imobiliza os inimigos e armadilhas;
-  - **Viciado em moedas:** Duplica o valor de cada moeda coletada;
-  - **Potenciador de Pontuação:** Multiplica a pontuação obtida;
-  - **Íman:** Atrai pontos próximos.
- 
-### Obstáculos
-- Podem ser fixos ou móveis;
-- Variam entre espinhos, projéteis ou inimigos móveis que matam o jogador
-ao contato;
-- Alguns inimigos perseguem o jogador, exigindo estratégia para escapar.
+- Provide temporary abilities;
+- Can be upgraded in the menu to improve their duration;
+- Types include:
 
-# Diagrama UML
+- **Shield:** Protects the player from traps;
+- **Magnet:** Attracts nearby coins and points;
+- **Coin Multiplier:** Increases coins' and points' worth;
+ 
+## Enemies
+ - Instantly kill the player upon contact. There is no concept of health.
+    - **Spike Walls** - Players can come into contact with Spike Walls but cannot land directly on them.
+    - **Infected Walls** -  Spawns a Spike Wall in the direction of the player's movement, when he passes nearby. 
+
+# UML Diagram
 
 ![UML class diagram](docs/uml_ldts.drawio.png)
 

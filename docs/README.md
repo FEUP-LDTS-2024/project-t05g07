@@ -6,6 +6,10 @@ The game introduces two enemy types: Spike Walls that act as instant death zones
 ***
 This project was developed by *Ana Pacheco* (*up202307150*@fe.up.pt) , *Carolina Mosqueiro* (*up202303637*@fe.up.pt) and *Vasco Vieira* (*up202307797*@fe.up.pt) for LDTS 2024⁄25.
 ***
+
+![GIF](gif.gif)
+
+
 ### IMPLEMENTED FEATURES
 
 - **Linear Movement** - The player moves swiftly in straight lines across the map, only stopping when he encounters a wall.
