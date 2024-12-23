@@ -5,8 +5,8 @@ import com.Spanca05.astronaut.model.Position;
 import com.Spanca05.astronaut.model.game.elements.EndBlock;
 
 public class EndBlockViewer implements ElementViewer<EndBlock> {
-    int frameCount = 0;
-    int endBlockColor = 1;
+    public int frameCount = 0;
+    public int endBlockColor = 1;
 
     public void update() {
         frameCount++;
