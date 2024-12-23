@@ -36,11 +36,15 @@ public class Game {
         new Game().start();
     }
 
+    public State getState(){
+        return state;
+    }
+
     public void setState(State state) {
         this.state = state;
     }
 
-    private void start() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    void start() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         int FPS = 50;
         int frameTime = 1000 / FPS;
 
