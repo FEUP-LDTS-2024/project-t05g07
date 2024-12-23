@@ -179,18 +179,21 @@ The use of the **Strategy Pattern** in the current design allows the following b
 - Reduced code duplication by sharing common logic.
 - Made enemy behavior easier to manage and modify without affecting other enemy types, enhancing flexibility.
 
-
+***
 ### KNOWN CODE SMELLS
 
-- A classe AstronautController está muito complexa e (provavelmente) vai contra o Single Responsibility ...
-- A armadilha não volta a spawnar um espinho se o Astronauta ainda estiver a tocar nela e não tiver sido morto ...
-- O astronauta consegue parar em posições do mapa que não devia por causa do escudo ...
-- ...
 
+According to the plugin '*errorprone*', our codebase has currently two code smells:
+
+- **Usage of a Deprecated API:** 
+In the class [LanternaGUI](https://github.com/FEUP-LDTS-2024/project-t05g07/blob/471be6ce1303f8316dac01fcbd60339147a2295f/src/main/java/com/Spanca05/astronaut/gui/LanternaGUI.java) we chose not to update the deprecated API, as it is functioning as expected, and making such a change would introduce unnecessary risk to the current version of the game.
+- **Improper implementation of *equals* method:**
+In the class [Position](https://github.com/FEUP-LDTS-2024/project-t05g07/blob/2fe1f2f53390f7dffbe082d3999b06eb16435b81/src/main/java/com/Spanca05/astronaut/model/Position.java), the *equals()* method was intentionally implemented to enforce strict equality between objects of the exact Position class. Since we do not intend for Position to be subclassed, using getClass() ensures that only instances of the Position type are considered equal. Therefore, the current implementation aligns with our design goals and remains appropriate for our use case.
+***
 ### TESTING
 
-...
 
+***
 ### SELF-EVALUATION
 
 - Eu: 33.3%
