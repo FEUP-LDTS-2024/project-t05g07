@@ -8,6 +8,7 @@ import com.Spanca05.astronaut.model.game.elements.Monster;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class TrapStrategy implements HostileStrategy {
 
@@ -21,7 +22,7 @@ public class TrapStrategy implements HostileStrategy {
     public void step(Arena arena, Element element, GUI.ACTION action, long time) {
 
         if (touched(arena, element.getPosition())
-                && astronautLastPosition != arena.getAstronaut().getPosition()) {
+                && !Objects.equals(astronautLastPosition, arena.getAstronaut().getPosition())) {
             spikes.add(new GangOfSpike(arena.getAstronaut().getPosition(), time));
             this.astronautLastPosition = arena.getAstronaut().getPosition();
         }

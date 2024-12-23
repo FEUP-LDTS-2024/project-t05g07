@@ -27,7 +27,7 @@ public class ArenaController extends GameController {
         this.monsterController = new MonsterController(arena);
         this.cameraController = new CameraController(arena);
     }
-
+    @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         switch (action) {
             case QUIT -> game.setState(new MenuState(new Menu(game)));
@@ -35,7 +35,7 @@ public class ArenaController extends GameController {
                 if (getModel().getAstronaut().getDirection() == null)
                     getModel().getAstronaut().setDirection(action);
             }
-            case null, default -> {
+            default -> {
             }
         }
 
