@@ -38,24 +38,6 @@ public class Menu {
                 currentEntry = this.entries.size() - 1;
         }
 
-    public boolean isSelectedEntry(int i) {
-        return currentEntry == i;
-    }
-
-        public void nextLevel() {
-            if (currentLevel < 8 && isSelectedStart()) {
-                currentLevel++;
-                entries.set(0, "Level " + currentLevel);
-            }
-        }
-
-        public void previousLevel() {
-            if (currentLevel > 1 && isSelectedStart()) {
-                currentLevel--;
-                entries.set(0, "Level " + currentLevel);
-            }
-        }
-
         public int getCurrentLevel() {
             return currentLevel;
         }

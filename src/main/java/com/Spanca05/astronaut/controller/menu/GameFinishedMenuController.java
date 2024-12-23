@@ -4,11 +4,8 @@ import com.Spanca05.astronaut.Game;
 import com.Spanca05.astronaut.audio.SoundEffect;
 import com.Spanca05.astronaut.controller.Controller;
 import com.Spanca05.astronaut.gui.GUI;
-import com.Spanca05.astronaut.model.game.arena.LoaderArenaBuilder;
 import com.Spanca05.astronaut.model.menu.GameFinishedMenu;
-import com.Spanca05.astronaut.model.menu.LevelFailedMenu;
 import com.Spanca05.astronaut.model.menu.Menu;
-import com.Spanca05.astronaut.states.GameState;
 import com.Spanca05.astronaut.states.MenuState;
 
 import javax.sound.sampled.LineUnavailableException;
