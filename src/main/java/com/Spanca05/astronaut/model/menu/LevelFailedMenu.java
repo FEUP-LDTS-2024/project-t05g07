@@ -34,16 +34,7 @@ public class LevelFailedMenu {
             currentEntry = this.entries.size() - 1;
     }
 
-    public void nextLevel() {
-        // Atualizar aqui quando se adicionarem mais níveis.
-        if (currentLevel < 8) {
-            ++currentLevel;
-        }
-    }
-
     public int getCurrentLevel() {return this.currentLevel;}
-
-    public String getEntry(int i) {return entries.get(i);}
 
     public boolean isSelected(int i) {return currentEntry == i;}
 
@@ -53,6 +44,4 @@ public class LevelFailedMenu {
     }
 
     public boolean isSelectedExit() {return isSelected(1);}
-
-    public int getNumberEntries() {return this.entries.size();}
 }

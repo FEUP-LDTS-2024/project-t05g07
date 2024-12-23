@@ -32,12 +32,6 @@ public class MenuController extends Controller<Menu> {
             case DOWN:
                 getModel().nextEntry();
                 break;
-            case LEFT:
-                //getModel().previousLevel();
-                break;
-            case RIGHT:
-                //getModel().nextLevel();
-                break;
             case SELECT:
                 clickSound.play();
                 if (getModel().isSelectedExit()) game.setState(null);

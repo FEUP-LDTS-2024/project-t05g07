@@ -25,12 +25,8 @@ public class GameFinishedMenu {
         themeMusic.stop();
     }
 
-    public String getEntry(int i) {return entries.get(i);}
-
     public boolean isSelected(int i) {return currentEntry == i;}
 
     public boolean isSelectedExit() {return isSelected(0);}
-
-    public int getNumberEntries() {return this.entries.size();}
 
 }

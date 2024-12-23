@@ -40,10 +40,6 @@ public class PowerupMenu {
             currentEntry = this.entries.size() - 1;
     }
 
-    public String getEntry(int i) {
-        return entries.get(i);
-    }
-
     public boolean isSelected(int i) {
         return currentEntry == i;
     }
@@ -97,10 +93,6 @@ public class PowerupMenu {
     public boolean isSelectedGoBack() {
         this.themeMusic.stop();
         return isSelected(3);
-    }
-
-    public int getNumberEntries() {
-        return this.entries.size();
     }
 
     private void extendDuration(Powerup powerup) {

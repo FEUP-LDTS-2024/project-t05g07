@@ -43,8 +43,6 @@ public class LevelCompletedMenu {
 
     public int getCurrentLevel() {return this.currentLevel;}
 
-    public String getEntry(int i) {return entries.get(i);}
-
     public boolean isSelected(int i) {return currentEntry == i;}
 
     public boolean isSelectedRetry() {

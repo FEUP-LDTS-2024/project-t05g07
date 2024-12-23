@@ -65,8 +65,6 @@ public class AstronautController extends GameController {
 
             if (getModel().isEndBlock(position)) getModel().getAstronaut().win();
 
-            //if(getModel().isCoin(position)) getModel().catchCoin(position);
-
             if (getModel().isStar(position)) getModel().catchStar(position);
 
             power.catchPoint(position);
@@ -117,16 +115,6 @@ public class AstronautController extends GameController {
         getModel().getAstronaut().setShield(false);
         isPowerActive = false;
         //System.out.println("deactivated power up");
-    }
-
-    private void rotateAstronaut(Position position) {
-        switch (getModel().getAstronaut().getDirection()) {
-            case UP -> getModel().getAstronaut().setAngle(180);
-            case DOWN -> getModel().getAstronaut().setAngle(0);
-            case LEFT -> getModel().getAstronaut().setAngle(90);
-            case RIGHT -> getModel().getAstronaut().setAngle(-90);
-            default -> {}
-        }
     }
 
     @Override
