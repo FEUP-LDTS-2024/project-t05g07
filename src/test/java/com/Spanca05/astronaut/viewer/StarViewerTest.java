@@ -50,7 +50,7 @@ public class StarViewerTest {
         assertEquals(1, starViewer.starColor);
     }
     @Test
-    public void testDrawAstronaut() {
+    public void testDrawStar() {
         Position starPositionMock = mock(Position.class);
         when(starMock.getPosition()).thenReturn(starPositionMock);
         when(starPositionMock.minus(cameraOffSetMock)).thenReturn(starPositionMock);

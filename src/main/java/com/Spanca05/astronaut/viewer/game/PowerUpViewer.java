@@ -8,8 +8,8 @@ import com.Spanca05.astronaut.model.game.elements.powerups.Iman;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
 
 public class PowerUpViewer implements ElementViewer<Powerup> {
-    int frameCount = 0;
-    int powerColor = 1;
+    public int frameCount = 0;
+    public int powerColor = 1;
 
     public void update() {
         frameCount++;

@@ -50,7 +50,7 @@ public class EndBlockViewerTest {
         assertEquals(1, endBlockViewer.endBlockColor);
     }
     @Test
-    public void testDrawAstronaut() {
+    public void testDrawEndBlock() {
         Position endBlockPositionMock = mock(Position.class);
         when(endBlockMock.getPosition()).thenReturn(endBlockPositionMock);
         when(endBlockPositionMock.minus(cameraOffSetMock)).thenReturn(endBlockPositionMock);
