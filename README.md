@@ -55,5 +55,11 @@ The game introduces two enemy types: Spike Walls that act as instant death zones
 
 # UML Diagram
 
-![UML class diagram](docs/uml_ldts.drawio.png)
+![Initial UML class diagram](docs/uml_ldts.drawio.png)
+
+![Final UML 1](docs/final_uml_namesonly.png)
+
+![Final UML 2](docs/final_uml.png)
+
+![Final UML 3](docs/final_uml_withfields.png)
 
