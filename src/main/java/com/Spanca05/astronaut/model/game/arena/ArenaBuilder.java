@@ -32,8 +32,6 @@ public abstract class ArenaBuilder {
 
     protected abstract List<Monster> createMonsters();
 
-    //protected abstract List<Coin> createCoins();
-
     protected abstract List<Star> createStar();
 
     protected abstract Astronaut createAstronaut();

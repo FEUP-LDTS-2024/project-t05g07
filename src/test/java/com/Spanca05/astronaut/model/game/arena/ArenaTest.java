@@ -24,12 +24,19 @@ public class ArenaTest {
     }
 
     @Test
+    public void getWallet() {
+        assertNotNull(arena.getWallet());
+    }
+
+    @Test
     public void setAstronaut() {
         Astronaut astronaut = new Astronaut(0,0);
         arena = Mockito.spy(arena);
         arena.setAstronaut(astronaut);
         assertEquals(astronaut, arena.getAstronaut());
         assertEquals(arena.getCameraPosition(), astronaut.getPosition().minus(new Position(9,9)));
+        arena.setCameraPosition(new Position(0,0));
+        assertNotEquals(arena.getCameraPosition(), astronaut.getPosition().minus(new Position(9,9)));
     }
 
     @Test
