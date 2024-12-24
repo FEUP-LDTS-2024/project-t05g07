@@ -8,10 +8,13 @@ import com.Spanca05.astronaut.model.game.elements.*;
 import com.Spanca05.astronaut.model.game.elements.powerups.Powerup;
 import com.Spanca05.astronaut.model.game.elements.Monster;
 
-import java.util.*;
+import java.util.ArrayList;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 public class Arena implements Power {
     private final int width;
@@ -41,7 +44,7 @@ public class Arena implements Power {
         this.height = height;
         this.currentLevel = currentLevel;
 
-        this.caughtPowerups = new ArrayDeque<>();
+        this.caughtPowerups = new LinkedList<>();
         this.wallet = new Wallet();
         this.camera = new Camera(0, 0);
         this.starSound = new SoundEffect("star.wav");

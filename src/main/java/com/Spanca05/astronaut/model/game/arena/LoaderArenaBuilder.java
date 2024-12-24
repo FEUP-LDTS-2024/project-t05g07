@@ -11,15 +11,12 @@ import com.Spanca05.astronaut.strategy.SpikeStrategy;
 import com.Spanca05.astronaut.strategy.TrapStrategy;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class LoaderArenaBuilder extends ArenaBuilder {
     private final int level;
@@ -30,7 +27,8 @@ public class LoaderArenaBuilder extends ArenaBuilder {
 
         URL resource = LoaderArenaBuilder.class.getResource("/levels/level" + level + ".lvl");
 
-        BufferedReader br = Files.newBufferedReader(Paths.get(resource.getFile()), UTF_8);;
+        BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
+
         lines = readLines(br);
     }
 

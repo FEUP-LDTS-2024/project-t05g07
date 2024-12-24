@@ -134,7 +134,7 @@ public class AstronautController extends GameController {
                 moveAstronautRight();
                 getModel().getAstronaut().setAngle(-90);}
 
-            default -> {
+            case null, default -> {
             }
         }
 

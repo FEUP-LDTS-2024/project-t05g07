@@ -40,9 +40,6 @@ public class MenuController extends Controller<Menu> {
                     getModel().stopMusic();
                     game.setState(new GameState(new LoaderArenaBuilder(getModel().getCurrentLevel()).createArena()));
                 }
-                break;
-            default:break;
-
         }
     }
 }
