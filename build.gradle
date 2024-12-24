@@ -31,16 +31,42 @@ test {
 pitest {
     junit5PluginVersion = '1.2.0'
     targetClasses = ['com.Spanca05.astronaut.*']
-    excludedClasses = ['com.Spanca05.astronaut.model.menu.*',
-                       'com.Spanca05.astronaut.controller.*',
-                       'com.Spanca05.astronaut.gui.*',
+    excludedClasses = ['com.Spanca05.astronaut.Game',
+                       'com.Spanca05.astronaut.controller.game.ArenaController',
+                       'com.Spanca05.astronaut.controller.game.AstronautController',
+                       'com.Spanca05.astronaut.controller.menu.GameFinishedMenuController',
+                       'com.Spanca05.astronaut.controller.menu.LevelCompletedMenuController',
+                       'com.Spanca05.astronaut.controller.menu.LevelFailedMenuController',
+                       'com.Spanca05.astronaut.controller.menu.MenuController',
+                       'com.Spanca05.astronaut.controller.menu.PowerupMenuController',
                        'com.Spanca05.astronaut.decorator.concretedecorators.BonusCoinsDecorator',
-                       'com.Spanca05.astronaut.Game']
-    excludedTestClasses = ['com.Spanca05.astronaut.model.*',
-                           'com.Spanca05.astronaut.controller.*',
-                           'com.Spanca05.astronaut.gui.*',
+                       'com.Spanca05.astronaut.gui.LanternaGUI',
+                       'com.Spanca05.astronaut.model.game.arena.Arena',
+                       'com.Spanca05.astronaut.model.game.arena.LoaderArenaBuilder',
+                       'com.Spanca05.astronaut.model.game.elements.Astronaut',
+                       'com.Spanca05.astronaut.model.menu.GameFinishedMenu',
+                       'com.Spanca05.astronaut.model.menu.LevelCompletedMenu',
+                       'com.Spanca05.astronaut.model.menu.LevelFailedMenu',
+                       'com.Spanca05.astronaut.model.menu.Menu',
+                       'com.Spanca05.astronaut.model.menu.PowerupMenu']
+    excludedTestClasses = ['com.Spanca05.astronaut.GameTest',
+                           'com.Spanca05.astronaut.controller.game.ArenaControllerTest',
+                           'com.Spanca05.astronaut.controller.game.AstronautControllerTest',
+                           'com.Spanca05.astronaut.controller.menu.GameFinishedMenuControllerTest',
+                           'com.Spanca05.astronaut.controller.menu.LevelCompletedMenuControllerTest',
+                           'com.Spanca05.astronaut.controller.menu.LevelFailedMenuControllerTest',
+                           'com.Spanca05.astronaut.controller.menu.MenuControllerTest',
+                           'com.Spanca05.astronaut.controller.menu.PowerupMenuControllerTest',
                            'com.Spanca05.astronaut.decorator.concretedecorators.BonusCoinsDecoratorTest',
-                           'com.Spanca05.astronaut.GameTest']
+                           'com.Spanca05.astronaut.gui.LanternaGUITest',
+                           'com.Spanca05.astronaut.model.game.arena.ArenaTest',
+                           'com.Spanca05.astronaut.model.game.arena.LoaderArenaBuilderTest',
+                           'com.Spanca05.astronaut.model.game.elements.AstronautTest',
+                           'com.Spanca05.astronaut.model.menu.GameFinishedMenuTest',
+                           'com.Spanca05.astronaut.model.menu.LevelCompletedMenuTest',
+                           'com.Spanca05.astronaut.model.menu.LevelFailedMenuTest',
+                           'com.Spanca05.astronaut.model.menu.MenuTest',
+                           'com.Spanca05.astronaut.model.menu.PowerupMenuTest']
     outputFormats = ['HTML']
     useClasspathFile = true
 }
