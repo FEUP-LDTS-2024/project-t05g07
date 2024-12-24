@@ -198,6 +198,10 @@ In the class [Position](https://github.com/FEUP-LDTS-2024/project-t05g07/blob/2f
 
 **Mutation Report**
 
+<img src="pitest_report.png">
+
+We had to exclude classes that played audio or opened the terminal. 
+
 [Link](../build/reports/pitest/index.html)
 
 ***
