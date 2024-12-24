@@ -192,11 +192,15 @@ In the class [Position](https://github.com/FEUP-LDTS-2024/project-t05g07/blob/2f
 ***
 ### TESTING
 
+**Coverage Report**
+
+<img src="coverage_report.png">
+
+[Link]()
 
 ***
 ### SELF-EVALUATION
 
-- Eu: 33.3%
-- Tu: 33.3%
-- Ele: 33.3%
-- Nós, vós, eles, deus: 0.1%
+- Ana Pacheco: 33.3%
+- Carolina Mosqueiro: 33.3%
+- Vasco Vieira: 33.3%
