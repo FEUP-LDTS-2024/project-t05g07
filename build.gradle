@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'info.solidsoft.pitest' version '1.15.0'
 }
 
 group = 'com.Spanca05.astronaut'
@@ -26,6 +27,24 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+pitest {
+    junit5PluginVersion = '1.2.0'
+    targetClasses = ['com.Spanca05.astronaut.*']
+    excludedClasses = ['com.Spanca05.astronaut.model.menu.*',
+                       'com.Spanca05.astronaut.controller.*',
+                       'com.Spanca05.astronaut.gui.*',
+                       'com.Spanca05.astronaut.decorator.concretedecorators.BonusCoinsDecorator',
+                       'com.Spanca05.astronaut.Game']
+    excludedTestClasses = ['com.Spanca05.astronaut.model.*',
+                           'com.Spanca05.astronaut.controller.*',
+                           'com.Spanca05.astronaut.gui.*',
+                           'com.Spanca05.astronaut.decorator.concretedecorators.BonusCoinsDecoratorTest',
+                           'com.Spanca05.astronaut.GameTest']
+    outputFormats = ['HTML']
+    useClasspathFile = true
+}
+
 application {
     mainClass.set("com.Spanca05.astronaut.Game")
 }
