@@ -22,8 +22,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class LanternaGUI implements GUI {
     private final Screen screen;
@@ -83,8 +81,6 @@ public class LanternaGUI implements GUI {
     private final BufferedImage Nine;
     private final BufferedImage Price;
     private final BufferedImage finalMenu;
-    private static final Logger logger = Logger.getLogger(LanternaGUI.class.getName());
-
 
 
     public LanternaGUI(Screen screen) throws IOException {
@@ -116,7 +112,7 @@ public class LanternaGUI implements GUI {
         this.Button5v2 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao5v2.png")));
         this.Button6 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao6.png")));
         this.Button6v2 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/mainMenu/botao6v2.png")));
-        this.SecondMenuBackground = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/secondMenu.png")));
+        this.SecondMenuBackground = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/secondMenu.png"))));
         this.infectedWall = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/infectedWall.png")));
         this.sheildPower = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/sheild.png")));
         this.coinsPower = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/coins.png")));
@@ -139,9 +135,9 @@ public class LanternaGUI implements GUI {
         this.Seven = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/7.png")));
         this.Eight = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/8.png")));
         this.Nine = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/9.png")));
-        this.finalMenu = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/finaLmenu.png")));
-        this.CoinsSprite1 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/doubleCoins.png")));
-        this.CoinsSprite2 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/doubleCoinsv2.png")));
+        this.finalMenu = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/finaLmenu.png"))));
+        this.CoinsSprite1 = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/doubleCoins.png"))));
+        this.CoinsSprite2 = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/doubleCoinsv2.png"))));
         this.Price = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/price.png")));
     }
 
@@ -176,7 +172,7 @@ public class LanternaGUI implements GUI {
         this.Button5v2 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/botao5v2.png")));
         this.Button6 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/botao6.png")));
         this.Button6v2 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/botao6v2.png")));
-        this.SecondMenuBackground = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/secondMenu.png")));
+        this.SecondMenuBackground = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/secondMenu.png"))));
         this.infectedWall = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/map/infectedWall.png")));
         this.sheildPower = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/sheild.png")));
         this.coinsPower = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/coins.png")));
@@ -199,9 +195,9 @@ public class LanternaGUI implements GUI {
         this.Seven = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/7.png")));
         this.Eight = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/8.png")));
         this.Nine = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/font/9.png")));
-        this.finalMenu = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/finaLmenu.png")));
-        this.CoinsSprite1 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/doubleCoins.png")));
-        this.CoinsSprite2 = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/doubleCoinsv2.png")));
+        this.finalMenu = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/endMenu/finaLmenu.png"))));
+        this.CoinsSprite1 = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/doubleCoins.png"))));
+        this.CoinsSprite2 = ImageIO.read((Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/doubleCoinsv2.png"))));
         this.Price = ImageIO.read(Objects.requireNonNull(LanternaGUI.class.getClassLoader().getResource("sprites/powerupsMenu/price.png")));
 
     }
@@ -238,7 +234,6 @@ public class LanternaGUI implements GUI {
         return fontConfig;
     }
 
-    @Override
     public ACTION getNextAction() throws IOException {
         KeyStroke keyStroke = screen.pollInput();
         if (keyStroke == null) return ACTION.NONE;
@@ -327,7 +322,7 @@ public class LanternaGUI implements GUI {
             drawImage(position, rotatedSprite);
 
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -336,7 +331,7 @@ public class LanternaGUI implements GUI {
         try {
             drawImage(position, this.WallSprite);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -349,7 +344,7 @@ public class LanternaGUI implements GUI {
                 drawImage(position, this.Coin2Sprite);
             }
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -358,7 +353,7 @@ public class LanternaGUI implements GUI {
         try {
             drawImage(position, this.MenuBackground);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -367,7 +362,7 @@ public class LanternaGUI implements GUI {
         try {
             drawImage(position, this.SecondMenuBackground);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -376,7 +371,7 @@ public class LanternaGUI implements GUI {
         try {
             drawImage(position, this.finalMenu);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -423,7 +418,7 @@ public class LanternaGUI implements GUI {
             BufferedImage buttonSprite = getPowerButtonSprite(1, isSelected);
             drawImage(position, buttonSprite);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -433,7 +428,7 @@ public class LanternaGUI implements GUI {
             BufferedImage buttonSprite = getPowerButtonSprite(2, isSelected);
             drawImage(position, buttonSprite);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -443,7 +438,7 @@ public class LanternaGUI implements GUI {
             BufferedImage buttonSprite = getPowerButtonSprite(3, isSelected);
             drawImage(position, buttonSprite);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -453,7 +448,7 @@ public class LanternaGUI implements GUI {
             BufferedImage buttonSprite = getPowerButtonSprite(4, isSelected);
             drawImage(position, buttonSprite);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -463,7 +458,7 @@ public class LanternaGUI implements GUI {
             BufferedImage buttonSprite = getCompletedButtonSprite(1, isSelected);
             drawImage(position, buttonSprite);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -473,7 +468,7 @@ public class LanternaGUI implements GUI {
             BufferedImage buttonSprite = getCompletedButtonSprite(2, isSelected);
             drawImage(position, buttonSprite);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -483,7 +478,7 @@ public class LanternaGUI implements GUI {
             BufferedImage buttonSprite = getFailedButtonSprite(1, isSelected);
             drawImage(position, buttonSprite);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -493,7 +488,7 @@ public class LanternaGUI implements GUI {
             BufferedImage buttonSprite = getFailedButtonSprite(2, isSelected);
             drawImage(position, buttonSprite);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -503,7 +498,7 @@ public class LanternaGUI implements GUI {
             BufferedImage buttonSprite = getCompletedButtonSprite(3, isSelected);
             drawImage(position, buttonSprite);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -513,7 +508,7 @@ public class LanternaGUI implements GUI {
             BufferedImage buttonSprite = getButtonSprite(1, isSelected);
             drawImage(position, buttonSprite);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -523,7 +518,7 @@ public class LanternaGUI implements GUI {
             BufferedImage buttonSprite = getButtonSprite(2, isSelected);
             drawImage(position, buttonSprite);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -533,7 +528,7 @@ public class LanternaGUI implements GUI {
             BufferedImage buttonSprite = getButtonSprite(3, isSelected);
             drawImage(position, buttonSprite);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -546,7 +541,7 @@ public class LanternaGUI implements GUI {
                 drawImage(position, this.EndBlockSprite2);
             }
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -559,7 +554,7 @@ public class LanternaGUI implements GUI {
                 drawImage(position, this.Point2Sprite);
             }
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -572,7 +567,7 @@ public class LanternaGUI implements GUI {
                 drawImage(position, this.StarSprite2);
             }
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -581,17 +576,17 @@ public class LanternaGUI implements GUI {
         try {
             drawImage(position, this.SpikeSprite);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
 
     @Override
-    public void drawPrice(Position position, int Price) throws IOException {
+    public void drawPrice(Position position, int price) throws IOException {
         int yOffset = 67;
         int xOffset = 36;
-        while (Price != 0) {
-            int digit = Price % 10;
+        while (price != 0) {
+            int digit = price % 10;
             switch (digit) {
                 case 0 -> drawNonPos(Zero, yOffset + position.getY(), xOffset);
                 case 1 -> drawNonPos(One, yOffset + position.getY(), xOffset);
@@ -606,7 +601,7 @@ public class LanternaGUI implements GUI {
             }
             xOffset -= 10;
 
-            Price /= 10;
+            price /= 10;
         }
     }
     @Override
@@ -614,7 +609,7 @@ public class LanternaGUI implements GUI {
         try {
             drawImage(position, this.Price);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -623,11 +618,10 @@ public class LanternaGUI implements GUI {
         try {
             drawImage(position, this.infectedWall);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
-    @Override
     public void drawScore(int number) throws IOException {
         int yOffset = 12;
         int xOffset = 245;
@@ -667,7 +661,7 @@ public class LanternaGUI implements GUI {
                 drawImage(position, this.ImanSprite2);
             }
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -680,7 +674,7 @@ public class LanternaGUI implements GUI {
                 drawImage(position, this.SheildSprite2);
             }
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
@@ -693,7 +687,7 @@ public class LanternaGUI implements GUI {
                 drawImage(position, this.CoinsSprite2);
             }
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "", e);
+            e.printStackTrace();
         }
     }
 
